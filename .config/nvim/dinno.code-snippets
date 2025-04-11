@@ -1,0 +1,993 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	// >> PHP
+	"PHP block": {
+		"prefix": [
+			"?",
+			"php",
+			"<?"
+		],
+		"scope": "html,php",
+		"body": [
+			"<?php",
+			"$0",
+			"?>"
+		],
+		"description": "Open PHP block"
+	},
+	"PHP echo block": {
+		"prefix": [
+			"=",
+			"?=",
+			"<?="
+		],
+		"scope": "html,php",
+		"body": [
+			"<?= $0 ?>"
+		],
+		"description": "Open PHP block"
+	},
+	// >> HTML
+	"PHP echo block ": {
+		"prefix": [
+			"html"
+		],
+		"scope": "html",
+		"body": [
+			"<html>",
+			"</html>",
+		],
+		"description": "Open PHP block"
+	},
+	// >> Javascript
+	"Logging some string": {
+		"prefix": [
+			"clS",
+			"logS"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"console.log('💀 ~ in $RELATIVE_FILEPATH at line $TM_LINE_NUMBER ~> ', '${1}');${0}"
+		],
+		"description": "Logging some string"
+	},
+	"Logging sth": {
+		"prefix": [
+			"clp",
+			"log"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"console.log('💀 ~ in $RELATIVE_FILEPATH at line $TM_LINE_NUMBER ~> ', $TM_SELECTED_TEXT${1});${0}"
+		],
+		"description": "Logging sth"
+	},
+	"Error logging": {
+		"prefix": [
+			"cle",
+			"ce",
+			"loge",
+			"log error",
+			"cl error"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"console.error('⭕️ ~ ERROR  ~ in $WORKSPACE_NAME: $RELATIVE_FILEPATH ~> ❗', ${1});${0}"
+		],
+		"description": "Logging error"
+	},
+	"Log some string complete": {
+		"prefix": [
+			"clgs"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"console.log('💀 ~ $CURRENT_YEAR-$CURRENT_MONTH($CURRENT_MONTH_NAME_SHORT)-$CURRENT_DATE($CURRENT_DAY_NAME_SHORT) $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND in $RELATIVE_FILEPATH at line $TM_LINE_NUMBER ~> ', '${1}');${0}"
+		],
+		"description": "Log some string complete"
+	},
+	"Logging sth pure": {
+		"prefix": [
+			"cl"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"console.log(`💀 ${2}`, ${1});${0}"
+		],
+		"description": "Logging sth pure"
+	},
+	"Log something complete": {
+		"prefix": [
+			"clg"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"console.log('💀 ~ $CURRENT_YEAR-$CURRENT_MONTH($CURRENT_MONTH_NAME_SHORT)-$CURRENT_DATE($CURRENT_DAY_NAME_SHORT) $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND in $RELATIVE_FILEPATH at line $TM_LINE_NUMBER ~> ', ${1});${0}"
+		],
+		"description": "Log something in console"
+	},
+	"Import in javascript, typescript": {
+		"prefix": [
+			"imp"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"import $2 from '$1';"
+		],
+		"description": "Import sth in javascript, typescript"
+	},
+	"Import in javascript,typescript": {
+		"prefix": [
+			"impsep"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"import { $2 } from '$1';"
+		],
+		"description": "Import sth in javascript, typescript"
+	},
+	"Import in javascript, typescript ": {
+		"prefix": [
+			"imp2"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"import $1 from '$1';"
+		],
+		"description": "Import sth in javascript, typescript "
+	},
+	"Parse json": {
+		"prefix": [
+			"jp",
+			"JP"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"JSON.parse($1);${0}"
+		],
+		"description": "Parse json"
+	},
+	"Json to string": {
+		"prefix": [
+			"js",
+			"JS"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"JSON.stringify($1);${0}"
+		],
+		"description": "Json to string"
+	},
+	"Deep copy": {
+		"prefix": [
+			"dp",
+			"dpc"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"JSON.parse(JSON.stringify($1));${0}"
+		],
+		"description": "Deep copy"
+	},
+	"Query selector": {
+		"prefix": "qs",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"$document.querySelector('${1}');${0}"
+		],
+		"description": "Document query selector to select an element in js"
+	},
+	"Query selector All": {
+		"prefix": "qsa",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"$document.querySelectorAll('${1}');${0}"
+		],
+		"description": "Document query selector aa to select elements in js"
+	},
+	"Add event listener": {
+		"prefix": [
+			"ae",
+			"dae",
+			"ael",
+			"dael"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"$document.addEventListener('$eventName', $event);${0}"
+		],
+		"description": "Add event listener in js"
+	},
+	"Remove event listener": {
+		"prefix": [
+			"re",
+			"dre",
+			"rel",
+			"drel"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"$document.removeEventListener('$eventName', $event);${0}"
+		],
+		"description": "Remove event listener in js"
+	},
+	"Function": {
+		"prefix": [
+			"fn",
+			"func",
+			"function"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"function ${2:funcName}(${1:properties}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	"Ghost Function": {
+		"prefix": [
+			"fng",
+			"funcg",
+			"functiong"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"function (${1:properties}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	"Arrow function": {
+		"prefix": [
+			"af",
+			"arw-fn",
+			"afn",
+			"fn-arrow",
+			"arrow-function"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const ${1:funcName} = (${2:properties}) => {$3}$0"
+		],
+		"description": "Arrow function"
+	},
+	"Ghost Arrow function": {
+		"prefix": [
+			"afg",
+			"arw-fng",
+			"afng",
+			"fn-arrowg",
+			"arrow-functiong"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"(${2:properties}) => {$3}$0"
+		],
+		"description": "Arrow function"
+	},
+	"Class method function": {
+		"prefix": [
+			"method",
+			"mtd"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"$3 ${2:funcName}(${1:properties}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Class method"
+	},
+	"IIFE function": {
+		"prefix": [
+			"iife",
+			"fn iife"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"(${1:async} () => {",
+			"$0",
+			"})()"
+		],
+		"description": "Class method"
+	},
+	// >> Nodejs snippets:
+	"Import in nodejs": {
+		"prefix": "rqr",
+		"body": [
+			"const $2 = require('$1');",
+			"${0}"
+		],
+		"scope": "javascript,typescript",
+		"description": "Import new module in nodejs 2"
+	},
+	"Import separate in nodejs": {
+		"prefix": [
+			"seprqr",
+			"rqrsep"
+		],
+		"body": [
+			"const {$2} = require('$1');",
+			"${0}"
+		],
+		"scope": "javascript,typescript",
+		"description": "Import separately new module in nodejs 2"
+	},
+	"Import built-in modules in nodejs": {
+		"prefix": [
+			"s-rqr",
+			"same-rqr",
+			"rqr2"
+		],
+		"body": [
+			"const $1 = require('$1');",
+			"${0}"
+		],
+		"scope": "javascript,typescript",
+		"description": "Import new built-in module in nodejs 2"
+	},
+	"Import new module in nodejs": {
+		"prefix": "req",
+		"body": [
+			"require('${1}');",
+			"${0}"
+		],
+		"scope": "javascript,typescript",
+		"description": "Import new module in nodejs 2"
+	},
+	"Method function - Express": {
+		"prefix": [
+			"fn_express",
+			"func_express",
+			"function_express"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"exports.${1:FunctionName} = async function(${2:req}, ${3:res}, ${4:next}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	"Middleware function - Express": {
+		"prefix": [
+			"fng_express",
+			"funcg_express",
+			"functiong_express"
+		],
+		"scope": "typescript,typescriptreact",
+		"body": [
+			"async function(${2:req}, ${3:res}, ${4:next}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	"Arrow Middleware function - Express": {
+		"prefix": [
+			"arrow_fng_express",
+			"arrow_funcg_express",
+			"arrow_functiong_express"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"async (${2:req}, ${3:res}, ${4:next}) => {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	"Arrow method function - Express": {
+		"prefix": [
+			"fn_express_async",
+			"func_express_async",
+			"function_express_async"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"exports.${1:FunctionName} = async (${2:req}, ${3:res},${4:next}) => {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	// >> Nodets snippets:
+	"Method function - Express ts": {
+		"prefix": [
+			"fn_express_ts",
+			"func_express_ts",
+			"function_express_ts"
+		],
+		"scope": "typescript,typescriptreact",
+		"body": [
+			"export async function ${1:FunctionName}(${2:req: Request}, ${3:res: Response}, ${4:next: NextFunction}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	"Middleware function - Express ts": {
+		"prefix": [
+			"fng_express_ts",
+			"funcg_express_ts",
+			"functiong_express_ts"
+		],
+		"scope": "typescript,typescriptreact",
+		"body": [
+			"async function(${2:req: Request}, ${3:res: Response}, ${4:next: NextFunction}) {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	"Arrow Middleware function - Express ts": {
+		"prefix": [
+			"arrow_fng_express_ts",
+			"arrow_funcg_express_ts",
+			"arrow_functiong_express_ts"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"async (${2:req: Request}, ${3:res: Response}, ${4:next: NextFunction}) => {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	"Arrow method function - Express ts": {
+		"prefix": [
+			"arrow_fn_express_ts",
+			"arrow_func_express_ts",
+			"arrow_function_express_ts"
+		],
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"export const ${1:FunctionName} = async (${2:req: Request}, ${3:res: Response}, ${4:next: NextFunction}) => {",
+			"\t$0",
+			"}"
+		],
+		"description": "Function"
+	},
+	// >> Vue js snippets:
+	"Vue js optional template": {
+		"prefix": [
+			"vue-option-api",
+			"vueOptionAPI"
+		],
+		"scope": "vue",
+		"body": [
+			"<script>",
+			"\texport default {",
+			"",
+			"\t}",
+			"</script>",
+			"",
+			"<template>",
+			"\t${0}",
+			"</template>",
+			"",
+			"<style scoped>",
+			"\t",
+			"</style>"
+		],
+		"description": "Vue js optional template"
+	},
+	"Vue js 3 composition template": {
+		"prefix": [
+			"vue",
+			"vueInit",
+			"vue-composition"
+		],
+		"scope": "vue",
+		"body": [
+			"<script setup lang=\"ts\">",
+			"\t",
+			"</script>",
+			"",
+			"<template>",
+			"\t${0}",
+			"</template>",
+			"",
+			"<style scoped>",
+			"\t",
+			"</style>"
+		],
+		"description": "Vue js 3 composition template"
+	},
+	"Vue js script setup ts": {
+		"prefix": [
+			"v-sts",
+			"v-tss"
+		],
+		"scope": "vue",
+		"body": [
+			"<script setup lang=\"ts\">",
+			"\t${0}",
+			"</script>",
+			""
+		],
+		"description": "Vue js script setup ts"
+	},
+	"Data object in vue-script": {
+		"prefix": "v-data",
+		"scope": "vue",
+		"body": [
+			"data() {",
+			"\treturn {",
+			"\t\t$0",
+			"\t};",
+			"},"
+		],
+		"description": "Write data function in vue-script"
+	},
+	"Methods object in vue-script": {
+		"prefix": "v-mtds",
+		"scope": "vue",
+		"body": [
+			"methods: {",
+			"$0",
+			"},"
+		],
+		"description": "Write methods object in vue-script"
+	},
+	"Insert new method object in vue-script": {
+		"prefix": "v-mtd",
+		"scope": "vue",
+		"body": [
+			"$methodName($properties) {",
+			"\t$0",
+			"},"
+		],
+		"description": "Insert new method object in vue-script"
+	},
+	"Computed object in vue-script": {
+		"prefix": "v-computed",
+		"scope": "vue",
+		"body": [
+			"computed: {",
+			"\t$computedName() {",
+			"\t\t$0",
+			"\t}",
+			"},"
+		],
+		"description": "Write computed object in vue-script"
+	},
+	"Prop object in vue-script": {
+		"prefix": "v-prps",
+		"scope": "vue",
+		"body": [
+			"props: {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write prop object in vue-script"
+	},
+	"Insert new prop object in vue-script": {
+		"prefix": "v-prp",
+		"scope": "vue",
+		"body": [
+			"$propName: {",
+			"\ttype: $String,",
+			"\trequire: $false,",
+			"\tdefault: $defValue,",
+			"},"
+		],
+		"description": "Insert new prop object in vue-script"
+	},
+	"Watchers object in vue-script": {
+		"prefix": "v-watchers",
+		"scope": "vue",
+		"body": [
+			"watch: {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write watch object in vue-script"
+	},
+	"Insert new watcher object in vue-script": {
+		"prefix": "v-watcher",
+		"scope": "vue",
+		"body": [
+			"$watcherName($newValue, $oldValue) {",
+			"\t$0",
+			"},"
+		],
+		"description": "Insert new watcher object in vue-script"
+	},
+	"Insert new deep watcher object in vue-script": {
+		"prefix": "v-dpWatcher",
+		"scope": "vue",
+		"body": [
+			"$watcherName: {",
+			"\thandler($newValue, $oldValue) {",
+			"\t\t$0",
+			"\t},",
+			"\tdeep: true,",
+			"},"
+		],
+		"description": "Insert new deep watcher object in vue-script"
+	},
+	"Before create hook vue-script": {
+		"prefix": "v-beforeCreate",
+		"scope": "vue",
+		"body": [
+			"beforeCreate () {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write before create hook in vue-script"
+	},
+	"Created hook vue-script": {
+		"prefix": "v-created",
+		"scope": "vue",
+		"body": [
+			"created () {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write created hook in vue-script"
+	},
+	"Before mount hook vue-script": {
+		"prefix": "v-beforeMount",
+		"scope": "vue",
+		"body": [
+			"beforeMount () {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write before mount hook in vue-script"
+	},
+	"Mounted hook vue-script": {
+		"prefix": "v-mounted",
+		"scope": "vue",
+		"body": [
+			"mounted () {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write mounted hook in vue-script"
+	},
+	"Before update hook vue-script": {
+		"prefix": "v-beforeUpdate",
+		"scope": "vue",
+		"body": [
+			"beforeUpdate () {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write before update hook in vue-script"
+	},
+	"Updated hook vue-script": {
+		"prefix": "v-updated",
+		"scope": "vue",
+		"body": [
+			"updated () {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write updated hook in vue-script"
+	},
+	"Before unmount hook vue-script": {
+		"prefix": "v-beforeUnmount",
+		"scope": "vue",
+		"body": [
+			"beforeUnmount () {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write before unmount hook in vue-script"
+	},
+	"Unmounted hook vue-script": {
+		"prefix": "v-unmounted",
+		"scope": "vue",
+		"body": [
+			"unmounted () {",
+			"\t$0",
+			"},"
+		],
+		"description": "Write unmounted hook in vue-script"
+	},
+	// >> Vue composable snippets:
+	"Use new composable": {
+		"prefix": "use",
+		"scope": "javascript,typescript,vue",
+		"body": [
+			"const ${2:name} = ${1:composableName}();",
+			"${0}"
+		],
+		"description": "Use new composable"
+	},
+	"Use new composable-destructure": {
+		"prefix": [
+			"use-destructured",
+			"useDestructured",
+			"usedestructured"
+		],
+		"scope": "javascript,typescript,vue",
+		"body": [
+			"const {${2:name}} = ${1:composableName}();",
+			"${0}"
+		],
+		"description": "Use new composable-destructure"
+	},
+	// >> React js
+	"reactComponent": {
+		"prefix": "rfc",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"function ${1:${TM_FILENAME_BASE}}() {",
+			"\treturn (",
+			"\t\t<${2:div} $3>",
+			"\t\t\t${0:${TM_FILENAME_BASE}}",
+			"\t\t</${2:div}>",
+			"\t)",
+			"}",
+			"",
+			"export default ${1:${TM_FILENAME_BASE}}",
+			""
+		],
+		"description": "React component"
+	},
+	"importCSSModule": {
+		"prefix": "csm",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"import styles from './${TM_FILENAME_BASE}.module.css'"
+		],
+		"description": "Import CSS Module as `styles`"
+	},
+	"useState": {
+		"prefix": "ush",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2);$0"
+		],
+		"description": "React useState() hook"
+	},
+	"useEffect": {
+		"prefix": "ueh",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"useEffect(() => {",
+			"\t$1",
+			"\n\treturn () => {",
+			"\t\t$2",
+			"\t}",
+			"}, [${3}]);$0"
+		],
+		"description": "React useEffect() hook"
+	},
+	"useContext": {
+		"prefix": "uch",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const $1 = useContext($2);$0"
+		],
+		"description": "React useContext() hook"
+	},
+	"useCallback": {
+		"prefix": "ucbh",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const ${1:memoizedCallback} = useCallback(",
+			"\t() => {",
+			"\t\t${2:doSomething}(${3:a}, ${4:b})",
+			"\t},",
+			"\t[${5:a}, ${6:b}],",
+			");$0"
+		],
+		"description": "React useCallback() hook"
+	},
+	"useMemo": {
+		"prefix": "umh",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const ${1:memoizedValue} = useMemo(() => ${2:computeExpensiveValue}(${3:a}, ${4:b}), [${5:a}, ${6:b}]);$0"
+		],
+		"description": "React useMemo() hook"
+	},
+	"import react hooks": {
+		"prefix": "irh",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"import React, { useState, useContext, useEffect, useCallback, useMemo } from 'react';"
+		]
+	},
+	"useRef": {
+		"prefix": "urh",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const $1 = useRef($2);$0"
+		],
+		"description": "React useRef() hook"
+	},
+	"useReducer": {
+		"prefix": "urdh",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const [${1:state},${2: dispatch}] = useReducer(${3:reducer}, ${4:initialArg}, ${5:init});"
+		],
+		"description": "React useReducer() hook"
+	},
+	"import react-redux hooks": {
+		"prefix": "irrh",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"import { useSelector, useDispatch } from 'react-redux';"
+		]
+	},
+	"useSelector": {
+		"prefix": "uss",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const $1 = useSelector(state => state.$1);"
+		]
+	},
+	"useDispatchFunction": {
+		"prefix": "usdf",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const $1 = useDispatch($2);$3"
+		]
+	},
+	"useDispatch": {
+		"prefix": "usd",
+		"scope": "javascript,typescript,javascriptreact,typescriptreact",
+		"body": [
+			"const $1 = $2 => dispatch($3);"
+		]
+	},
+	// >> C++
+	"CPP default structure": {
+		"prefix": [
+			"cpp",
+			"++"
+		],
+		"scope": "cpp",
+		"body": [
+			"#include <iostream>",
+			"using std::string;",
+			"// using str = std::string;",
+			"// - If you want to use bottom option globally uncomment them:",
+			"// using std::cin;",
+			"// using std::cout;",
+			"// using std::endl;",
+			"\nint main()",
+			"{",
+			"\t$0",
+			"}"
+		],
+		"description": "CPP default structure"
+	},
+	"Print something": {
+		"prefix": [
+			"cout",
+			"print",
+			"log"
+		],
+		"scope": "cpp",
+		"body": [
+			"std::cout << ${0:yourOutput};"
+		],
+		"description": "Print something"
+	},
+	"Print something with new line": {
+		"prefix": [
+			"cl",
+			"cout_endl",
+			"print_endl",
+			"log_endl",
+			"cl_endl"
+		],
+		"scope": "cpp",
+		"body": [
+			"std::cout << ${0:yourOutput} << std::endl;"
+		],
+		"description": "Print something with new line"
+	},
+	"Get input": {
+		"prefix": [
+			"cin",
+			"input"
+		],
+		"scope": "cpp",
+		"body": [
+			"std::cin  >> ${0:variable};"
+		],
+		"description": "Get input"
+	},
+	"Get complete line input": {
+		"prefix": [
+			"cin_line",
+			"input_line"
+		],
+		"scope": "cpp",
+		"body": [
+			"std::getline(std::cin >> std::ws, ${0:variable});"
+		],
+		"description": "Get complete line input"
+	},
+	"Generate new random number": {
+		"prefix": [
+			"random"
+		],
+		"scope": "cpp",
+		"body": [
+			"srand(time(NULL));",
+			"int ${0:varName} = (rand() % ${1:fromOneUntilThisNumber}) + 1; // - Generate random number from 1 until ${1:fromOneUntilThisNumber}"
+		],
+		"description": "Generate new random number"
+	},
+	// >> GoLang
+	"Initiate go file": {
+		"prefix": [
+			"go"
+		],
+		"scope": "go",
+		"body": [
+			"package ${1:main}",
+			"",
+			"func main(){",
+			"\t$0",
+			"}"
+		],
+		"description": "Print something"
+	},
+	"Print line something": {
+		"prefix": [
+			"cl",
+			"log",
+			"print",
+			"println",
+		],
+		"scope": "go",
+		"body": [
+			"fmt.Println(\"💀 $1$0 > \", $1)"
+		],
+		"description": "Print something"
+	},
+	"Print format something": {
+		"prefix": [
+			"clf",
+			"logf",
+			"printf",
+		],
+		"scope": "go",
+		"body": [
+			"fmt.Printf(\"💀 $1$0 > %${2:#v}\\n\", $1)"
+		],
+		"description": "Print format something"
+	},
+	// >> Python
+	"Print to console": {
+		"prefix": [
+			"print",
+			"pr",
+			"clp",
+			"log"
+		],
+		"scope": "python",
+		"body": [
+			"print($1)",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+}
