@@ -15,8 +15,8 @@ alias rm='rm -iv'
 alias rmdir='rmdir -v'
 alias grep='grep --color=auto'
 alias src="source $HOME/.zshrc"
-alias nv='nvim'
-alias zs="nvim $HOME/.config/zsh/custom.zsh"
+alias nv='nvim -c "tcd %:p:h"'
+alias zs='nv $HOME/.config/zsh/main.zsh'
 
 
 alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgithub/warp/main/endip/install.sh)"
@@ -83,15 +83,3 @@ elif [[ -x "$(command -v wget)" ]]; then
     alias myip='wget -qO- http://ip-api.com/line | grep -P --invert-match --line-buffered "(\d+\.?)+"'
 fi
 
-mcd (){
-  mkdir -p $1
-  cd $1
-}
-
-ds (){
-  du $1 -h -d 1  | sort -hr
-}
-
-get_ips (){
- cat $1 | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n $2 | xargs | sed "s/ /,/g"
-}
