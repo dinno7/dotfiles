@@ -12,6 +12,11 @@ fi
 # Add oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dinno.toml)"
 
+# INFO: Load zsh-completions
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit
+source "$ZSH/oh-my-zsh.sh"
+
 # Set oh my zsh
 source $ZSH/oh-my-zsh.sh
 
@@ -42,11 +47,10 @@ plugins=(
   web-search
   # --------------
   # External
-  zsh-bat
   you-should-use
   zsh-interactive-cd
   zsh-autosuggestions
-  zsh-syntax-highlighting
+  fast-syntax-highlighting
   # --------------
   # languages & tools
   git
@@ -132,3 +136,4 @@ fi
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM="$HOME/.config/zsh/"
+
