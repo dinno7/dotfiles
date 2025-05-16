@@ -66,3 +66,7 @@ export VI_MODE_CURSOR_INSERT=6
 export VI_MODE_CURSOR_OPPEND=0
 export MODE_INDICATOR="%F{white}+%f"
 export INSERT_MODE_INDICATOR="%F{yellow}+%f"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
