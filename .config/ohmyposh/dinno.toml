@@ -1,12 +1,20 @@
 version = 3
 final_space = true
 
+# Cattpuccin
+# [palette]
+#   blue = '#89B4FA'
+#   closer = 'p:os'
+#   lavender = '#9d7cd8'
+#   os = '#ACB0BE'
+# pink = '#ff757f'
 [palette]
-  blue = '#89B4FA'
-  closer = 'p:os'
-  lavender = '#B4BEFE'
+  blue = '#b4f9f8'
+  lavender = '#bb9af7'
   os = '#ACB0BE'
-  pink = '#F5C2E7'
+  cyen = '#2ac3de'
+  pink = '#ff757f'
+  closer = 'p:osj'
 
 [secondary_prompt]
   template = '❯❯ '
@@ -43,7 +51,7 @@ final_space = true
 
   [[blocks.segments]]
     template = '{{ .Path }} '
-    foreground = 'p:pink'
+    foreground = 'p:cyen'
     type = 'path'
     style = 'plain'
 
