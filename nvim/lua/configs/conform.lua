@@ -12,6 +12,7 @@ local options = {
     markdown = { "prettierd" },
     graphql = { "prettierd" },
     lua = { "stylua" },
+    bash = { "shfmt" },
     -- vue = { "volar" },
     -- python = { "isort", "black" },
     -- cpp = { "clang-format" },
