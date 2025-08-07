@@ -23,7 +23,8 @@ This repository contains a script to manage your dotfiles using symbolic links. 
    git clone https://github.com/yourusername/dotfiles.git $HOME/dinno.dotfiles
    ```
 
-> [!NOTE] You should exactly clone it in `$HOME/dinno.dotfiles` because it is read the files from there in 'setup.sh'
+> [!NOTE]
+> You should exactly clone it in `$HOME/dinno.dotfiles` because it is read the files from there in 'setup.sh'
 
 2. **Make the Script Executable:**
 
@@ -42,7 +43,8 @@ For example:
 .config/zsh=zsh/main.zsh
 ```
 
-> [!ATTENTION] Please do not modify it if you do not know what are you doing...
+> [!WARNING]
+> Please do not modify it if you do not know what are you doing
 
 ## Usage
 
