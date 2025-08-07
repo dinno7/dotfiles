@@ -15,6 +15,7 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 
 - **Bash**: The script is written in Bash, so you need a Unix-like environment (Linux, macOS, etc.).
 - **`realpath` command**: This is used to generate relative paths for symlinks. It should be available on most modern Unix-like systems.
+- Oh-My-Zsh: you can install it from [here](https://ohmyz.sh/#install).
 
 ## Installation
 
