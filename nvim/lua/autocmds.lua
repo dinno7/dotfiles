@@ -142,3 +142,26 @@ autocmd("BufReadPost", {
     end
   end,
 })
+
+-- NOTE: Add Git blame stuff(GitLens)
+local git_blame_grp = vim.api.nvim_create_augroup("GitBlameAnnotations", { clear = true })
+
+-- NOTE: Show blame text on CursorHold
+autocmd("CursorHold", {
+  group = git_blame_grp,
+  pattern = "*",
+  desc = "Display Git blame virtual text",
+  callback = function()
+    require("utils").blameVirtText()
+  end,
+})
+
+-- NOTE: Clear blame text on cursor move (normal or insert)
+autocmd({ "CursorMoved", "CursorMovedI" }, {
+  group = git_blame_grp,
+  pattern = "*",
+  desc = "Clear Git blame virtual text",
+  callback = function()
+    require("utils").clearBlameVirtText()
+  end,
+})
