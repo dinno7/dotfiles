@@ -24,24 +24,3 @@ o.spell = true
 
 -- INFO: Get custom snippets from VSCode
 vim.g.vscode_snippets_standalone_path = "~/.config/nvim/dinno.code-snippets"
-
--- INFO: Optional: Add a command to toggle hex view
---
--- vim.api.nvim_create_user_command("ToggleHexView", function()
---   if vim.bo.filetype == "hexdump" then
---     -- Reopen the file normally
---     vim.cmd "edit!"
---   else
---     -- Trigger the hex view conversion
---     local filename = vim.api.nvim_buf_get_name(0)
---     if is_binary(filename) then
---       vim.cmd "e"
---     else
---       print "This file is not detected as binary."
---     end
---   end
--- end, {})
---
--- INFO: Optional: Map a key to toggle hex view
---
--- vim.api.nvim_set_keymap("n", "u", ":ToggleHexView<CR>", { noremap = true, silent = true })
