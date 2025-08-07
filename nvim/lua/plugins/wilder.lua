@@ -23,7 +23,6 @@ return {
         wilder.make_hl("WilderSapphire", { { a = 1 }, { a = 1 }, { foreground = macchiato.sapphire } })
 
       -- Enable wilder when pressing :, / or ?
-      wilder.setup { modes = { ":", "/", "?" } }
 
       wilder.set_option("pipeline", {
         wilder.branch(
@@ -41,11 +40,11 @@ return {
         "renderer",
         wilder.popupmenu_renderer(wilder.popupmenu_palette_theme {
           highlighter = wilder.basic_highlighter(),
-          highlights = {
-            default = text_highlight,
-            border = maroon_highlight,
-            accent = sapphire_highlight,
-          },
+          -- highlights = {
+          --   default = text_highlight,
+          --   border = maroon_highlight,
+          --   accent = sapphire_highlight,
+          -- },
           -- 'single', 'double', 'rounded' or 'solid'
           -- can also be a list of 8 characters, see :h wilder#popupmenu_palette_theme() for more details
           border = "rounded",
@@ -59,6 +58,8 @@ return {
           right = { " ", wilder.popupmenu_scrollbar() },
         })
       )
+
+      wilder.setup { modes = { ":", "/", "?" }, next_key = "<C-j>", previous_key = "<C-k>" }
     end,
   },
 }
