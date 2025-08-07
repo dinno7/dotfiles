@@ -1,6 +1,5 @@
 local options = {
   formatters_by_ft = {
-    ["_"] = { "trim_whitespace" },
     javascript = { "prettierd" },
     typescript = { "prettierd" },
     javascriptreact = { "prettierd" },
