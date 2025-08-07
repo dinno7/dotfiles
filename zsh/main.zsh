@@ -9,11 +9,11 @@ if [ -z "$TMUX" ]; then
   tmux attach -t TMUX || tmux new -s TMUX
 fi
 
-# Add oh-my-posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/dinno.json)"
-
 # Set oh my zsh
 source $ZSH/oh-my-zsh.sh
+
+# Apply custom zsh theme
+source "$HOME/.config/zsh/theme.zsh"
 
 # Check for the Rust package manager binary install location
 # Link: https://doc.rust-lang.org/cargo/index.html
