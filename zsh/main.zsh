@@ -1,36 +1,28 @@
-[[ -f "$HOME/.config/zsh/functions.zsh" ]] && source "$HOME/.config/zsh/functions.zsh"
+[[ -f "$DINNO_ZSH_DIR/functions.zsh" ]] && source "$DINNO_ZSH_DIR/functions.zsh"
 
-# Add the most common personal binary paths located inside the home folder
+# NOTE: Add the most common personal binary paths located inside the home folder
 # (these directories are only added if they exist)
 pathprepend "$HOME/bin" "$HOME/sbin" "$HOME/.local/bin" "$HOME/local/bin" "$HOME/.bin"
 
-# TMUX
+# NOTE: Run tmux session
 if [ -z "$TMUX" ]; then
-  tmux attach -t TMUX || tmux new -s TMUX
+  TMUX_DEFAULT_SESSION_TITLE="Dinno"
+  tmux attach -t "$TMUX_DEFAULT_SESSION_TITLE" || tmux new -s "$TMUX_DEFAULT_SESSION_TITLE"
 fi
 
-# Set oh my zsh
+# NOTE: Set oh my zsh
 source $ZSH/oh-my-zsh.sh
 
-# Apply custom zsh theme
-source "$HOME/.config/zsh/theme.zsh"
+# NOTE: Apply custom zsh theme
+[[ -f "$DINNO_ZSH_DIR/theme.zsh" ]] && source "$DINNO_ZSH_DIR/theme.zsh"
 
-# Check for the Rust package manager binary install location
-# Link: https://doc.rust-lang.org/cargo/index.html
-pathappend "$HOME/.cargo/bin"
-
-# Add Go to path
-pathappend "$HOME/go/bin/"
-
-
-
-# Which plugins would you like to load?
+# NOTE: Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  # Global
+  # NOTE: Global
   z
   ufw
   fzf
@@ -41,15 +33,13 @@ plugins=(
   jsontools
   dirhistory
   web-search
-  # --------------
-  # External
+  # NOTE: External
   zsh-bat
   you-should-use
   zsh-interactive-cd
   zsh-autosuggestions
   zsh-syntax-highlighting
-  # --------------
-  # languages & tools
+  # NOTE: languages & tools
   git
   nvm
   npm
@@ -57,23 +47,23 @@ plugins=(
   golang
   docker
   docker-compose
-  # --------------
 )
 
-# vim-mode plugin settings
+# NOTE: vim-mode plugin settings
 bindkey -M viins 'jk' vi-cmd-mode
 
-# term proxy app
+# NOTE: term proxy app
 PATH_TERM_PROXY="$HOME/.local/bin/term_proxy"
 [ -f $PATH_TERM_PROXY ] && source $PATH_TERM_PROXY
 
-# Uncomment the following line to enable command auto-correction.
+# NOTE: Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
 
 
 if [ "$(command -v fzf)" ]; then
-  # Set up fzf key bindings and fuzzy completion
+  # NOTE: Set up fzf key bindings and fuzzy completion
   eval "$(fzf --zsh)"
 fi
 
-
+# NOTE: Add additional paths
+[[ -f "$DINNO_ZSH_DIR/paths.zsh" ]] && source "$DINNO_ZSH_DIR/paths.zsh"

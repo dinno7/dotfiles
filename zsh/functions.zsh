@@ -1,4 +1,3 @@
-
 # Add directories to the end of the path if they exist and are not already in the path
 # Link: https://superuser.com/questions/39751/add-directory-to-path-if-its-not-already-there
 function pathappend() {
