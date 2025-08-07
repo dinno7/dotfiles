@@ -15,6 +15,8 @@ local servers = {
   emmet_ls = {
     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "vue", "sass", "scss", "less", "svelte" },
   },
+  eslint = {},
+  tailwindcss = {},
   -- volar = {},
   -- clangd = {},
 }

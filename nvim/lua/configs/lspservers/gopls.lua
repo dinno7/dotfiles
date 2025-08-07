@@ -11,8 +11,7 @@ local options = {
         unusedvariable = true,
         unreachable = true,
         unusedparams = true,
-
-        -- useany = true,
+        useany = true,
         -- unusedwrite = true,
         -- ST1003 = true,
         -- undeclaredname = true,

@@ -1,23 +1,19 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  opts = {
-    ensure_installed = {
+  opts = function()
+    local opts = require "nvchad.configs.treesitter"
+    opts.ensure_installed = {
+      "go",
       "vim",
       "lua",
-      "vimdoc",
-      "html",
+      "tsx",
       "css",
-      "go",
+      "html",
       "bash",
-    },
-    incremental_selection = {
-      keymaps = {
-        -- mappings for incremental selection (visual mappings)
-        init_selection = "qqq", -- maps in normal mode to init the node/scope selection
-        node_incremental = "qqqq", -- increment to the upper named parent
-        scope_incremental = "qqqqq", -- increment to the upper scope (as defined in locals.scm)
-        node_decremental = "qqqqqqq", -- decrement to the previous node
-      },
-    },
-  },
+      "vimdoc",
+      "javascript",
+      "typescript",
+    }
+    return opts
+  end,
 }

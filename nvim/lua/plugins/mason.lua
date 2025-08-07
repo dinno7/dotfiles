@@ -4,8 +4,9 @@ return {
     ensure_installed = {
       "stylua",
       "emmet-ls",
-      "eslint_d",
+      "eslint-lsp",
       "prettierd",
+      "shfmt",
       "lua-language-server",
       "bash-language-server",
       "typescript-language-server",
