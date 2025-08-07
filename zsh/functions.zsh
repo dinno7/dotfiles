@@ -18,3 +18,28 @@ function pathprepend() {
         fi
     done
 }
+
+function runfree() {
+	"$@" > /dev/null 2>&1 & disown
+}
+
+function mcd(){
+  mkdir -p $1
+  cd $1
+}
+
+function ds(){
+  du $1 -h -d 1  | sort -hr
+}
+
+function get_ips (){
+ cat $1 | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n $2 | xargs | sed "s/ /,/g"
+}
+
+# NOTE: Function to log messages
+function clog() {
+  if [[ -z $1 ]];then
+    return
+  fi
+  echo "ℹ️ $(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$DINNO_ZSH_LOGS"
+}

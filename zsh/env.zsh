@@ -1,9 +1,6 @@
 # Secrets
 [ -f "$HOME/.env" ] && source "$HOME/.env"
 
-[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
-
-
 export TMUX_CONFIG_DIR="$HOME/.config/tmux"
 
 # Path to your Oh My Zsh installation.
@@ -15,24 +12,17 @@ export XDG_CACHE_HOME="$HOME/.cache"           # Cache files
 export XDG_DATA_HOME="$HOME/.local/share"      # Application data
 export XDG_STATE_HOME="$HOME/.local/state"     # Logs and state files
 
-# Themes (onedark or nord)
-export TMUX_THEME="nord"
-export NVIM_THEME="nord"
-export STARSHIP_THEME="nord"
-export WEZTERM_THEME="nord"
-
 # Locale settings
 export LANG="en_US.UTF-8" # Sets default locale for all categories
 export LC_ALL="en_US.UTF-8" # Overrides all other locale settings
 export LC_CTYPE="en_US.UTF-8" # Controls character classification and case conversion
 
-
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Use Neovim as default editor
 export VISUAL=nvim visudo
@@ -49,9 +39,7 @@ fi
 
 
 export FZF_DEFAULT_OPTS="--tmux 80% --border=bold --border=rounded --layout=reverse --preview 'bat --color=always {}' --no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b"
-
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
-
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
 # Hide computer name in terminal
@@ -70,3 +58,5 @@ export INSERT_MODE_INDICATOR="%F{yellow}+%f"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export DINNO_ZSH_LOGS="$HOME/.dinno.zsh.logs"

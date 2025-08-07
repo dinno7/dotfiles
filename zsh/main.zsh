@@ -1,20 +1,15 @@
+# NOTE: Apply custom envs
+[[ -f "$DINNO_ZSH_DIR/env.zsh" ]] && source "$DINNO_ZSH_DIR/env.zsh"
+# NOTE: Apply custom functions
 [[ -f "$DINNO_ZSH_DIR/functions.zsh" ]] && source "$DINNO_ZSH_DIR/functions.zsh"
+
+
+# NOTE: Apply custom zsh theme
+[[ -f "$DINNO_ZSH_DIR/theme.zsh" ]] && source "$DINNO_ZSH_DIR/theme.zsh"
 
 # NOTE: Add the most common personal binary paths located inside the home folder
 # (these directories are only added if they exist)
 pathprepend "$HOME/bin" "$HOME/sbin" "$HOME/.local/bin" "$HOME/local/bin" "$HOME/.bin"
-
-# NOTE: Run tmux session
-if [ -z "$TMUX" ]; then
-  TMUX_DEFAULT_SESSION_TITLE="Dinno"
-  tmux attach -t "$TMUX_DEFAULT_SESSION_TITLE" || tmux new -s "$TMUX_DEFAULT_SESSION_TITLE"
-fi
-
-# NOTE: Set oh my zsh
-source $ZSH/oh-my-zsh.sh
-
-# NOTE: Apply custom zsh theme
-[[ -f "$DINNO_ZSH_DIR/theme.zsh" ]] && source "$DINNO_ZSH_DIR/theme.zsh"
 
 # NOTE: Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -49,8 +44,14 @@ plugins=(
   docker-compose
 )
 
+# NOTE: Set oh my zsh
+source $ZSH/oh-my-zsh.sh
+
 # NOTE: vim-mode plugin settings
 bindkey -M viins 'jk' vi-cmd-mode
+
+# NOTE: Apply aliases
+[[ -f "$DINNO_ZSH_DIR/aliases.zsh" ]] && source "$DINNO_ZSH_DIR/aliases.zsh"
 
 # NOTE: term proxy app
 PATH_TERM_PROXY="$HOME/.local/bin/term_proxy"
@@ -67,3 +68,4 @@ fi
 
 # NOTE: Add additional paths
 [[ -f "$DINNO_ZSH_DIR/paths.zsh" ]] && source "$DINNO_ZSH_DIR/paths.zsh"
+

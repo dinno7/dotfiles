@@ -1,10 +1,3 @@
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-
 alias c='clear'
 alias cls='clear'
 alias e='exit'
@@ -16,8 +9,7 @@ alias rmdir='rmdir -v'
 alias grep='grep --color=auto'
 alias src="source $HOME/.zshrc"
 alias nv='nvim'
-alias zs="nvim $HOME/.config/zsh/custom.zsh"
-
+alias zs="nvim $DINNO_ZSH_DIR/custom.zsh"
 
 alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgithub/warp/main/endip/install.sh)"
 
@@ -29,10 +21,6 @@ fi
 if [[ -x "$(command -v xdg-open)" ]]; then
 	alias open='runfree xdg-open'
 fi
-
-function runfree() {
-	"$@" > /dev/null 2>&1 & disown
-}
 
 # Alias for lsd
 if [[ -x "$(command -v lsd)" ]]; then
@@ -58,7 +46,7 @@ fi
 # Alias for FZF
 # Link: https://github.com/junegunn/fzf
 if [[ -x "$(command -v fzf)" ]]; then
-    alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
+    # alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
     # Alias to fuzzy find files in the current folder(s), preview them, and launch in an editor
 	if [[ -x "$(command -v xdg-open)" ]]; then
 		alias preview='open $(fzf --info=inline --query="${@}")'
@@ -83,15 +71,3 @@ elif [[ -x "$(command -v wget)" ]]; then
     alias myip='wget -qO- http://ip-api.com/line | grep -P --invert-match --line-buffered "(\d+\.?)+"'
 fi
 
-mcd (){
-  mkdir -p $1
-  cd $1
-}
-
-ds (){
-  du $1 -h -d 1  | sort -hr
-}
-
-get_ips (){
- cat $1 | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n $2 | xargs | sed "s/ /,/g"
-}
