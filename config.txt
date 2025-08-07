@@ -3,3 +3,4 @@
 .config/tmux=tmux
 .config/nvim=nvim
 .vim=vim
+.local/bin=bin
