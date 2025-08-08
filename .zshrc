@@ -10,8 +10,10 @@ export DINNO_ZSH_LOGO="$HOME/dinno.dotfiles/dinno_logo.txt"
 setopt HIST_IGNORE_ALL_DUPS
 
 if [ -d "$DINNO_ZSH_DIR" ]; then
-  if command -v fastfetch &>/dev/null; then
-    fastfetch --logo $DINNO_ZSH_LOGO
+  if [ $SHLVL -eq 1 ];then
+    if [ command -v fastfetch &>/dev/null ]; then
+      fastfetch --logo $DINNO_ZSH_LOGO
+    fi
   fi
 
   # Custom zsh
