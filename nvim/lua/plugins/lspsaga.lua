@@ -26,7 +26,6 @@ return {
         colors = {
           normal_bg = "#022746",
         },
-        code_action = "💀",
       },
     }
   end,
