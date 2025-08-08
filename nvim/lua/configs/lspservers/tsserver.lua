@@ -6,10 +6,10 @@ local function organize_imports()
   vim.lsp.buf.execute_command(params)
 end
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
-  callback = organize_imports,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
+--   callback = organize_imports,
+-- })
 
 local options = {
   init_options = {
