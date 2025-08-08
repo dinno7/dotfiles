@@ -26,33 +26,17 @@ local handlePreviewMessage = function(virtText, lnum, endLnum, width, truncate)
   return newVirtText
 end
 
-local ftMap = {
-  vim = "indent",
-  python = { "indent" },
-  git = "",
-}
-
-local customizeSelector = function(bufnr)
-  local function handleFallbackException(err, providerName)
-    if type(err) == "string" and err:match "UfoFallbackException" then
-      return require("ufo").getFolds(bufnr, providerName)
-    else
-      return require("promise").reject(err)
-    end
-  end
-
-  return require("ufo")
-    .getFolds(bufnr, "lsp")
-    :catch(function(err)
-      return handleFallbackException(err, "treesitter")
-    end)
-    :catch(function(err)
-      return handleFallbackException(err, "indent")
-    end)
-end
-
 local opts = {
   open_fold_hl_timeout = 150,
+  close_fold_kinds_for_ft = {
+    default = { "imports", "comment" },
+    json = { "array" },
+    c = { "comment", "region" },
+  },
+  close_fold_current_line_for_ft = {
+    default = true,
+    c = false,
+  },
   preview = {
     win_config = {
       border = { "", "─", "", "", "", "─", "", "" },
@@ -60,16 +44,15 @@ local opts = {
       winblend = 0,
     },
     mappings = {
-      scrollU = "<C-u>",
-      scrollD = "<C-d>",
+      scrollU = "<C-k>",
+      scrollD = "<C-j>",
       jumpTop = "[",
       jumpBot = "]",
     },
   },
   fold_virt_text_handler = handlePreviewMessage,
   provider_selector = function(bufnr, filetype, buftype)
-    return ftMap[filetype] or customizeSelector
-    -- return { "treesitter", "indent" }
+    return { "treesitter", "indent" }
   end,
 }
 
