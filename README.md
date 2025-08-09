@@ -13,9 +13,26 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 
 ## Prerequisites
 
+### Required
+
 - **Bash**: The script is written in Bash, so you need a Unix-like environment (Linux, macOS, etc.).
+- **ZSH**: you should set bash to zsh
+- **Oh-My-Zsh**: install the [OMZ](https://ohmyz.sh/#install) and below 3-party plugins
+  - [you-should-use](https://github.com/MichaelAquilina/zsh-you-should-use)
+  - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+  - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- **TPM**: For apply the tmux configutation and theme correctly, you should install [TPM](https://github.com/tmux-plugins/tpm) and then run `<C-I>` to install tmux packages, Please note that you should install tpm in `~/dinno.dotfiles/tmux/plugins/tpm`
+  ```bash
+  git clone https://github.com/tmux-plugins/tpm ~/dinno.dotfiles/tmux/plugins/tpm
+  ```
 - **`realpath` command**: This is used to generate relative paths for symlinks. It should be available on most modern Unix-like systems.
-- Oh-My-Zsh: you can install it from [here](https://ohmyz.sh/#install).
+
+### Optional
+
+- [fzf](https://github.com/junegunn/fzf#installation)
+- [bat](https://github.com/sharkdp/bat)
+- [lsd](https://github.com/lsd-rs/lsd)
+- [fastfetch](https://github.com/fastfetch-cli/fastfetch)(Recommended) or [neofetch](https://github.com/dylanaraps/neofetch)
 
 ## Installation
 
