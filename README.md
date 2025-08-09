@@ -61,7 +61,8 @@ The script will:
 - Backup any existing files in the destination paths.
 - Create symbolic links from the source files to the destination paths.
 
-> [!NOTE] Install Hack Nerd Font(or any nerd fonts) to support icons and have a better experience
+> [!TIP]
+> Install Hack Nerd Font(or any nerd fonts) to support icons and have a better experience
 
 ## Backup
 
