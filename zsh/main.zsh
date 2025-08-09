@@ -28,10 +28,9 @@ plugins=(
   jsontools
   dirhistory
   web-search
+  # zsh-interactive-cd
   # NOTE: External
-  zsh-bat
   you-should-use
-  zsh-interactive-cd
   zsh-autosuggestions
   zsh-syntax-highlighting
   # NOTE: languages & tools

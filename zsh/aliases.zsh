@@ -33,8 +33,12 @@ fi
 
 # Alias For bat
 # Link: https://github.com/sharkdp/bat
-if [[ -x "$(command -v bat)" ]]; then
-    alias cat='bat'
+if command -v batcat >/dev/null 2>&1; then
+  alias rcat="$(which cat)"
+  alias cat="$(which batcat)"
+elif command -v bat >/dev/null 2>&1; then
+  alias rcat="$(which cat)"
+  alias cat="$(which bat)"
 fi
 
 # Alias for lazygit
@@ -46,7 +50,6 @@ fi
 # Alias for FZF
 # Link: https://github.com/junegunn/fzf
 if [[ -x "$(command -v fzf)" ]]; then
-    # alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
     # Alias to fuzzy find files in the current folder(s), preview them, and launch in an editor
 	if [[ -x "$(command -v xdg-open)" ]]; then
 		alias preview='open $(fzf --info=inline --query="${@}")'

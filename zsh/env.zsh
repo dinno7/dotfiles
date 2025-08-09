@@ -29,10 +29,14 @@ export VISUAL=nvim visudo
 export SUDO_EDITOR=nvim
 export FCEDIT=nvim
 
-if [[ -x "$(command -v bat)" ]]; then
-	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-	export PAGER=bat
-  # Fix bat formatting problems
+
+if command -v batcat >/dev/null 2>&1; then
+  export PAGER=batcat
+  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+  export MANROFFOPT="-c"
+elif command -v bat >/dev/null 2>&1; then
+  export PAGER=bat
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
   export MANROFFOPT="-c"
 fi
 
