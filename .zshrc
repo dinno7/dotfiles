@@ -13,9 +13,16 @@ fi
 # NOTE: Run tmux session
 if [[ -z $TMUX && $SHLVL -eq 1 ]]; then
   echo "Start Tmux..."
-  if [ $(command -v fastfetch) ]; then
-    fastfetch --logo $DINNO_ZSH_LOGO
-  fi
   session_name="Dinno"
   tmux attach -t "$session_name" || tmux new -s "$session_name"
+fi
+
+if [[ -n $TMUX && $SHLVL -eq 2 ]]; then
+  if [ $(command -v fastfetch) ]; then
+    fastfetch --logo $DINNO_ZSH_LOGO
+  elif [ $(command -v neofetch) ]; then
+    neofetch --source $DINNO_ZSH_LOGO
+  else 
+    cat -p $DINNO_ZSH_LOGO
+  fi
 fi
