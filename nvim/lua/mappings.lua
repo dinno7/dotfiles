@@ -166,6 +166,21 @@ map({ "i", "n", "v" }, "<M-C-Z>", "<cmd>redo<cr>", { desc = "Redo" })
 -- NOTE: Delete word after cursor in insert mode
 map("i", "<C-Del>", "<ESC>ldwha", { desc = "Delete word after cursor" })
 
+-- NOTE: Gitsigns
+map(
+  "n",
+  "<leader>gbl",
+  "<cmd> Gitsigns blame_line <CR>",
+  { desc = "See git commit blame line", silent = true, noremap = true }
+)
+
+map(
+  "n",
+  "<leader>gbb",
+  "<cmd> Gitsigns blame <CR>",
+  { desc = "See git commit complete blame", silent = true, noremap = true }
+)
+
 -- NOTE: UFO(pkg) folding:
 map("n", "zR", require("ufo").openAllFolds, { desc = "UFO Open all folds" })
 map("n", "zM", require("ufo").closeAllFolds, { desc = "UFO Close all folds" })
