@@ -6,10 +6,7 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
 - [Backup](#backup)
-- [Logging](#logging)
 
 ## Prerequisites
 
@@ -36,55 +33,32 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 
 ## Installation
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/yourusername/dotfiles.git $HOME/dinno.dotfiles
-   ```
+0. **Install [stow](https://www.gnu.org/software/stow)**:
 
-> [!NOTE]
-> You should exactly clone it in `$HOME/dinno.dotfiles` because it is read the files from there in 'setup.sh'
-
-2. **Make the Script Executable:**
+_Arch_
 
 ```bash
-chmod +x $HOME/dinno.dotfiles/setup.sh
+pacman -S stow
 ```
 
-## Configuration
+1. **Clone the Repository**:
 
-The script uses a configuration file (`config.txt`) to manage dotfiles. This file should be placed in the $HOME/dinno.dotfiles directory and should contain lines in the format:
-<PATH_IN_LOCAL_MACHINE>=<PATH_IN_DOTFILES_DIR>
-For example:
+   ```bash
+   git clone https://github.com/yourusername/dotfiles.git "$HOME/dotfiles"
+   ```
 
-```
-.zshrc=.zshrc
-.config/zsh=zsh/main.zsh
-```
+2. **Sync**
+
+   ```bash
+   stow "$HOME/dotfiles"
+   ```
 
 > [!WARNING]
 > Please do not modify it if you do not know what are you doing
-
-## Usage
-
-1. Run the Setup Script:
-
-```bash
-$HOME/dinno.dotfiles/setup.sh
-```
-
-The script will:
-
-- Read the config.txt file.
-- Backup any existing files in the destination paths.
-- Create symbolic links from the source files to the destination paths.
 
 > [!TIP]
 > Install Hack Nerd Font(or any nerd fonts) to support icons and have a better experience
 
 ## Backup
 
-The script will backup any existing files to the `$HOME/dinno.dotfiles.bak` directory. This ensures that you don't lose your current configuration when deploying new dinno.dotfiles.
-
-## Logging
-
-The script logs all actions to a log file located at `$HOME/dinno.dotfiles.log`. This log file contains timestamps and detailed information about each operation performed by the script.
+It is the your's responsibility to back up existing configurations.

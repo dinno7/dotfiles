@@ -1,5 +1,5 @@
 export DINNO_ZSH_DIR="$HOME/.config/zsh"
-export DINNO_ZSH_LOGO="$HOME/dinno.dotfiles/dinno_logo.txt"
+export DINNO_ZSH_LOGO="$HOME/.dinno_logo.txt"
 
 setopt HIST_IGNORE_ALL_DUPS
 
