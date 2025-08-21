@@ -6,9 +6,11 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Backup](#backup)
 
 ## Prerequisites
+
+> [!TIP]
+> Install [Hack Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hack.zip)(or any [nerd fonts](https://www.nerdfonts.com/font-downloads)) to support icons and have a better experience
 
 ### Required
 
@@ -22,7 +24,6 @@ This repository contains a script to manage your dotfiles using symbolic links. 
   ```bash
   git clone https://github.com/tmux-plugins/tpm ~/dinno.dotfiles/tmux/plugins/tpm
   ```
-- **`realpath` command**: This is used to generate relative paths for symlinks. It should be available on most modern Unix-like systems.
 
 ### Optional
 
@@ -30,6 +31,10 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 - [bat](https://github.com/sharkdp/bat)
 - [lsd](https://github.com/lsd-rs/lsd)
 - [fastfetch](https://github.com/fastfetch-cli/fastfetch)(Recommended) or [neofetch](https://github.com/dylanaraps/neofetch)
+
+> [!WARNING]
+> Please do not modify it if you do not know what are you doing
+> It is the your's responsibility to back up existing configurations.
 
 ## Installation
 
@@ -52,13 +57,3 @@ pacman -S stow
    ```bash
    stow "$HOME/dotfiles"
    ```
-
-> [!WARNING]
-> Please do not modify it if you do not know what are you doing
-
-> [!TIP]
-> Install Hack Nerd Font(or any nerd fonts) to support icons and have a better experience
-
-## Backup
-
-It is the your's responsibility to back up existing configurations.
