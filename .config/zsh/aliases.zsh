@@ -9,7 +9,7 @@ alias rmdir='rmdir -v'
 alias grep='grep --color=auto'
 alias src="source $HOME/.zshrc"
 alias nv='nvim'
-alias zs="nvim $DINNO_ZSH_DIR/custom.zsh"
+alias zs="nv $DINNO_ZSH_DIR/main.zsh"
 
 alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgithub/warp/main/endip/install.sh)"
 
