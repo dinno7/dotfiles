@@ -10,6 +10,7 @@ return {
       "lua-language-server",
       "bash-language-server",
       "typescript-language-server",
+      "vue-language-server",
       -- > GO lang
       "gopls",
       "gofumpt",

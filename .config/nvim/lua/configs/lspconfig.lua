@@ -9,6 +9,7 @@ local goplsOptions = require "configs.lspservers.gopls"
 local servers = {
   ts_ls = tsserverOptions,
   gopls = goplsOptions,
+  vue_ls = {},
   html = {},
   cssls = {},
   bashls = {},
