@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.notify",
+  "nvim-mini/mini.notify",
   lazy = false,
   version = false,
   config = function()
