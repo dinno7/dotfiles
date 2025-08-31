@@ -210,7 +210,7 @@ map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Jump to next d
 map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump to prev diagnostic in buffer" })
 map("n", "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "Smart rename" })
 map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "See available code actions" })
-map("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
+map("n", "<leader>K", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
 map("n", "K", function()
   local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line "." - 1 })
   if #diagnostics > 0 then
@@ -223,3 +223,8 @@ map("n", "K", function()
     end
   end
 end, { desc = "Show errors if exist, else show fold preview, else Show documentation for what is under cursor" })
+
+nomap("n", "<c-n>")
+map("n", "<c-b>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+
+nomap("n", "<leader>n")
