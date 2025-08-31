@@ -15,9 +15,6 @@ o.relativenumber = true
 
 o.colorcolumn = "80"
 
--- INFO: Enable mouse mapping to vim-multi
-vim.g.VM_mouse_mappings = 1
-
 -- INFO: Enable spell checker
 o.spelllang = "en_us"
 o.spell = true
