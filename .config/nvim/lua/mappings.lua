@@ -32,16 +32,6 @@ map("v", "p", '"_dP')
 -- NOTE: Change text without overwriting register
 map({ "n", "v" }, "x", '"_x')
 
--- NOTE: Move block
--- map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move Block Up" })
--- map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move Block Down" })
-
--- NOTE: Move line
--- map("i", "<A-j>", "<ESC>V:m '>+1<CR>a", { desc = "Move line down" })
--- map("i", "<A-k>", "<ESC>V:m '<-2<CR>a", { desc = "Move line up" })
--- map("n", "<A-j>", "V:m '>+1<CR>", { desc = "Move line down" })
--- map("n", "<A-k>", "V:m '<-2<CR>", { desc = "Move line up" })
-
 -- NOTE: Search for highlighted text in buffer
 map("v", "//", 'y/<C-R>"<CR>', { desc = "Search for highlighted text" })
 
@@ -108,8 +98,6 @@ map("n", "<leader>tn", "<cmd> tabnew<CR>", { desc = "Open new tab" })
 map("n", "<leader>tx", "<cmd> tabclose<CR>", { desc = "Close current tab" }) --
 map("n", "<leader>tk", "<cmd> tabn<CR>", { desc = "Go to next tab" }) --
 map("n", "<leader>tj", "<cmd> tabp<CR>", { desc = "Go to previous tab" }) --
-map("n", "<A-C-l>", "<cmd> tabn<CR>", { desc = "Go to next tab" }) --
-map("n", "<A-C-h>", "<cmd> tabp<CR>", { desc = "Go to previous tab" }) --
 
 -- NOTE: Set tmux-navigator keymaps -> Make compatible Nvim with Tmux
 map("n", "<C-h>", "<cmd> NvimTmuxNavigateLeft <CR>", { desc = "Window left" })
