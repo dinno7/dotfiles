@@ -1,6 +1,6 @@
 return {
   "nvim-mini/mini.notify",
-  lazy = false,
+  event = "VeryLazy",
   version = false,
   config = function()
     require("mini.notify").setup()

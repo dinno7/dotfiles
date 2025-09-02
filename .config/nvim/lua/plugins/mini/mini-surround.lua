@@ -1,6 +1,6 @@
 return {
   "nvim-mini/mini.surround",
-  lazy = false,
+  event = "VeryLazy",
   version = false,
   config = function()
     require("mini.surround").setup {

@@ -1,6 +1,6 @@
 return {
   "echasnovski/mini.ai",
-  lazy = false,
+  event = "VeryLazy",
   version = false,
   config = function()
     require("mini.ai").setup()
