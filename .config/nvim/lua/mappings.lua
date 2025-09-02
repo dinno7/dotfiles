@@ -171,18 +171,19 @@ map("n", "<leader>hS", gitsigns.stage_buffer)
 map("n", "<leader>hR", gitsigns.reset_buffer)
 map("n", "<leader>hp", gitsigns.preview_hunk)
 map("n", "<leader>hi", gitsigns.preview_hunk_inline)
+map("n", "<leader>hd", gitsigns.diffthis, {
+  desc = "[S]how diff",
+  silent = true,
+  noremap = true,
+})
+map("n", "<leader>hD", function()
+  gitsigns.diffthis "~"
+end)
 
 map("n", "<leader>lb", function()
   gitsigns.blame_line { full = true }
 end, { desc = "[S]ee line blame", silent = true, noremap = true })
 map("n", "<leader>gb", gitsigns.blame, { desc = "[S]ee git commit complete blame", silent = true, noremap = true })
-map("n", "<leader>dt", function()
-  gitsigns.diffthis "~"
-end, {
-  desc = "[S]how diff",
-  silent = true,
-  noremap = true,
-})
 map(
   "n",
   "<leader>tb",
