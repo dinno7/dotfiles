@@ -6,6 +6,6 @@ return {
   build = function()
     vim.cmd.GoInstallDeps()
   end,
-  ---@type gopher.Config
+  -- @type gopher.Config
   opts = {},
 }

@@ -32,16 +32,6 @@ map("v", "p", '"_dP')
 -- NOTE: Change text without overwriting register
 map({ "n", "v" }, "x", '"_x')
 
--- NOTE: Move block
--- map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move Block Up" })
--- map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move Block Down" })
-
--- NOTE: Move line
--- map("i", "<A-j>", "<ESC>V:m '>+1<CR>a", { desc = "Move line down" })
--- map("i", "<A-k>", "<ESC>V:m '<-2<CR>a", { desc = "Move line up" })
--- map("n", "<A-j>", "V:m '>+1<CR>", { desc = "Move line down" })
--- map("n", "<A-k>", "V:m '<-2<CR>", { desc = "Move line up" })
-
 -- NOTE: Search for highlighted text in buffer
 map("v", "//", 'y/<C-R>"<CR>', { desc = "Search for highlighted text" })
 
@@ -67,12 +57,6 @@ map(
 map("n", "<C-/>", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<C-/>", "gc", { desc = "toggle comment", remap = true })
 
--- NOTE: Close all other buffers
-map("n", "<leader>X", function()
-  require("nvchad.tabufline").closeBufs_at_direction "left"
-  require("nvchad.tabufline").closeBufs_at_direction "right"
-end)
-
 -- NOTE: Select whole file
 map("n", "<leader>a", "ggVG", { desc = "Select whole file" })
 
@@ -84,9 +68,13 @@ map("n", "<leader>ii", function()
   vim.lsp.buf.format { async = true }
 end, { desc = "LSP formatting" })
 
--- NOTE: Close all files(exit neovim)
-map("n", "<leader>Q", ":qa<CR>", { desc = "Close all buffers" })
-map("n", "<leader>q", ":x<CR>", { desc = "Save the file if modified and exit" })
+-- NOTE: Close all buffers stuff
+map("n", "<leader>Q", function()
+  require("nvchad.tabufline").closeBufs_at_direction "left"
+  require("nvchad.tabufline").closeBufs_at_direction "right"
+end, { desc = "Close all other buffers" })
+nomap("n", "<leader>x")
+map("n", "<leader>q", "<cmd> bd <cr>", { desc = "Exit current buffer" })
 
 -- NOTE: Reselect the text that has just been pasted
 map("n", "<leader>V", "`[V`]", { desc = "Reselect the text that has just been pasted" })
@@ -108,8 +96,6 @@ map("n", "<leader>tn", "<cmd> tabnew<CR>", { desc = "Open new tab" })
 map("n", "<leader>tx", "<cmd> tabclose<CR>", { desc = "Close current tab" }) --
 map("n", "<leader>tk", "<cmd> tabn<CR>", { desc = "Go to next tab" }) --
 map("n", "<leader>tj", "<cmd> tabp<CR>", { desc = "Go to previous tab" }) --
-map("n", "<A-C-l>", "<cmd> tabn<CR>", { desc = "Go to next tab" }) --
-map("n", "<A-C-h>", "<cmd> tabp<CR>", { desc = "Go to previous tab" }) --
 
 -- NOTE: Set tmux-navigator keymaps -> Make compatible Nvim with Tmux
 map("n", "<C-h>", "<cmd> NvimTmuxNavigateLeft <CR>", { desc = "Window left" })
@@ -166,19 +152,43 @@ map({ "i", "n", "v" }, "<M-C-Z>", "<cmd>redo<cr>", { desc = "Redo" })
 -- NOTE: Delete word after cursor in insert mode
 map("i", "<C-Del>", "<ESC>ldwha", { desc = "Delete word after cursor" })
 
--- NOTE: Gitsigns
-map(
-  "n",
-  "<leader>gbl",
-  "<cmd> Gitsigns blame_line <CR>",
-  { desc = "See git commit blame line", silent = true, noremap = true }
-)
+-- NOTE: Todos
+nomap("n", "<leader>h")
 
+map("n", "]t", function()
+  require("todo-comments").jump_next { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
+end, { desc = "Next todo comment" })
+map("n", "[t", function()
+  require("todo-comments").jump_prev { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
+end, { desc = "Previous todo comment" })
+map("n", "<leader>td", "<cmd> TodoTelescope keywords=TODO,FIX,FIXME,BUG,FIXIT,ISSUE <cr>", { desc = "[L]ist of todos" })
+
+-- NOTE: Gitsigns
+local gitsigns = require "gitsigns"
+
+-- Actions
+map("n", "<leader>hS", gitsigns.stage_buffer)
+map("n", "<leader>hR", gitsigns.reset_buffer)
+map("n", "<leader>hp", gitsigns.preview_hunk)
+map("n", "<leader>hi", gitsigns.preview_hunk_inline)
+map("n", "<leader>hd", gitsigns.diffthis, {
+  desc = "[S]how diff",
+  silent = true,
+  noremap = true,
+})
+map("n", "<leader>hD", function()
+  gitsigns.diffthis "~"
+end)
+
+map("n", "<leader>lb", function()
+  gitsigns.blame_line { full = true }
+end, { desc = "[S]ee line blame", silent = true, noremap = true })
+map("n", "<leader>gb", gitsigns.blame, { desc = "[S]ee git commit complete blame", silent = true, noremap = true })
 map(
   "n",
-  "<leader>gbb",
-  "<cmd> Gitsigns blame <CR>",
-  { desc = "See git commit complete blame", silent = true, noremap = true }
+  "<leader>tb",
+  gitsigns.toggle_current_line_blame,
+  { desc = "[T]oggle current line blame", silent = true, noremap = true }
 )
 
 -- NOTE: UFO(pkg) folding:
@@ -192,20 +202,7 @@ map("n", "zk", function()
   end
 end, { desc = "Show fold preview else show hover documentation" })
 
--- NOTE: hop easymotion:
-map("n", "<leader><leader>s", "<cmd> HopChar1MW <CR>", { desc = "Search by 1 characters" })
-map("n", "<leader><leader>S", "<cmd> HopChar2MW <CR>", { desc = "Search by 2 characters" })
-map("n", "<leader><leader>f", "<cmd> HopChar1AC <CR>", { desc = "Find 1 characters forwards" })
-map("n", "<leader><leader>F", "<cmd> HopChar1BC <CR>", { desc = "Find 1 characters backwards" })
-map("n", "<leader><leader>t", "<cmd> HopChar2ACHO1 <CR>", { desc = "Til 2 characters forwards" })
-map("n", "<leader><leader>T", "<cmd> HopChar2BCHO1 <CR>", { desc = "Til 2 characters backwards" })
-map("n", "<leader><leader>j", "<cmd> HopLineStartAC <CR>", { desc = "Start of lines forwards" })
-map("n", "<leader><leader>k", "<cmd> HopLineStartBC <CR>", { desc = "Start of lines backwards" })
-map("n", "<leader><leader>w", "<cmd> HopWordMW <CR>", { desc = "Start of words" })
-map("n", "<leader><leader>/", "<cmd> HopPatternMW <CR>", { desc = "Search by pattern" })
-
 -- NOTE: Telescope
-map("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP Telescope show refrences" })
 map("n", "<leader>mm", "<cmd>Telescope marks<CR>", { desc = "See all marks" })
 map("n", "<leader>dd", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
 map("n", "<leader>rr", ":Telescope registers<CR>", { desc = "Registers in telescope" })
@@ -222,7 +219,7 @@ map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Jump to next d
 map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump to prev diagnostic in buffer" })
 map("n", "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "Smart rename" })
 map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "See available code actions" })
-map("n", "<leader>k", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
+map("n", "<leader>K", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
 map("n", "K", function()
   local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line "." - 1 })
   if #diagnostics > 0 then
@@ -235,3 +232,8 @@ map("n", "K", function()
     end
   end
 end, { desc = "Show errors if exist, else show fold preview, else Show documentation for what is under cursor" })
+
+nomap("n", "<c-n>")
+map("n", "<c-b>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+
+nomap("n", "<leader>n")

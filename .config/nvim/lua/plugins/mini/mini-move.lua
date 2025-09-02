@@ -1,6 +1,6 @@
 return {
-  "echasnovski/mini.move",
-  lazy = false,
+  "nvim-mini/mini.move",
+  event = "VeryLazy",
   version = false,
   config = function()
     require("mini.move").setup()
