@@ -155,18 +155,30 @@ map({ "i", "n", "v" }, "<M-C-Z>", "<cmd>redo<cr>", { desc = "Redo" })
 map("i", "<C-Del>", "<ESC>ldwha", { desc = "Delete word after cursor" })
 
 -- NOTE: Gitsigns
-map(
-  "n",
-  "<leader>gbl",
-  "<cmd> Gitsigns blame_line <CR>",
-  { desc = "See git commit blame line", silent = true, noremap = true }
-)
+local gitsigns = require "gitsigns"
 
+-- Actions
+map("n", "<leader>hS", gitsigns.stage_buffer)
+map("n", "<leader>hR", gitsigns.reset_buffer)
+map("n", "<leader>hp", gitsigns.preview_hunk)
+map("n", "<leader>hi", gitsigns.preview_hunk_inline)
+
+map("n", "<leader>lb", function()
+  gitsigns.blame_line { full = true }
+end, { desc = "[S]ee line blame", silent = true, noremap = true })
+map("n", "<leader>gb", gitsigns.blame, { desc = "[S]ee git commit complete blame", silent = true, noremap = true })
+map("n", "<leader>dt", function()
+  gitsigns.diffthis "~"
+end, {
+  desc = "[S]how diff",
+  silent = true,
+  noremap = true,
+})
 map(
   "n",
-  "<leader>gbb",
-  "<cmd> Gitsigns blame <CR>",
-  { desc = "See git commit complete blame", silent = true, noremap = true }
+  "<leader>tb",
+  gitsigns.toggle_current_line_blame,
+  { desc = "[T]oggle current line blame", silent = true, noremap = true }
 )
 
 -- NOTE: UFO(pkg) folding:
@@ -181,7 +193,6 @@ map("n", "zk", function()
 end, { desc = "Show fold preview else show hover documentation" })
 
 -- NOTE: Telescope
-map("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP Telescope show refrences" })
 map("n", "<leader>mm", "<cmd>Telescope marks<CR>", { desc = "See all marks" })
 map("n", "<leader>dd", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
 map("n", "<leader>rr", ":Telescope registers<CR>", { desc = "Registers in telescope" })
