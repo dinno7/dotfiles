@@ -1,5 +1,8 @@
 local options = {
   formatters_by_ft = {
+    -- Use the "_" filetype to run formatters on filetypes that don't
+    -- have other formatters configured.
+    ["_"] = { "trim_whitespace" },
     javascript = { "prettierd" },
     typescript = { "prettierd" },
     javascriptreact = { "prettierd" },
@@ -12,9 +15,6 @@ local options = {
     graphql = { "prettierd" },
     lua = { "stylua" },
     bash = { "shfmt" },
-    -- vue = { "volar" },
-    -- python = { "isort", "black" },
-    -- cpp = { "clang-format" },
     go = {
       "golines",
       "goimports",
