@@ -57,12 +57,6 @@ map(
 map("n", "<C-/>", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<C-/>", "gc", { desc = "toggle comment", remap = true })
 
--- NOTE: Close all other buffers
-map("n", "<leader>X", function()
-  require("nvchad.tabufline").closeBufs_at_direction "left"
-  require("nvchad.tabufline").closeBufs_at_direction "right"
-end)
-
 -- NOTE: Select whole file
 map("n", "<leader>a", "ggVG", { desc = "Select whole file" })
 
@@ -74,9 +68,13 @@ map("n", "<leader>ii", function()
   vim.lsp.buf.format { async = true }
 end, { desc = "LSP formatting" })
 
--- NOTE: Close all files(exit neovim)
-map("n", "<leader>Q", ":qa<CR>", { desc = "Close all buffers" })
-map("n", "<leader>q", ":x<CR>", { desc = "Save the file if modified and exit" })
+-- NOTE: Close all buffers stuff
+map("n", "<leader>Q", function()
+  require("nvchad.tabufline").closeBufs_at_direction "left"
+  require("nvchad.tabufline").closeBufs_at_direction "right"
+end, { desc = "Close all other buffers" })
+nomap("n", "<leader>x")
+map("n", "<leader>q", "<cmd> bd <cr>", { desc = "Exit current buffer" })
 
 -- NOTE: Reselect the text that has just been pasted
 map("n", "<leader>V", "`[V`]", { desc = "Reselect the text that has just been pasted" })
