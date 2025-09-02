@@ -180,18 +180,6 @@ map("n", "zk", function()
   end
 end, { desc = "Show fold preview else show hover documentation" })
 
--- NOTE: hop easymotion:
-map("n", "<leader><leader>s", "<cmd> HopChar1MW <CR>", { desc = "Search by 1 characters" })
-map("n", "<leader><leader>S", "<cmd> HopChar2MW <CR>", { desc = "Search by 2 characters" })
-map("n", "<leader><leader>f", "<cmd> HopChar1AC <CR>", { desc = "Find 1 characters forwards" })
-map("n", "<leader><leader>F", "<cmd> HopChar1BC <CR>", { desc = "Find 1 characters backwards" })
-map("n", "<leader><leader>t", "<cmd> HopChar2ACHO1 <CR>", { desc = "Til 2 characters forwards" })
-map("n", "<leader><leader>T", "<cmd> HopChar2BCHO1 <CR>", { desc = "Til 2 characters backwards" })
-map("n", "<leader><leader>j", "<cmd> HopLineStartAC <CR>", { desc = "Start of lines forwards" })
-map("n", "<leader><leader>k", "<cmd> HopLineStartBC <CR>", { desc = "Start of lines backwards" })
-map("n", "<leader><leader>w", "<cmd> HopWordMW <CR>", { desc = "Start of words" })
-map("n", "<leader><leader>/", "<cmd> HopPatternMW <CR>", { desc = "Search by pattern" })
-
 -- NOTE: Telescope
 map("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP Telescope show refrences" })
 map("n", "<leader>mm", "<cmd>Telescope marks<CR>", { desc = "See all marks" })
