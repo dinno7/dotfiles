@@ -152,6 +152,17 @@ map({ "i", "n", "v" }, "<M-C-Z>", "<cmd>redo<cr>", { desc = "Redo" })
 -- NOTE: Delete word after cursor in insert mode
 map("i", "<C-Del>", "<ESC>ldwha", { desc = "Delete word after cursor" })
 
+-- NOTE: Todos
+nomap("n", "<leader>h")
+
+map("n", "]t", function()
+  require("todo-comments").jump_next { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
+end, { desc = "Next todo comment" })
+map("n", "[t", function()
+  require("todo-comments").jump_prev { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
+end, { desc = "Previous todo comment" })
+map("n", "<leader>td", "<cmd> TodoTelescope keywords=TODO,FIX,FIXME,BUG,FIXIT,ISSUE <cr>", { desc = "[L]ist of todos" })
+
 -- NOTE: Gitsigns
 local gitsigns = require "gitsigns"
 
