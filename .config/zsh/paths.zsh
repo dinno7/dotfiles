@@ -2,4 +2,4 @@
 pathappend "$HOME/.cargo/bin"
 
 # NOTE: Add Go to path
-pathappend "$HOME/go/bin/"
+pathappend "/usr/local/go/bin" "$GOPATH/bin"
