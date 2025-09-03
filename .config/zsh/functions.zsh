@@ -43,3 +43,17 @@ function clog() {
   fi
   echo "ℹ️ $(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$DINNO_ZSH_LOGS"
 }
+
+# NOTE: Commands cheatsheet
+function how(){
+  if [[ -z $1 ]];then
+    echo "Please provide command in first arg"
+    return
+  fi
+  if [ ! -x "$(command -v curl)" ];then
+    echo "Please install curl first"
+    return
+  fi
+
+   curl -s "cheat.sh/$1" | cat
+}
