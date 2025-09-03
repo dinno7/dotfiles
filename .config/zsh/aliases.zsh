@@ -10,6 +10,8 @@ alias grep='grep --color=auto'
 alias src="source $HOME/.zshrc"
 alias nv='nvim'
 alias zs="nv $DINNO_ZSH_DIR/main.zsh"
+alias ll='ls -ltahAF --group-directories-first'
+alias lld='ls -ltahA -d'
 
 alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgithub/warp/main/endip/install.sh)"
 
@@ -24,11 +26,8 @@ fi
 
 # Alias for lsd
 if [[ -x "$(command -v lsd)" ]]; then
-  alias ll='lsd -ltahAF --group-directories-first'
-  alias lld='lsd -ltahA -d */'
+  alias ls="lsd"
 	alias tree='lsd --tree'
-else
-  alias ll='ls -ltahAF --group-directories-first'
 fi
 
 # Alias For bat
