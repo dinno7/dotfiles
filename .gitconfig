@@ -1,0 +1,26 @@
+
+[user]
+	email = tahadlrb7@gmail.com
+	name = dinno
+[core]
+  pager = delta
+  whitespace = error  # threat incorrect whitespace as errors
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    side-by-side = true
+    line-numbers = true
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+[merge]
+    conflictStyle = zdiff3
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[alias]
+	ls = status
+	l = log --graph --oneline --decorate
+	ll = log --graph --decorate
