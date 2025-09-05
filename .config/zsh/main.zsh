@@ -65,6 +65,11 @@ if [ "$(command -v fzf)" ]; then
   eval "$(fzf --zsh)"
 fi
 
+# NOTE: Hook direnv (https://direnv.net/)
+if [ "$(command -v direnv)" ];then
+  eval "$(direnv hook zsh)"
+fi
+
 # NOTE: Add additional paths
 [[ -f "$DINNO_ZSH_DIR/paths.zsh" ]] && source "$DINNO_ZSH_DIR/paths.zsh"
 
