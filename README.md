@@ -6,6 +6,7 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Uninstall](#uninstall)
 
 ## Prerequisites
 
@@ -60,5 +61,11 @@ pacman -S stow
 2. **Sync**
 
    ```bash
-   stow "~/dotfiles"
+    cd $HOME/dotfiles && stow */ && source $HOME/.zshrc
    ```
+
+## Uninstall
+
+```bash
+    cd $HOME/dotfiles && stow -D */
+```
