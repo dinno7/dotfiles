@@ -17,7 +17,7 @@ return {
     { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
   },
   config = function()
-    vim.keymap.set("t", "<C-c>", function()
+    vim.keymap.set("t", "<C-A-c>", function()
       vim.api.nvim_win_close(vim.api.nvim_get_current_win(), true)
       vim.api.nvim_command "LLMAppHandler CommitMsg"
     end, { desc = "AI Commit Msg" })
