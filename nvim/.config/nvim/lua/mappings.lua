@@ -73,8 +73,11 @@ map("n", "<leader>Q", function()
   require("nvchad.tabufline").closeBufs_at_direction "left"
   require("nvchad.tabufline").closeBufs_at_direction "right"
 end, { desc = "Close all other buffers" })
+
 nomap("n", "<leader>x")
-map("n", "<leader>q", "<cmd> bd <cr>", { desc = "Exit current buffer" })
+map("n", "<leader>q", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "buffer close" })
 
 -- NOTE: Reselect the text that has just been pasted
 map("n", "<leader>V", "`[V`]", { desc = "Reselect the text that has just been pasted" })
