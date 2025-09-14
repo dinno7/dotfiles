@@ -57,3 +57,18 @@ function how(){
 
    curl -s "cheat.sh/$1" | cat
 }
+
+# NOTE: Sharing local port to internet
+function shareport(){
+  ssh -R "80:localhost:$1" localhost.run
+}
+
+
+function shareportsafe(){
+  if [[ -x "$(command -v lt)" ]]; then
+    lt --port $1 --print-requests -o -s "dinno-$(date +%s)"
+  else
+    echo "Please install Localtunnel first"
+    exit 1
+  fi
+}
