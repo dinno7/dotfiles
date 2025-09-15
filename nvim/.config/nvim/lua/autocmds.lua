@@ -1,5 +1,4 @@
 local autocmd = vim.api.nvim_create_autocmd
-local utils = require "utils"
 
 -- INFO: Close all folds in entering buffer
 -- autocmd("BufRead", {
@@ -49,5 +48,14 @@ autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
   callback = function()
     vim.highlight.on_yank { higroup = "HLOnYank", timeout = 250 }
+  end,
+})
+
+autocmd("BufDelete", {
+  callback = function()
+    local bufs = vim.t.bufs
+    if #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "" then
+      vim.cmd "Nvdash"
+    end
   end,
 })
