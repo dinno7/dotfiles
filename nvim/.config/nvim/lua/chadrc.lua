@@ -56,7 +56,8 @@ M.ui = {
     modules = nil,
     show_numbers = true,
     buffer_id_index = true,
-    icon_colors = true,
+    bufwidth = 30,
+    icon_colors = false,
   },
 }
 
