@@ -1,17 +1,18 @@
-alias c='clear'
-alias cls='clear'
-alias e='exit'
-alias mkdir='mkdir -pv'
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias rm='rm -iv'
-alias rmdir='rmdir -v'
-alias grep='grep --color=auto'
+alias c="clear"
+alias cls="clear"
+alias e="exit"
+alias mkdir="mkdir -pv"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -iv"
+alias rmdir="rmdir -v"
+alias grep="grep --color=auto"
 alias src="source $HOME/.zshrc"
-alias nv='nvim'
+alias nv="nvim"
 alias zs="nv $DINNO_ZSH_DIR/main.zsh"
 alias ll="ls -ltahAF --group-directories-first"
 alias lld="ls -ltahA -d"
+alias gpo="git push origin"
 
 if [[ -x "$(command -v xclip)" ]]; then
   alias cpc="xclip -sel clip"
