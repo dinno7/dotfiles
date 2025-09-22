@@ -26,6 +26,6 @@ for name, opts in pairs(servers) do
   opts.on_init = configs.on_init
   opts.on_attach = configs.on_attach
   opts.capabilities = configs.capabilities
-
-  lspconfig[name].setup(opts)
+  vim.lsp.config(name, opts)
+  vim.lsp.enable(name)
 end
