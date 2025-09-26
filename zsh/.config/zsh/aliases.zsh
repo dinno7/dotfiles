@@ -13,6 +13,7 @@ alias zs="nv $DINNO_ZSH_DIR/main.zsh"
 alias ll="ls -ltahAF --group-directories-first"
 alias lld="ls -ltahA -d"
 alias gpo="git push origin"
+alias wz="wezterm"
 
 if [[ -x "$(command -v xclip)" ]]; then
   alias cpc="xclip -sel clip"
