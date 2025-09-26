@@ -2,6 +2,8 @@ require "nvchad.options"
 
 local o = vim.opt
 
+o.termbidi = true
+
 o.cursorlineopt = "both" -- to enable cursorline!
 
 -- INFO: Fold options
