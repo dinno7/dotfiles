@@ -23,11 +23,15 @@ map("n", "N", "Nzzzv")
 map("n", "<Tab>", "%", { desc = "Jump to matching pair easily in normal mode" })
 
 -- NOTE: Word cases
-map("i", "<c-t>", "<esc>b~lea", { desc = "Word-cases Turn the current word into title case" })
+map("i", "<c-t>", "<esc>b~lea", { desc = "Word-cases turn the current word into title case" })
 map("i", "<c-u>", "<esc>viw~ea", { desc = "Word-cases Toggle the current word into upper case" })
 
 -- NOTE: Paste without overwriting register
 map("v", "p", '"_dP')
+
+-- NOTE: Paste last thing yanked, not deleted
+map("n", "yp", '"0p')
+map("n", "yP", '"0P')
 
 -- NOTE: Change text without overwriting register
 map({ "n", "v" }, "x", '"_x')
@@ -83,16 +87,16 @@ end, { desc = "buffer close" })
 map("n", "<leader>V", "`[V`]", { desc = "Reselect the text that has just been pasted" })
 
 -- NOTE: Resize split windows with arrows
-map("n", "<A-Up>", ":resize +5<CR>", { desc = "Resize Horizontal Split Down" })
-map("n", "<A-Down>", ":resize -5<CR>", { desc = "Resize Horizontal Split Up" })
-map("n", "<A-Right>", ":vertical resize -5<CR>", { desc = "Resize Vertical Split Down" })
-map("n", "<A-Left>", ":vertical resize +5<CR>", { desc = "Resize Vertical Split Up" })
+map("n", "<A-Up>", "<C-W>+", { desc = "Resize Horizontal Split Down" })
+map("n", "<A-Down>", "<C-W>-", { desc = "Resize Horizontal Split Up" })
+map("n", "<A-Right>", "<C-W>>", { desc = "Resize Vertical Split Down" })
+map("n", "<A-Left>", "<C-W><", { desc = "Resize Vertical Split Up" })
 
 -- NOTE: Split windows keymaps
-map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-map("n", "<leader>ss", "<C-w>s", { desc = "Split window horizontally" })
-map("n", "<leader>se", "<C-w>=", { desc = "Make split windows equal width & height" })
-map("n", "<leader>sx", "<cmd> close <CR>", { desc = "Close split windows" })
+map("n", "<leader>sv", "<C-W>v", { desc = "Split window vertically" })
+map("n", "<leader>ss", "<C-W>s", { desc = "Split window horizontally" })
+map("n", "<leader>se", "<C-W>=", { desc = "Make split windows equal width & height" })
+map("n", "<leader>sx", "<C-W>q", { desc = "Close split windows" })
 
 -- NOTE: Tabs
 map("n", "<leader>tn", "<cmd> tabnew<CR>", { desc = "Open new tab" })
