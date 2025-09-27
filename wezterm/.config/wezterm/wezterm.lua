@@ -12,7 +12,7 @@ config.initial_cols = 120
 config.initial_rows = 28
 
 -- or, changing the font size and color scheme.
-config.font_size = 11
+config.font_size = 12.5
 config.color_scheme = "Tokyo Night (Gogh)"
 config.bidi_enabled = true
 config.bidi_direction = "LeftToRight"
