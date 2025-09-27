@@ -14,6 +14,7 @@ alias ll="ls -ltahAF --group-directories-first"
 alias lld="ls -ltahA -d"
 alias gpo="git push origin"
 alias wz="wezterm"
+alias ssh="wezterm ssh"
 
 if [[ -x "$(command -v xclip)" ]]; then
   alias cpc="xclip -sel clip"
