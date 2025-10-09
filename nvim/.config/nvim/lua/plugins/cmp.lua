@@ -28,6 +28,8 @@ return {
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       },
+
+      ["<A-y>"] = require("minuet").make_cmp_map(),
     })
 
     return conf
