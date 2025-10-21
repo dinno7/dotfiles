@@ -18,6 +18,9 @@ config.bidi_enabled = true
 config.bidi_direction = "LeftToRight"
 config.enable_tab_bar = false
 -- config.hide_tab_bar_if_only_one_tab = true
+config.window_frame = {
+	active_titlebar_border_bottom = "#ffffff",
+}
 
 -- Finally, return the configuration to wezterm:
 return config
