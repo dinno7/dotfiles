@@ -4,11 +4,13 @@ local lspconfig = require "lspconfig"
 -- INFO: Server options
 local tsserverOptions = require "configs.lspservers.tsserver"
 local goplsOptions = require "configs.lspservers.gopls"
+local cspellOptions = require "configs.lspservers.cspell"
 
 -- INFO: LSP servers
 local servers = {
   ts_ls = tsserverOptions,
   gopls = goplsOptions,
+  cspell_lsp = cspellOptions,
   html = {},
   cssls = {},
   bashls = {},
@@ -17,8 +19,6 @@ local servers = {
   },
   eslint = {},
   tailwindcss = {},
-  -- volar = {},
-  -- clangd = {},
 }
 
 -- INFO: Initiate all defined servers
