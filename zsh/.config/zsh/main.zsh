@@ -18,7 +18,6 @@ pathprepend "$HOME/bin" "$HOME/sbin" "$HOME/.local/bin" "$HOME/local/bin" "$HOME
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   # NOTE: Global
-  z
   ufw
   fzf
   sudo
@@ -46,6 +45,11 @@ plugins=(
 # NOTE: Set oh my zsh
 source $ZSH/oh-my-zsh.sh
 
+# NOTE: Set Zoxide
+if [[ -x "$(command -v zoxide)" ]];then
+  eval "$(zoxide init zsh)"
+fi
+
 # NOTE: vim-mode plugin settings
 bindkey -M viins 'jk' vi-cmd-mode
 
@@ -58,7 +62,6 @@ PATH_TERM_PROXY="$HOME/.local/bin/term_proxy"
 
 # NOTE: Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
-
 
 if [ "$(command -v fzf)" ]; then
   # NOTE: Set up fzf key bindings and fuzzy completion
