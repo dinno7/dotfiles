@@ -240,7 +240,4 @@ map("n", "K", function()
   end
 end, { desc = "Show errors if exist, else show fold preview, else Show documentation for what is under cursor" })
 
-nomap("n", "<c-n>")
-map("n", "<c-b>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
-
-nomap("n", "<leader>n")
+map("v", "<Tab>", "%", { desc = "Jump to matching pair easily in visual mode" })
