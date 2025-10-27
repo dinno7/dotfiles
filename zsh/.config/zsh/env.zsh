@@ -66,6 +66,12 @@ export NVM_DIR="$HOME/.nvm"
 export DINNO_ZSH_LOGS="$HOME/.dinno.logs"
 export GOPATH="$HOME/go"
 
+# NOTE: pnpm end
+export PNPM_HOME="$HOME/.local/share/pnpm"
+if [ -d $PNPM_HOME ];then
+  pathappend $PNPM_HOME
+fi
+
 export AI_PROMPT_GIT_COMMIT=$(cat << EOF
 You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
 
