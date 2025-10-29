@@ -4,7 +4,6 @@
 
 # NOTE: load main parts
 sourcefile "$DINNO_ZSH_DIR/env.zsh"
-sourcefile "$DINNO_SECRET_PATH"
 sourcefile "$DINNO_ZSH_DIR/aliases.zsh"
 sourcefile "$DINNO_ZSH_DIR/paths.zsh"
 sourcefile "$DINNO_ZSH_DIR/theme.zsh"
