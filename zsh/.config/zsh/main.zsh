@@ -1,12 +1,13 @@
 # NOTE: Load functions to has access to sourcefile function
 [ -s "$DINNO_ZSH_DIR/functions.zsh" ] && source "$DINNO_ZSH_DIR/functions.zsh"
 
+
 # NOTE: load main parts
 sourcefile "$DINNO_ZSH_DIR/env.zsh"
 sourcefile "$DINNO_SECRET_PATH"
-sourcefile "$DINNO_ZSH_DIR/theme.zsh"
 sourcefile "$DINNO_ZSH_DIR/aliases.zsh"
 sourcefile "$DINNO_ZSH_DIR/paths.zsh"
+sourcefile "$DINNO_ZSH_DIR/theme.zsh"
 
 # NOTE: Plugins
 plugins=(
@@ -56,7 +57,6 @@ fi
 # NOTE: term proxy app
 sourcefile "$PATH_TERM_PROXY"
 
-
 # NOTE: Hook direnv (https://direnv.net/)
 if [ "$(command -v direnv)" ];then
   eval "$(direnv hook zsh)"
@@ -67,12 +67,5 @@ fi
 # This loads nvm bash_completion
 sourcefile "$NVM_DIR/nvm.sh" "$NVM_DIR/bash_completion"
 
-# NOTE: Automatically run nvm use when entering a directory if it contains a .nvm file.
-autoload -U add-zsh-hook
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# NOTE: before load hook
+sourcefile "$DINNO_ZSH_DIR/after_load.zsh"

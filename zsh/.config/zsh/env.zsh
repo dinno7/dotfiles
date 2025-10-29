@@ -1,4 +1,6 @@
 export DINNO_SECRET_PATH="$HOME/.env"
+export DINNO_NVIM_DIR="$HOME/.config/nvim"
+export DINNO_ZSH_LOGO="$HOME/.dinno_logo.txt"
 
 export TMUX_CONFIG_DIR="$HOME/.config/tmux"
 
