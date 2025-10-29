@@ -1,5 +1,4 @@
-# Secrets
-[ -f "$HOME/.env" ] && source "$HOME/.env"
+export DINNO_SECRET_PATH="$HOME/.env"
 
 export TMUX_CONFIG_DIR="$HOME/.config/tmux"
 
@@ -28,7 +27,6 @@ fi
 export VISUAL=nvim visudo
 export SUDO_EDITOR=nvim
 export FCEDIT=nvim
-
 
 if command -v batcat >/dev/null 2>&1; then
   export PAGER=batcat
@@ -59,18 +57,14 @@ export VI_MODE_CURSOR_OPPEND=0
 export MODE_INDICATOR="%F{white}+%f"
 export INSERT_MODE_INDICATOR="%F{yellow}+%f"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export DINNO_ZSH_LOGS="$HOME/.dinno.logs"
 export GOPATH="$HOME/go"
 
-# NOTE: pnpm end
+export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-if [ -d $PNPM_HOME ];then
-  pathappend $PNPM_HOME
-fi
+
+export DINNO_ZSH_LOGS="$HOME/.dinno.logs"
+
+export PATH_TERM_PROXY="$HOME/.local/bin/term_proxy"
 
 export AI_PROMPT_GIT_COMMIT=$(cat << EOF
 You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:

@@ -1,26 +1,35 @@
 # Add directories to the end of the path if they exist and are not already in the path
 # Link: https://superuser.com/questions/39751/add-directory-to-path-if-its-not-already-there
 function pathappend() {
-    for ARG in "$@"
-    do
-        if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
-            PATH="${PATH:+"$PATH:"}$ARG"
-        fi
-    done
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+      PATH="${PATH:+"$PATH:"}$ARG"
+    fi
+  done
 }
 
 # Add directories to the beginning of the path if they exist and are not already in the path
 function pathprepend() {
-    for ARG in "$@"
-    do
-        if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
-            PATH="$ARG${PATH:+":$PATH"}"
-        fi
-    done
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+      PATH="$ARG${PATH:+":$PATH"}"
+    fi
+  done
+}
+
+function sourcefile() {
+  local ARG
+  for ARG in "$@"; do
+    if [ -s "$ARG" ]; then
+      source "$ARG"
+    fi
+  done
 }
 
 function runfree() {
-	"$@" > /dev/null 2>&1 & disown
+  "$@" > /dev/null 2>&1 & disown
 }
 
 function mcd(){
@@ -33,7 +42,7 @@ function ds(){
 }
 
 function get_ips (){
- cat $1 | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n $2 | xargs | sed "s/ /,/g"
+  cat $1 | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n $2 | xargs | sed "s/ /,/g"
 }
 
 # NOTE: Function to log messages
@@ -55,14 +64,13 @@ function how(){
     return
   fi
 
-   curl -s "cheat.sh/$1" | cat
+  curl -s "cheat.sh/$1" | cat
 }
 
 # NOTE: Sharing local port to internet
 function shareport(){
   ssh -R "80:localhost:$1" localhost.run
 }
-
 
 function shareportsafe(){
   if [[ -x "$(command -v lt)" ]]; then

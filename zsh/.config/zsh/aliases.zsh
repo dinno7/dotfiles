@@ -14,8 +14,11 @@ alias ll="ls -ltahAF --group-directories-first"
 alias lld="ls -ltahA -d"
 alias gpo="git push origin"
 alias wz="wezterm"
-alias ssh="wezterm ssh"
+alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgithub/warp/main/endip/install.sh)"
 
+
+# NOTE: -- Conditional aliases --
+#
 if [[ -x "$(command -v xclip)" ]]; then
   alias cpc="xclip -sel clip"
 fi
@@ -73,5 +76,3 @@ elif [[ -x "$(command -v wget)" ]]; then
   alias myipshow='wget -qO- http://ip-api.com/line'
   alias myip='wget -qO- http://ip-api.com/line | grep -P --invert-match --line-buffered "(\d+\.?)+"'
 fi
-
-alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgithub/warp/main/endip/install.sh)"
