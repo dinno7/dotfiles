@@ -67,6 +67,12 @@ function how(){
   curl -s "cheat.sh/$1" | cat
 }
 
+# NOTE: Getting weather
+function weather(){
+  CITY="${1:-tehran}"
+  curl "wttr.in/$CITY"
+}
+
 # NOTE: Sharing local port to internet
 function shareport(){
   ssh -R "80:localhost:$1" localhost.run
