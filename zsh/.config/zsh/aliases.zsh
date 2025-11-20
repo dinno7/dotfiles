@@ -24,11 +24,6 @@ if [[ -x "$(command -v xclip)" ]]; then
   alias cpc="xclip -sel clip"
 fi
 
-# Alias to launch a document, file, or URL in it's default X application
-if [[ -x "$(command -v xdg-open)" ]]; then
-  alias open='runfree xdg-open'
-fi
-
 # Alias for lsd
 if [[ -x "$(command -v lsd)" ]]; then
   alias ls="lsd"

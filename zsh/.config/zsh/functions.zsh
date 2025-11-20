@@ -32,6 +32,19 @@ function runfree() {
   "$@" > /dev/null 2>&1 & disown
 }
 
+# Alias to launch a document, file, or URL in it's default X application
+if [[ -x "$(command -v xdg-open)" ]]; then
+  function open(){
+    local target
+    if [ $# -eq 0 ]; then
+      target="$PWD"
+    else
+      target="$@"
+    fi
+    runfree xdg-open $target
+  }
+fi
+
 function mcd(){
   mkdir -p $1
   cd $1
