@@ -20,7 +20,6 @@ gui:
       - "#cdd6f4"
     searchingActiveBorderColor:
       - "#f9e2af"
-
   authorColors:
     "*": "#b4befe"
 os:
@@ -28,6 +27,6 @@ os:
   # are defined in the getPreset function in editor_presets.go.
   editPreset: "nvim"
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never --syntax-theme base17-256 --diff-so-fancy -s
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never --syntax-theme base17-256 --diff-so-fancy -s
