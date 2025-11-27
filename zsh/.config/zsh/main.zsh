@@ -1,13 +1,3 @@
-# NOTE: Load functions to has access to sourcefile function
-[ -s "$DINNO_ZSH_DIR/functions.zsh" ] && source "$DINNO_ZSH_DIR/functions.zsh"
-
-
-# NOTE: load main parts
-sourcefile "$DINNO_ZSH_DIR/env.zsh"
-sourcefile "$DINNO_ZSH_DIR/aliases.zsh"
-sourcefile "$DINNO_ZSH_DIR/paths.zsh"
-sourcefile "$DINNO_ZSH_DIR/theme.zsh"
-
 # NOTE: Plugins
 plugins=(
   # NOTE: Global
@@ -33,9 +23,18 @@ plugins=(
   docker
   docker-compose
 )
-
 # NOTE: Set oh my zsh
-sourcefile $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
+
+# NOTE: Load functions to has access to sourcefiles function
+[ -s "$DINNO_ZSH_DIR/functions.zsh" ] && source "$DINNO_ZSH_DIR/functions.zsh"
+
+# NOTE: load main parts
+sourcefiles "$DINNO_ZSH_DIR/env.zsh"
+sourcefiles "$DINNO_ZSH_DIR/aliases.zsh"
+sourcefiles "$DINNO_ZSH_DIR/paths.zsh"
+sourcefiles "$DINNO_ZSH_DIR/theme.zsh"
+
 
 # NOTE: Enable command auto-correction.
 ENABLE_CORRECTION="true"
@@ -54,7 +53,7 @@ if [ "$(command -v fzf)" ]; then
 fi
 
 # NOTE: term proxy app
-sourcefile "$PATH_TERM_PROXY"
+sourcefiles "$PATH_TERM_PROXY"
 
 # NOTE: Hook direnv (https://direnv.net/)
 if [ "$(command -v direnv)" ];then
@@ -64,7 +63,7 @@ fi
 # NOTE: NVM
 # This loads nvm
 # This loads nvm bash_completion
-sourcefile "$NVM_DIR/nvm.sh" "$NVM_DIR/bash_completion"
+sourcefiles "$NVM_DIR/nvm.sh" "$NVM_DIR/bash_completion"
 
 # NOTE: before load hook
-sourcefile "$DINNO_ZSH_DIR/after_load.zsh"
+sourcefiles "$DINNO_ZSH_DIR/after_load.zsh"

@@ -19,7 +19,7 @@ function pathprepend() {
   done
 }
 
-function sourcefile() {
+function sourcefiles() {
   local ARG
   for ARG in "$@"; do
     if [ -s "$ARG" ]; then
