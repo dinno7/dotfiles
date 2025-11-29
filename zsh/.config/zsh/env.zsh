@@ -3,9 +3,6 @@ export DINNO_ZSH_LOGO="$HOME/.dinno_logo.txt"
 
 export TMUX_CONFIG_DIR="$HOME/.config/tmux"
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 # XDG Base directory specification
 export XDG_CONFIG_HOME="$HOME/.config"         # Config files
 export XDG_CACHE_HOME="$HOME/.cache"           # Cache files
