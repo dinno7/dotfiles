@@ -15,6 +15,7 @@ alias ll="ls -ltahAF --group-directories-first"
 alias lld="ls -ltahA -d"
 alias gpo="git push origin"
 alias wz="wezterm"
+alias godown="shutdown now"
 alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgithub/warp/main/endip/install.sh)"
 
 
