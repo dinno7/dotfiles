@@ -1,3 +1,6 @@
+# NOTE: Load pre
+source "$DINNO_ZSH_DIR/pre_load.zsh"
+
 # NOTE: Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -29,16 +32,6 @@ plugins=(
 # NOTE: Set oh my zsh
 source $ZSH/oh-my-zsh.sh
 
-# NOTE: Load functions to has access to sourcefiles function
-[ -s "$DINNO_ZSH_DIR/functions.zsh" ] && source "$DINNO_ZSH_DIR/functions.zsh"
-
-# NOTE: load main parts
-sourcefiles "$DINNO_ZSH_DIR/env.zsh"
-sourcefiles "$DINNO_ZSH_DIR/aliases.zsh"
-sourcefiles "$DINNO_ZSH_DIR/paths.zsh"
-sourcefiles "$DINNO_ZSH_DIR/theme.zsh"
-
-
 # NOTE: Enable command auto-correction.
 ENABLE_CORRECTION="true"
 
@@ -55,17 +48,12 @@ if [ "$(command -v fzf)" ]; then
   eval "$(fzf --zsh)"
 fi
 
-# NOTE: term proxy app
-sourcefiles "$PATH_TERM_PROXY"
-
 # NOTE: Hook direnv (https://direnv.net/)
 if [ "$(command -v direnv)" ];then
   eval "$(direnv hook zsh)"
 fi
 
 # NOTE: NVM
-# This loads nvm
-# This loads nvm bash_completion
 sourcefiles "$NVM_DIR/nvm.sh" "$NVM_DIR/bash_completion"
 
 # NOTE: before load hook
