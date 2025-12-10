@@ -26,7 +26,8 @@ os:
   # A built-in preset that sets all of the above settings. Supported presets
   # are defined in the getPreset function in editor_presets.go.
   editPreset: "nvim"
+
 git:
-  pagers:
-    - colorArg: always
-      pager: delta --dark --paging=never --syntax-theme base17-256 --diff-so-fancy -s
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never --syntax-theme base17-256 --diff-so-fancy -s
