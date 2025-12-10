@@ -14,6 +14,7 @@ export XDG_DATA_HOME="$HOME/.local/share"      # Application data
 export XDG_STATE_HOME="$HOME/.local/state"     # Logs and state files
 
 export GOPATH="$XDG_DATA_HOME/go"
+export CARGO_PATH="$HOME/.cargo"
 export NVM_DIR="$XDG_DATA_HOME/.nvm"
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 export DINNO_ZSH_LOGS="$XDG_STATE_HOME/.dinno.logs"
