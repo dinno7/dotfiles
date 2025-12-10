@@ -1,49 +1,25 @@
-export DINNO_NVIM_DIR="$HOME/.config/nvim"
+export DEFAULT_USER="$(whoami)"
 export DINNO_ZSH_LOGO="$HOME/.dinno_logo.txt"
-
-export TMUX_CONFIG_DIR="$HOME/.config/tmux"
-
-# XDG Base directory specification
-export XDG_CONFIG_HOME="$HOME/.config"         # Config files
-export XDG_CACHE_HOME="$HOME/.cache"           # Cache files
-export XDG_DATA_HOME="$HOME/.local/share"      # Application data
-export XDG_STATE_HOME="$HOME/.local/state"     # Logs and state files
 
 # Locale settings
 export LANG="en_US.UTF-8" # Sets default locale for all categories
 export LC_ALL="en_US.UTF-8" # Overrides all other locale settings
 export LC_CTYPE="en_US.UTF-8" # Controls character classification and case conversion
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+# XDG Base directory specification
+export XDG_CACHE_HOME="$HOME/.cache"           # Cache files
+export XDG_CONFIG_HOME="$HOME/.config"         # Config files
+export XDG_BIN_HOME="$HOME/.local/bin"         # Binary files
+export XDG_DATA_HOME="$HOME/.local/share"      # Application data
+export XDG_STATE_HOME="$HOME/.local/state"     # Logs and state files
 
-# Use Neovim as default editor
-export VISUAL=nvim visudo
-export SUDO_EDITOR=nvim
-export FCEDIT=nvim
-
-if command -v batcat >/dev/null 2>&1; then
-  export PAGER=batcat
-  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-  export MANROFFOPT="-c"
-elif command -v bat >/dev/null 2>&1; then
-  export PAGER=bat
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-  export MANROFFOPT="-c"
-fi
-
-
-
-export FZF_DEFAULT_OPTS="--tmux 80% --border=bold --border=rounded --layout=reverse --preview 'bat --color=always {}' --no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b"
-export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+export GOPATH="$XDG_DATA_HOME/go"
+export NVM_DIR="$XDG_DATA_HOME/.nvm"
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+export DINNO_ZSH_LOGS="$XDG_STATE_HOME/.dinno.logs"
+export PATH_TERM_PROXY="$XDG_BIN_HOME/term_proxy"
 
 # Hide computer name in terminal
-export DEFAULT_USER="$(whoami)"
 
 # Config vim in zsh
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
@@ -54,15 +30,6 @@ export VI_MODE_CURSOR_INSERT=6
 export VI_MODE_CURSOR_OPPEND=0
 export MODE_INDICATOR="%F{white}+%f"
 export INSERT_MODE_INDICATOR="%F{yellow}+%f"
-
-export GOPATH="$HOME/go"
-
-export NVM_DIR="$HOME/.nvm"
-export PNPM_HOME="$HOME/.local/share/pnpm"
-
-export DINNO_ZSH_LOGS="$HOME/.dinno.logs"
-
-export PATH_TERM_PROXY="$HOME/.local/bin/term_proxy"
 
 export AI_PROMPT_GIT_COMMIT=$(cat << EOF
 You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
