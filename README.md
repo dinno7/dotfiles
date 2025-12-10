@@ -17,6 +17,7 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 
 - **Bash**: The script is written in Bash, so you need a Unix-like environment (Linux, macOS, etc.).
 - **ZSH**: you should set bash to zsh
+- **wl-clipboard(wayland) or xclip(xorg)**: for copy & paste in neovim
 - **Oh-My-Zsh**: install the [OMZ](https://ohmyz.sh/#install) and below 3-party plugins
   - [you-should-use](https://github.com/MichaelAquilina/zsh-you-should-use)
   - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
