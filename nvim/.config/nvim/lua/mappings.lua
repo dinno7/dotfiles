@@ -197,7 +197,7 @@ map("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Show l
 map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Jump to next diagnostic in buffer" })
 map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump to prev diagnostic in buffer" })
 map("n", "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "Smart rename" })
-map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "See available code actions" })
+map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "See available code actions" })
 map("n", "<leader>K", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
 map("n", "K", function()
   local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line "." - 1 })
