@@ -6,9 +6,9 @@ if [[ -z $TMUX && $SHLVL -eq 1 ]]; then
 fi
 
 if [[ -n $TMUX && $SHLVL -eq 2 ]]; then
-  if [ $(command -v fastfetch) ]; then
+  if command -v fastfetch >/dev/null 2>&1; then
     fastfetch --logo $DINNO_ZSH_LOGO
-  elif [ $(command -v neofetch) ]; then
+  elif  command -v neofetch >/dev/null 2>&1; then
     neofetch --source $DINNO_ZSH_LOGO
   else
     cat -p $DINNO_ZSH_LOGO

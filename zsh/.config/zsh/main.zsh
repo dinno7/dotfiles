@@ -41,17 +41,17 @@ ENABLE_CORRECTION="true"
 bindkey -M viins 'jk' vi-cmd-mode
 
 # NOTE: Set Zoxide
-if [[ -x "$(command -v zoxide)" ]];then
+if cmd_exists zoxide;then
   eval "$(zoxide init zsh)"
 fi
 
 # NOTE: Set up fzf key bindings and fuzzy completion
-if [ "$(command -v fzf)" ]; then
+if cmd_exists fzf; then
   eval "$(fzf --zsh)"
 fi
 
 # NOTE: Hook direnv (https://direnv.net/)
-if [ "$(command -v direnv)" ];then
+if cmd_exists direnv;then
   eval "$(direnv hook zsh)"
 fi
 

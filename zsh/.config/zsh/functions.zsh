@@ -37,7 +37,7 @@ function cmd_exists() {
 }
 
 # Alias to launch a document, file, or URL in it's default X application
-if [[ -x "$(command -v xdg-open)" ]]; then
+if cmd_exists xdg-open; then
   function open(){
     local target
     if [ $# -eq 0 ]; then
@@ -58,13 +58,12 @@ function ds(){
   du $1 -h -d 1  | sort -hr
 }
 
-
 function bwunlock(){
   if [[ ! -n "$BW_PASSWORD" ]];then
     echo "please set bitwarden master key to BW_PASSWORD"
     return 1
   fi
-  if ! command -v bw >/dev/null 2>&1;then
+  if ! cmd_exists bw;then
     echo "please install bitwarden-cli first"
     return 1
   fi
@@ -95,7 +94,7 @@ function how(){
     echo "Please provide command in first arg"
     return
   fi
-  if [ ! -x "$(command -v curl)" ];then
+  if ! cmd_exists curl;then
     echo "Please install curl first"
     return
   fi
@@ -115,10 +114,10 @@ function shareport(){
 }
 
 function shareportsafe(){
-  if [[ -x "$(command -v lt)" ]]; then
-    lt --port $1 --print-requests -o -s "dinno-$(date +%s)"
-  else
-    echo "Please install Localtunnel first"
-    exit 1
+  if ! cmd_exists lt; then
+    echo "please install Localtunnel first"
+    return 1
   fi
+
+  lt --port $1 --print-requests -o -s "dinno-$(date +%s)"
 }
