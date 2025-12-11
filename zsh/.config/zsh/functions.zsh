@@ -32,6 +32,10 @@ function runfree() {
   "$@" > /dev/null 2>&1 & disown
 }
 
+function cmd_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
 # Alias to launch a document, file, or URL in it's default X application
 if [[ -x "$(command -v xdg-open)" ]]; then
   function open(){
