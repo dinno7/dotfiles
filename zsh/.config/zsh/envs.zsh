@@ -19,6 +19,11 @@ export NVM_DIR="$XDG_DATA_HOME/.nvm"
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 export DINNO_ZSH_LOGS="$XDG_STATE_HOME/.dinno.logs"
 export PATH_TERM_PROXY="$XDG_BIN_HOME/term_proxy"
+export TMUX_CONFIG_DIR="$XDG_CONFIG_HOME/tmux"
+
+export VISUAL="$EDITOR visudo"
+export SUDO_EDITOR="$EDITOR"
+export FCEDIT="$EDITOR"
 
 # Hide computer name in terminal
 

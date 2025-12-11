@@ -1,30 +1,25 @@
 
 if command -v nvim >/dev/null 2>&1;then
   export EDITOR="nvim"
-  export VISUAL="nvim visudo"
-  export SUDO_EDITOR="nvim"
-  export FCEDIT="nvim"
   export DINNO_NVIM_DIR="$XDG_CONFIG_HOME/nvim"
 elif command -v vim >/dev/null 2>&1;then
   export EDITOR='vim'
-  export VISUAL="vim visudo"
-  export SUDO_EDITOR="vim"
-  export FCEDIT="vim"
 fi
 
-if command -v tmux >/dev/null 2>&1;then
-  export TMUX_CONFIG_DIR="$XDG_CONFIG_HOME/tmux"
+if command -v batcat >/dev/null 2>&1 || command -v bat >/dev/null 2>&1;then
+  if command -v batcat >/dev/null 2>&1; then
+    export PAGER="batcat"
+  elif command -v bat >/dev/null 2>&1; then
+    export PAGER="bat"
+  fi
+  export MANPAGER="sh -c 'col -bx | $PAGER -l man -p'"
+  export MANROFFOPT="-c"
+  if command -v less >/dev/null 2>&1;then
+    export BAT_PAGER="less -RKX"
+    export BAT_PAGING="always"
+  fi
 fi
 
-if command -v batcat >/dev/null 2>&1; then
-  export PAGER=batcat
-  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-  export MANROFFOPT="-c"
-elif command -v bat >/dev/null 2>&1; then
-  export PAGER=bat
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-  export MANROFFOPT="-c"
-fi
 
 if command -v fzf >/dev/null 2>&1;then
   export FZF_BASE="$(dirname "$(which fzf)")"
