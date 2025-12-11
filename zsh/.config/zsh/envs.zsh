@@ -25,7 +25,9 @@ export VISUAL="$EDITOR visudo"
 export SUDO_EDITOR="$EDITOR"
 export FCEDIT="$EDITOR"
 
-# Hide computer name in terminal
+# Password manager
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
+export PASSWORD_STORE_GENERATED_LENGTH="64"
 
 # Config vim in zsh
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
