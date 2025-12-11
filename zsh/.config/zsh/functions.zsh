@@ -54,6 +54,21 @@ function ds(){
   du $1 -h -d 1  | sort -hr
 }
 
+
+function bwunlock(){
+  if [[ ! -n "$BW_PASSWORD" ]];then
+    echo "please set bitwarden master key to BW_PASSWORD"
+    return 1
+  fi
+  if ! command -v bw >/dev/null 2>&1;then
+    echo "please install bitwarden-cli first"
+    return 1
+  fi
+  local _bw_session="$(bw unlock --passwordenv BW_PASSWORD --raw)"
+  export BW_SESSION=$_bw_session
+  echo "Vault is now unlocked!"
+}
+
 function get_ips (){
   cat $1 | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n $2 | xargs | sed "s/ /,/g"
 }
