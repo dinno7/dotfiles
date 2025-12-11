@@ -22,7 +22,7 @@ alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgit
 # NOTE: -- Conditional aliases --
 #
 if [[ -x "$(command -v xclip)" ]]; then
-  alias cpc="xclip -sel clip"
+  alias cpc="xclip -sel clip -r"
 fi
 
 # Alias for lsd
