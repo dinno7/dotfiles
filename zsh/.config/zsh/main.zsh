@@ -7,15 +7,17 @@ export ZSH="$HOME/.oh-my-zsh"
 # NOTE: Plugins
 plugins=(
   # NOTE: Global
-  ufw
   fzf
   sudo
+  ssh
+  ssh-agent
+  rsync
+  systemd
   vi-mode
   extract
+  urltools
   copyfile
-  jsontools
   dirhistory
-  web-search
   # NOTE: External
   you-should-use
   zsh-autosuggestions
