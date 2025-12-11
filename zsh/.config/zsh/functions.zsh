@@ -73,6 +73,10 @@ function get_ips (){
   cat $1 | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n $2 | xargs | sed "s/ /,/g"
 }
 
+function ips_test() {
+  tail -n +2 $1 | cut -d',' -f1 | uniq | xargs -I{} bash -c 'ping -c1 -W1 {} >/dev/null && echo {}'
+}
+
 # NOTE: Function to log messages
 function clog() {
   if [[ -z $1 ]];then
