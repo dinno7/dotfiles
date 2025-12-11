@@ -1,4 +1,3 @@
-
 if command -v nvim >/dev/null 2>&1;then
   export EDITOR="nvim"
   export DINNO_NVIM_DIR="$XDG_CONFIG_HOME/nvim"
@@ -28,3 +27,5 @@ if command -v fzf >/dev/null 2>&1;then
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 fi
 
+export BW_PASSWORD="$(pass main/bw)"
+export GEMINI_API_KEY="$(pass apikey/gemini)"
