@@ -59,16 +59,18 @@ function ds(){
 }
 
 function bwunlock(){
-  if [[ ! -n "$BW_PASSWORD" ]];then
-    echo "please set bitwarden master key to BW_PASSWORD"
+  if ! cmd_exists pass;then
+    echo "the bitwarden master key should main in pass, the pass is not installed"
     return 1
   fi
   if ! cmd_exists bw;then
     echo "please install bitwarden-cli first"
     return 1
   fi
+  export BW_PASSWORD="$(pass main/bw)"
   local _bw_session="$(bw unlock --passwordenv BW_PASSWORD --raw)"
   export BW_SESSION=$_bw_session
+  unset BW_PASSWORD
   echo "Vault is now unlocked!"
 }
 
