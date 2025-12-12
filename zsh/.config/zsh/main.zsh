@@ -14,7 +14,6 @@ plugins=(
   rsync
   systemd
   vi-mode
-  extract
   urltools
   copyfile
   dirhistory
