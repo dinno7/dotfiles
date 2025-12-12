@@ -101,8 +101,8 @@ map("n", "<leader>sx", "<C-W>q", { desc = "Close split windows" })
 -- NOTE: Tabs
 map("n", "<leader>tn", "<cmd> tabnew<CR>", { desc = "Open new tab" })
 map("n", "<leader>tx", "<cmd> tabclose<CR>", { desc = "Close current tab" }) --
-map("n", "<leader>tk", "<cmd> tabn<CR>", { desc = "Go to next tab" }) --
-map("n", "<leader>tj", "<cmd> tabp<CR>", { desc = "Go to previous tab" }) --
+map("n", "<leader>tk", "<cmd> tabn<CR>", { desc = "Go to next tab" })        --
+map("n", "<leader>tj", "<cmd> tabp<CR>", { desc = "Go to previous tab" })    --
 
 -- NOTE: Set tmux-navigator keymaps -> Make compatible Nvim with Tmux
 map("n", "<C-h>", "<cmd> NvimTmuxNavigateLeft <CR>", { desc = "Window left" })
