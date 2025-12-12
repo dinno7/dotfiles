@@ -4,6 +4,14 @@ return {
     local conf = require "nvchad.configs.cmp"
     local cmp = require "cmp"
 
+    -- cmp.event:on("menu_opened", function()
+    --   require("neocodeium").clear()
+    -- end)
+
+    -- conf.completion = vim.tbl_deep_extend("force", conf.completion, {
+    --   autocomplete = false,
+    -- })
+
     conf.mapping = vim.tbl_deep_extend("force", conf.mapping, {
       ["<C-j>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -28,10 +36,7 @@ return {
         behavior = cmp.ConfirmBehavior.Insert,
         select = true,
       },
-
-      ["<A-y>"] = require("minuet").make_cmp_map(),
     })
-
     return conf
   end,
 }
