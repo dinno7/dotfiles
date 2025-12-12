@@ -1,9 +1,15 @@
-if cmd_exists nvim;then
-  export EDITOR="nvim"
-  export DINNO_NVIM_DIR="$XDG_CONFIG_HOME/nvim"
-elif cmd_exists vim;then
-  export EDITOR='vim'
+if cmd_exists nvim || cmd_exists vim;then
+  if cmd_exists nvim;then
+    export EDITOR="nvim"
+    export DINNO_NVIM_DIR="$XDG_CONFIG_HOME/nvim"
+  elif cmd_exists vim;then
+    export EDITOR='vim'
+  fi
+  export VISUAL="$EDITOR visudo"
+  export SUDO_EDITOR="$EDITOR"
+  export FCEDIT="$EDITOR"
 fi
+
 
 if cmd_exists batcat || cmd_exists bat;then
   if cmd_exists batcat; then
@@ -26,6 +32,3 @@ if cmd_exists fzf;then
   export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 fi
-
-export BW_PASSWORD="$(pass main/bw)"
-export GEMINI_API_KEY="$(pass apikey/gemini)"
