@@ -1,0 +1,12 @@
+[general]
+import = [
+    "~/.config/alacritty/themes/tokyo_night.toml"
+]
+
+[font]
+normal = { family = "CaskaydiaCove Nerd Font", style = "Regular" }
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+size = 11.0
+builtin_box_drawing = true
