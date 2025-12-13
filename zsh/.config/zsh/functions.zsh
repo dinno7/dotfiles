@@ -33,7 +33,7 @@ function runfree() {
 }
 
 function cmd_exists() {
-    command -v "$1" >/dev/null 2>&1
+  command -v "$1" >/dev/null 2>&1
 }
 
 # Alias to launch a document, file, or URL in it's default X application
@@ -58,21 +58,33 @@ function ds(){
   du $1 -h -d 1  | sort -hr
 }
 
-function bwunlock(){
-  if ! cmd_exists pass;then
-    echo "the bitwarden master key should main in pass, the pass is not installed"
-    return 1
-  fi
-  if ! cmd_exists bw;then
-    echo "please install bitwarden-cli first"
-    return 1
-  fi
-  export BW_PASSWORD="$(pass main/bw)"
-  local _bw_session="$(bw unlock --passwordenv BW_PASSWORD --raw)"
-  export BW_SESSION=$_bw_session
-  unset BW_PASSWORD
-  echo "Vault is now unlocked!"
-}
+if cmd_exists yazi;then
+  function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+  }
+fi
+
+if cmd_exists bw;then
+  function bwunlock(){
+    if ! cmd_exists pass;then
+      echo "the bitwarden master key should main in pass, the pass is not installed"
+      return 1
+    fi
+    if ! cmd_exists bw;then
+      echo "please install bitwarden-cli first"
+      return 1
+    fi
+    export BW_PASSWORD="$(pass main/bw)"
+    local _bw_session="$(bw unlock --passwordenv BW_PASSWORD --raw)"
+    export BW_SESSION=$_bw_session
+    unset BW_PASSWORD
+    echo "Vault is now unlocked!"
+  }
+fi
 
 function get_ips (){
   cat $1 | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n $2 | xargs | sed "s/ /,/g"
