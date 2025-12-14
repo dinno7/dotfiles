@@ -39,6 +39,9 @@ ENABLE_CORRECTION="true"
 # NOTE: vim-mode plugin settings
 bindkey -M viins 'jk' vi-cmd-mode
 
+# NOTE: Autosuggestions accept
+bindkey '^[a' autosuggest-accept
+
 # NOTE: Set Zoxide
 if cmd_exists zoxide;then
   eval "$(zoxide init zsh)"
