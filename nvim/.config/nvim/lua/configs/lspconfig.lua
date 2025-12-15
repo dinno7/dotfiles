@@ -6,6 +6,17 @@ local tsserverOptions = require "configs.lspservers.tsserver"
 local goplsOptions = require "configs.lspservers.gopls"
 local cspellOptions = require "configs.lspservers.cspell"
 
+local x = vim.diagnostic.severity
+vim.diagnostic.config {
+  virtual_text = {
+    prefix = "",
+    severity = { x.WARN, x.ERROR },
+  },
+  signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
+  underline = true,
+  float = { border = "single" },
+}
+
 -- INFO: LSP servers
 local servers = {
   ts_ls = tsserverOptions,
