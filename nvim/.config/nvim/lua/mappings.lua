@@ -20,7 +20,7 @@ map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
 -- NOTE: Jump to matching pair easily in normal mode
-map("n", "<Tab>", "%", { desc = "Jump to matching pair easily in normal mode" })
+map({ "n", "v" }, "<Tab>", "%", { desc = "Jump to matching pair easily in normal mode" })
 
 -- NOTE: Word cases
 map("i", "<c-t>", "<esc>b~lea", { desc = "Word-cases turn the current word into title case" })
@@ -101,8 +101,8 @@ map("n", "<leader>sx", "<C-W>q", { desc = "Close split windows" })
 -- NOTE: Tabs
 map("n", "<leader>tn", "<cmd> tabnew<CR>", { desc = "Open new tab" })
 map("n", "<leader>tx", "<cmd> tabclose<CR>", { desc = "Close current tab" }) --
-map("n", "<leader>tk", "<cmd> tabn<CR>", { desc = "Go to next tab" })        --
-map("n", "<leader>tj", "<cmd> tabp<CR>", { desc = "Go to previous tab" })    --
+map("n", "<leader>tk", "<cmd> tabn<CR>", { desc = "Go to next tab" }) --
+map("n", "<leader>tj", "<cmd> tabp<CR>", { desc = "Go to previous tab" }) --
 
 -- NOTE: Set tmux-navigator keymaps -> Make compatible Nvim with Tmux
 map("n", "<C-h>", "<cmd> NvimTmuxNavigateLeft <CR>", { desc = "Window left" })
@@ -186,19 +186,21 @@ map("n", "<leader>mm", "<cmd>Telescope marks<CR>", { desc = "See all marks" })
 map("n", "<leader>dd", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
 map("n", "<leader>rr", ":Telescope registers<CR>", { desc = "Registers in telescope" })
 map("n", "<leader>tt", "<cmd>Telescope builtin<CR>", { desc = "[S]earch [S]elect Telescope" })
-map("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP Telescope show refrences" })
-map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "LSP implementation" })
-map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "LSP definition type" })
+map({ "n", "v" }, "<leader>gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP Telescope show refrences" })
+map({ "n", "v" }, "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "LSP implementation" })
+map({ "n", "v" }, "<leader>gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "LSP definition type" })
 
 -- NOTE: LspSaga
-map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP definition" })
-map("n", "gf", "<cmd>Lspsaga finder<CR>", { desc = "Show definition, references" })
-map("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Show line diagnostics" })
+map({ "n", "v" }, "gd", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP definition" })
+map({ "n", "v" }, "gr", "<cmd>Lspsaga finder ref<CR>", { desc = "LSP Lspsaga show refrences" })
+map({ "n", "v" }, "gi", "<cmd>Lspsaga finder imp<CR>", { desc = "LSP Lspsaga implementation" })
+map({ "n", "v" }, "gt", "<cmd>Lspsaga finder tyd<CR>", { desc = "LSP Lspsaga definition type" })
+map({ "n", "v" }, "gf", "<cmd>Lspsaga finder<CR>", { desc = "Show definition, references" })
 map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Jump to next diagnostic in buffer" })
 map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump to prev diagnostic in buffer" })
-map("n", "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "Smart rename" })
+map({ "n", "v" }, "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "Smart rename" })
 map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "See available code actions" })
-map("n", "<leader>K", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
+map({ "n", "v" }, "<leader>K", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
 map("n", "K", function()
   local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line "." - 1 })
   if #diagnostics > 0 then
@@ -211,8 +213,6 @@ map("n", "K", function()
     end
   end
 end, { desc = "Show errors if exist, else show fold preview, else Show documentation for what is under cursor" })
-
-map("v", "<Tab>", "%", { desc = "Jump to matching pair easily in visual mode" })
 
 -- NOTE: Gitsigns
 local gitsigns = require "gitsigns"
@@ -234,7 +234,7 @@ map("n", "[c", function()
   end
 end)
 
--- Actions
+-- NOTE: Actions
 map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "[S]tage Hunk" })
 map("v", "<leader>hs", function()
   gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
