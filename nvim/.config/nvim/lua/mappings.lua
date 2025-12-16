@@ -62,7 +62,7 @@ map("n", "<C-/>", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<C-/>", "gc", { desc = "toggle comment", remap = true })
 
 -- NOTE: Select whole file
-map("n", "<leader>a", "ggVG", { desc = "Select whole file" })
+map("n", "<a-a>", "ggVG", { desc = "Select whole file" })
 
 -- NOTE: Copy whole file
 map("n", "<leader>ya", "<cmd>%y+<CR>", { desc = "Copy whole file" })
@@ -288,3 +288,16 @@ map("n", "<leader>tw", gitsigns.toggle_word_diff, {
 map({ "o", "x" }, "ih", gitsigns.select_hunk, {
   desc = "[S]elect Hunk",
 })
+
+-- NOTE: Opencode
+map({ "n", "x" }, "<leader>ai", function() require("opencode").ask("@this: ", { submit = true }) end,
+  { desc = "Ask opencode" })
+map({ "n", "x" }, "<leader>ax", function() require("opencode").select() end, { desc = "Execute opencode action…" })
+map({ "n", "x" }, "<leader>ar", function() return require("opencode").operator("@this ") end,
+  { expr = true, desc = "Add range to opencode" })
+map("n", "<leader>al", function() return require("opencode").operator("@this ") .. "_" end,
+  { expr = true, desc = "Add line to opencode" })
+map("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,
+  { desc = "opencode half page up" })
+map("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end,
+  { desc = "opencode half page down" })
