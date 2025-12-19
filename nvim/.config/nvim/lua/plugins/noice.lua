@@ -10,6 +10,9 @@ return {
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
       },
+      hover = {
+        enabled = false, -- Prevent automatic focus on hover docs
+      },
     },
     -- -- you can enable a preset for easier configuration
     presets = {
