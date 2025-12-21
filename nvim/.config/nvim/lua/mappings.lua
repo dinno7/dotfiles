@@ -159,6 +159,10 @@ map({ "i", "n", "v" }, "<M-C-Z>", "<cmd>redo<cr>", { desc = "Redo" })
 -- NOTE: Delete word after cursor in insert mode
 map("i", "<C-Del>", "<ESC>ldwha", { desc = "Delete word after cursor" })
 
+-- NOTE: Toggle NvimTree
+nomap("n", "<leader>e")
+map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle NvimTree" })
+
 -- NOTE: Todos
 nomap("n", "<leader>h")
 
@@ -234,7 +238,7 @@ map("n", "[c", function()
   end
 end)
 
--- NOTE: Actions
+-- Actions
 map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "[S]tage Hunk" })
 map("v", "<leader>hs", function()
   gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
@@ -289,15 +293,58 @@ map({ "o", "x" }, "ih", gitsigns.select_hunk, {
   desc = "[S]elect Hunk",
 })
 
+-- NOTE:  Multicursor
+local mc = require "multicursor-nvim"
+map({ "n", "x" }, "<C-up>", function()
+  mc.lineAddCursor(-1)
+end)
+map({ "n", "x" }, "<C-down>", function()
+  mc.lineAddCursor(1)
+end)
+map({ "n", "x" }, "<leader>k", function()
+  mc.lineSkipCursor(-1)
+end)
+map({ "n", "x" }, "<leader>j", function()
+  mc.lineSkipCursor(1)
+end)
+
+-- Add or skip adding a new cursor by matching word/selection
+nomap("n", "<C-n>")
+map({ "n", "x" }, "<C-n>", function()
+  mc.matchAddCursor(1)
+end)
+map({ "n", "x" }, "<C-S-n>", function()
+  mc.matchAddCursor(-1)
+end)
+map({ "n", "x" }, "<leader>s", function()
+  mc.matchSkipCursor(1)
+end)
+map({ "n", "x" }, "<leader>S", function()
+  mc.matchSkipCursor(-1)
+end)
+-- Add and remove cursors with control + left click.
+map("n", "<c-leftmouse>", mc.handleMouse)
+map("n", "<c-leftdrag>", mc.handleMouseDrag)
+map("n", "<c-leftrelease>", mc.handleMouseRelease)
+-- Disable and enable cursors.
+map({ "n", "x" }, "<c-q>", mc.toggleCursor)
+
 -- NOTE: Opencode
-map({ "n", "x" }, "<leader>ai", function() require("opencode").ask("@this: ", { submit = true }) end,
-  { desc = "Ask opencode" })
-map({ "n", "x" }, "<leader>ax", function() require("opencode").select() end, { desc = "Execute opencode action…" })
-map({ "n", "x" }, "<leader>ar", function() return require("opencode").operator("@this ") end,
-  { expr = true, desc = "Add range to opencode" })
-map("n", "<leader>al", function() return require("opencode").operator("@this ") .. "_" end,
-  { expr = true, desc = "Add line to opencode" })
-map("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,
-  { desc = "opencode half page up" })
-map("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end,
-  { desc = "opencode half page down" })
+map({ "n", "x" }, "<leader>ai", function()
+  require("opencode").ask("@this: ", { submit = true })
+end, { desc = "Ask opencode" })
+map({ "n", "x" }, "<leader>ax", function()
+  require("opencode").select()
+end, { desc = "Execute opencode action…" })
+map({ "n", "x" }, "<leader>ar", function()
+  return require("opencode").operator "@this "
+end, { expr = true, desc = "Add range to opencode" })
+map("n", "<leader>al", function()
+  return require("opencode").operator "@this " .. "_"
+end, { expr = true, desc = "Add line to opencode" })
+map("n", "<S-C-u>", function()
+  require("opencode").command "session.half.page.up"
+end, { desc = "opencode half page up" })
+map("n", "<S-C-d>", function()
+  require("opencode").command "session.half.page.down"
+end, { desc = "opencode half page down" })

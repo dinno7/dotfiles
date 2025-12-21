@@ -24,7 +24,6 @@ return {
           toggle_or_open = { "<CR>", "o" },
           vsplit = "v", -- open in vsplit
           split = "x", -- open in split
-          shuttle = { "<Tab>" },
         },
       },
       diagnostic = {
@@ -37,7 +36,6 @@ return {
           toggle_or_open = { "<CR>", "o" },
           vsplit = "v", -- open in vsplit
           split = "x", -- open in split
-          shuttle = { "<Tab>" },
         },
       },
       ui = {
