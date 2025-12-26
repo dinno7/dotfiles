@@ -17,6 +17,7 @@ alias gpo="git push origin"
 alias wz="wezterm"
 alias godown="shutdown now"
 alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgithub/warp/main/endip/install.sh)"
+alias oc="opencode"
 
 
 # NOTE: -- Conditional aliases --
