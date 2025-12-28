@@ -11,5 +11,12 @@
     "webfetch": "ask",
     "doom_loop": "ask",
     "external_directory": "ask"
+  },
+  "mcp": {
+    "shadcn": {
+      "type": "local",
+      "enabled": true,
+      "command": ["npx", "shadcn@latest", "mcp"]
+    }
   }
 }
