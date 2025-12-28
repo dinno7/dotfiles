@@ -7,7 +7,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # NOTE: Plugins
 plugins=(
   # NOTE: Global
-  fzf
   sudo
   ssh
   ssh-agent
