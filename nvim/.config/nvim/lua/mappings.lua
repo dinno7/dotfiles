@@ -353,3 +353,14 @@ end, { desc = "opencode half page down" })
 local ls = require("luasnip")
 map({ "i", "s" }, "<A-k>", function() ls.jump(1) end, { silent = true })
 map({ "i", "s" }, "<A-j>", function() ls.jump(-1) end, { silent = true })
+
+-- NOTE: Inlay hint
+map("n", "<leader>hh", function()
+  local currentState = vim.lsp.inlay_hint.is_enabled()
+  vim.lsp.inlay_hint.enable(not currentState)
+  if currentState then
+    vim.notify("Inlay hint is disabled", vim.log.levels.INFO)
+  else
+    vim.notify("Inlay hint is enabled", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle inlay hint" })
