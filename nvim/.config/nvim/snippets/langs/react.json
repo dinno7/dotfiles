@@ -1,0 +1,18 @@
+{
+  "reactComponent": {
+    "prefix": "rfc",
+    "body": [
+      "function ${1:${TM_FILENAME_BASE}}() {",
+      "\treturn (",
+      "\t\t<${2:div} $3>",
+      "\t\t\t${0:${TM_FILENAME_BASE}}",
+      "\t\t</${2:div}>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1:${TM_FILENAME_BASE}}",
+      ""
+    ],
+    "description": "React component"
+  }
+}

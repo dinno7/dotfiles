@@ -1,0 +1,24 @@
+{
+  "Vue js 3 composition template": {
+    "prefix": ["vue", "vueinit"],
+    "body": [
+      "<script setup lang=\"ts\">",
+      "\t",
+      "</script>",
+      "",
+      "<template>",
+      "\t${0}",
+      "</template>",
+      "",
+      "<style scoped>",
+      "\t",
+      "</style>"
+    ],
+    "description": "Vue js 3 composition template"
+  },
+  "Vue js script setup ts": {
+    "prefix": ["vuescript"],
+    "body": ["<script setup lang=\"ts\">", "\t${0}", "</script>", ""],
+    "description": "Vue js script setup ts"
+  }
+}

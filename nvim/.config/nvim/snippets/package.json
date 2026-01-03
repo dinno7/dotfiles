@@ -1,0 +1,59 @@
+{
+  "name": "dinno-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "go"
+        ],
+        "path": "./langs/go.json"
+      },
+      {
+        "language": [
+          "rust"
+        ],
+        "path": "./langs/rust.json"
+      },
+      {
+        "language": [
+          "cpp"
+        ],
+        "path": "./langs/cpp.json"
+      },
+      {
+        "language": [
+          "python"
+        ],
+        "path": "./langs/python.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact"
+        ],
+        "path": "./langs/ecmascript.json"
+      },
+      {
+        "language": [
+          "vue"
+        ],
+        "path": "./langs/vue.json"
+      },
+      {
+        "language": [
+          "javascriptreact",
+          "typescriptreact"
+        ],
+        "path": "./langs/react.json"
+      },
+      {
+        "language": [
+          "php"
+        ],
+        "path": "./langs/php.json"
+      }
+    ]
+  }
+}

@@ -21,5 +21,6 @@ o.colorcolumn = "80"
 o.spelllang = "en_us"
 o.spell = true
 
--- INFO: Get custom snippets from VSCode
-vim.g.vscode_snippets_standalone_path = "~/.config/nvim/dinno.code-snippets"
+
+-- INFO: Set custom snippets(vscode-like) path
+vim.g.vscode_snippets_path = vim.fn.stdpath "config" .. "/snippets"

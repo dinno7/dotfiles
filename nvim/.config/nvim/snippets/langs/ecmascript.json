@@ -1,0 +1,227 @@
+{
+  "Logging some string": {
+    "prefix": ["clS", "logS"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": [
+      "console.log('💀 ~ in $RELATIVE_FILEPATH at line $TM_LINE_NUMBER ~> ', '${1}');${0}"
+    ],
+    "description": "Logging some string"
+  },
+  "Logging sth": {
+    "prefix": ["clp", "log"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": [
+      "console.log('💀 ~ in $RELATIVE_FILEPATH at line $TM_LINE_NUMBER ~> ', $TM_SELECTED_TEXT${1});${0}"
+    ],
+    "description": "Logging sth"
+  },
+  "Error logging": {
+    "prefix": ["cle", "ce", "loge", "log error", "cl error"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": [
+      "console.error('⭕️ ~ ERROR  ~ in $WORKSPACE_NAME: $RELATIVE_FILEPATH ~> ❗', ${1});${0}"
+    ],
+    "description": "Logging error"
+  },
+  "Log some string complete": {
+    "prefix": ["clgs"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": [
+      "console.log('💀 ~ $CURRENT_YEAR-$CURRENT_MONTH($CURRENT_MONTH_NAME_SHORT)-$CURRENT_DATE($CURRENT_DAY_NAME_SHORT) $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND in $RELATIVE_FILEPATH at line $TM_LINE_NUMBER ~> ', '${1}');${0}"
+    ],
+    "description": "Log some string complete"
+  },
+  "Log something complete": {
+    "prefix": ["clg"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": [
+      "console.log('💀 ~ $CURRENT_YEAR-$CURRENT_MONTH($CURRENT_MONTH_NAME_SHORT)-$CURRENT_DATE($CURRENT_DAY_NAME_SHORT) $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND in $RELATIVE_FILEPATH at line $TM_LINE_NUMBER ~> ', ${1});${0}"
+    ],
+    "description": "Log something in console"
+  },
+  "Logging sth pure": {
+    "prefix": ["cl", "ll", "pr", "log", "echo"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["console.log(`💀 ${1}`, ${2});${0}"],
+    "description": "Logging sth pure"
+  },
+  "Import in javascript, typescript": {
+    "prefix": ["imp"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["import $2 from '$1';"],
+    "description": "Import sth in javascript, typescript"
+  },
+  "Import in javascript,typescript": {
+    "prefix": ["impsep"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["import { $2 } from '$1';"],
+    "description": "Import sth in javascript, typescript"
+  },
+  "Import in javascript, typescript ": {
+    "prefix": ["imp2"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["import $1 from '$1';"],
+    "description": "Import sth in javascript, typescript "
+  },
+  "Parse json": {
+    "prefix": ["jp", "JP"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["JSON.parse($1);${0}"],
+    "description": "Parse json"
+  },
+  "Json to string": {
+    "prefix": ["js", "JS"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["JSON.stringify($1);${0}"],
+    "description": "Json to string"
+  },
+  "Deep copy": {
+    "prefix": ["dp", "dpc"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["JSON.parse(JSON.stringify($1));${0}"],
+    "description": "Deep copy"
+  },
+  "Query selector": {
+    "prefix": "qs",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["$document.querySelector('${1}');${0}"],
+    "description": "Document query selector to select an element in js"
+  },
+  "Query selector All": {
+    "prefix": "qsa",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["$document.querySelectorAll('${1}');${0}"],
+    "description": "Document query selector aa to select elements in js"
+  },
+  "Add event listener": {
+    "prefix": ["ae", "dae", "ael", "dael"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["$document.addEventListener('$eventName', $event);${0}"],
+    "description": "Add event listener in js"
+  },
+  "Remove event listener": {
+    "prefix": ["re", "dre", "rel", "drel"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["$document.removeEventListener('$eventName', $event);${0}"],
+    "description": "Remove event listener in js"
+  },
+  "Function": {
+    "prefix": ["fn", "func", "function"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["function ${2:funcName}(${1:properties}) {", "\t$0", "}"],
+    "description": "Function"
+  },
+  "Ghost Function": {
+    "prefix": ["fng", "funcg", "functiong"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["function (${1:properties}) {", "\t$0", "}"],
+    "description": "Function"
+  },
+  "Arrow function": {
+    "prefix": ["af", "arw-fn", "fna", "fn-arrow", "arrow-function"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["const ${1:funcName} = (${2:properties}) => {$3}$0"],
+    "description": "Arrow function"
+  },
+  "Ghost Arrow function": {
+    "prefix": ["afg", "arw-fng", "fnag", "fn-arrowg", "arrow-functiong"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["(${2:properties}) => {$3}$0"],
+    "description": "Arrow function"
+  },
+  "Class method function": {
+    "prefix": ["method", "mtd"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["$3 ${2:funcName}(${1:properties}) {", "\t$0", "}"],
+    "description": "Class method"
+  },
+  "IIFE function": {
+    "prefix": ["iife", "fn iife"],
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "body": ["(${1:async} () => {", "$0", "})()"],
+    "description": "Class method"
+  },
+  "Import in nodejs": {
+    "prefix": "rqr",
+    "body": ["const $2 = require('$1');", "${0}"],
+    "scope": "javascript,typescript",
+    "description": "Import new module in nodejs 2"
+  },
+  "Import separate in nodejs": {
+    "prefix": ["rqrsep"],
+    "body": ["const {$2} = require('$1');", "${0}"],
+    "scope": "javascript,typescript",
+    "description": "Import separately new module in nodejs 2"
+  },
+  "Import built-in modules in nodejs": {
+    "prefix": ["rqr2"],
+    "body": ["const $1 = require('$1');", "${0}"],
+    "scope": "javascript,typescript",
+    "description": "Import new built-in module in nodejs 2"
+  },
+  "Use new composable": {
+    "prefix": "use",
+    "body": ["const ${2:name} = ${1:composableName}();", "${0}"],
+    "description": "Use new composable"
+  },
+  "Use new composable-destructure": {
+    "prefix": ["used", "usedestructured"],
+    "body": ["const {${2:name}} = ${1:composableName}();", "${0}"],
+    "description": "Use new composable-destructure"
+  },
+  "useState": {
+    "prefix": "useS",
+    "body": [
+      "const [${1:first}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:second})"
+    ],
+    "description": "React useState() hook"
+  },
+  "useEffect": {
+    "prefix": "uef",
+    "body": [
+      "useEffect(() => {",
+      "\t$1",
+      "\n\treturn () => {",
+      "\t\t$2",
+      "\t}",
+      "}, [${3}]);$0"
+    ],
+    "description": "React useEffect() hook"
+  },
+  "useContext": {
+    "prefix": "ucx",
+    "body": ["const $1 = useContext($2);$0"],
+    "description": "React useContext() hook"
+  },
+  "useCallback": {
+    "prefix": "ucb",
+    "body": [
+      "const ${1:memoizedCallback} = useCallback(",
+      "\t() => {",
+      "\t\t${2:doSomething}(${3:a}, ${4:b})",
+      "\t},",
+      "\t[${5:a}, ${6:b}],",
+      ");$0"
+    ],
+    "description": "React useCallback() hook"
+  },
+  "useMemo": {
+    "prefix": "umm",
+    "body": [
+      "const ${1:memoizedValue} = useMemo(() => ${2:computeExpensiveValue}(${3:a}, ${4:b}), [${5:a}, ${6:b}]);$0"
+    ],
+    "description": "React useMemo() hook"
+  },
+  "useRef": {
+    "prefix": "urf",
+    "body": ["const $1 = useRef($2);$0"],
+    "description": "React useRef() hook"
+  },
+  "useReducer": {
+    "prefix": "urd",
+    "body": [
+      "const [${1:state},${2: dispatch}] = useReducer(${3:reducer}, ${4:initialArg}, ${5:init});"
+    ],
+    "description": "React useReducer() hook"
+  }
+}

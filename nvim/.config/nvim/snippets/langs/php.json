@@ -1,0 +1,14 @@
+{
+  "PHP block": {
+    "prefix": ["?", "php", "<?"],
+    "scope": "html,php",
+    "body": ["<?php", "$0", "?>"],
+    "description": "Open PHP block"
+  },
+  "PHP echo block": {
+    "prefix": ["=", "?=", "<?="],
+    "scope": "html,php",
+    "body": ["<?= $0 ?>"],
+    "description": "Open PHP block"
+  }
+}
