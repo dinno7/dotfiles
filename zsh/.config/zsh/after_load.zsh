@@ -25,6 +25,12 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+# NOTE: Ensure colors match by using FZF_DEFAULT_OPTS.
+zstyle ":fzf-tab:*" use-fzf-default-opts yes
+# NOTE: Preview file contents when tab completing directories.
+zstyle ":fzf-tab:complete:cd:*" fzf-preview "ls --color=always \${realpath}"
+
+
 # NOTE: load main parts
 # envs load again to do not overwritten with other apps
 sourcefiles "$DINNO_ZSH_DIR/envs.zsh" "$DINNO_ZSH_DIR/dynamic_envs.zsh" "$DINNO_ZSH_DIR/aliases.zsh" "$DINNO_ZSH_DIR/theme.zsh" "$PATH_TERM_PROXY"

@@ -17,6 +17,7 @@ plugins=(
   copyfile
   dirhistory
   # NOTE: External
+  fzf-tab
   you-should-use
   zsh-autosuggestions
   zsh-syntax-highlighting
