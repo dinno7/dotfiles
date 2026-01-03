@@ -5,6 +5,7 @@ local lspconfig = require "lspconfig"
 local tsserverOptions = require "configs.lspservers.tsserver"
 local goplsOptions = require "configs.lspservers.gopls"
 local cspellOptions = require "configs.lspservers.cspell"
+local rustAnalyzerOptions = require "configs.lspservers.rustanalyzer"
 
 local x = vim.diagnostic.severity
 vim.diagnostic.config {
@@ -22,6 +23,7 @@ local servers = {
   ts_ls = tsserverOptions,
   gopls = goplsOptions,
   cspell_lsp = cspellOptions,
+  rust_analyzer = rustAnalyzerOptions,
   html = {},
   cssls = {},
   bashls = {},

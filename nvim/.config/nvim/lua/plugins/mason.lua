@@ -17,6 +17,8 @@ return {
       "goimports",
       "golangci-lint",
       "golines",
+      -- > Rust
+      "rust-analyzer",
       -- > Others
       "cspell",
       -- "clang-format",
