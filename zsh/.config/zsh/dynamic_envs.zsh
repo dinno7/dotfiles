@@ -5,9 +5,11 @@ if cmd_exists nvim || cmd_exists vim;then
   elif cmd_exists vim;then
     export EDITOR='vim'
   fi
-  export VISUAL="$EDITOR visudo"
-  export SUDO_EDITOR="$EDITOR"
   export FCEDIT="$EDITOR"
+  export SUDO_EDITOR="$EDITOR"
+  export VISUAL="$EDITOR visudo"
+  export ZVM_VI_EDITOR="$EDITOR"
+  export ZVM_OPEN_FILE_CMD="$EDITOR"
 fi
 
 

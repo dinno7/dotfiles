@@ -29,6 +29,13 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export PASSWORD_STORE_GENERATED_LENGTH="64"
 
 # Config vim in zsh
+# zsh-vi-mode
+export ZVM_OPEN_CMD='open'
+export ZVM_VI_ESCAPE_BINDKEY='jk'
+export ZVM_OPEN_URL_CMD='google-chrome'
+export ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+
+# built-in vi-mode
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 export VI_MODE_SET_CURSOR=true
 export VI_MODE_CURSOR_NORMAL=2

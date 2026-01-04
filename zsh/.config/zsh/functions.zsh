@@ -135,3 +135,34 @@ function shareportsafe(){
 
   lt --port $1 --print-requests -o -s "dinno-$(date +%s)"
 }
+
+function omz_plugin_get {
+  local repo_path="${1}"
+  local project="$(echo "${repo_path}" | cut -d"/" -f2)"
+  local project_path="$ZSH_CUSTOM/plugins/$project"
+
+  if cd "${project_path}" >/dev/null 2>&1; then
+    echo "Updating ${repo_path}..."
+    git pull
+    cd - >/dev/null 2>&1 || exit
+  else
+    echo "Installing ${repo_path}..."
+    git clone "https://github.com/${repo_path}" "${project_path}"
+  fi
+}
+
+function omz_plugin_sync {
+  local OMZ_PLUGINS=(
+    "Aloxaf/fzf-tab"
+    "jeffreytse/zsh-vi-mode"
+    "zsh-users/zsh-autosuggestions"
+    "MichaelAquilina/zsh-you-should-use"
+    "zdharma-continuum/fast-syntax-highlighting"
+  )
+  echo "Syncing 3-party's oh-my-zsh plugins"
+  for plugin in "${OMZ_PLUGINS[@]}"; do
+    echo "---------- Syncing $plugin ----------"
+    omz_plugin_get "$plugin"
+    echo
+  done
+}

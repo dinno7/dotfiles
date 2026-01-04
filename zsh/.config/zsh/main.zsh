@@ -9,18 +9,18 @@ plugins=(
   # NOTE: Global
   sudo
   ssh
-  ssh-agent
+  # ssh-agent
   rsync
   systemd
-  vi-mode
   urltools
   copyfile
   dirhistory
   # NOTE: External
   fzf-tab
+  zsh-vi-mode
   you-should-use
   zsh-autosuggestions
-  zsh-syntax-highlighting
+  fast-syntax-highlighting
   # NOTE: languages & tools
   git
   nvm
