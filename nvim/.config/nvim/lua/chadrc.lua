@@ -6,7 +6,7 @@ local M = {}
 
 M.base46 = {
   theme = "onedark",
-  transparency = false,
+  transparency = true,
 
   hl_add = {
     ["HLOnYank"] = { bg = "#a6e3a1", fg = "#303446" },
@@ -28,11 +28,11 @@ M.base46 = {
 
 M.ui = {
   cmp = {
-    icons_left = false,     -- only for non-atom styles!
+    icons_left = false, -- only for non-atom styles!
     lspkind_text = true,
     style = "atom_colored", -- default/flat_light/flat_dark/atom/atom_colored
     format_colors = {
-      tailwind = true,      -- will work for css lsp too
+      tailwind = true, -- will work for css lsp too
       icon = "󱓻",
     },
   },
