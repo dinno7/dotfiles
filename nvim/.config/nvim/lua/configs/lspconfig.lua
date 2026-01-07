@@ -31,6 +31,7 @@ local servers = {
     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "vue", "sass", "scss", "less", "svelte" },
   },
   eslint = {},
+  -- biome = {},
   tailwindcss = {},
 }
 
