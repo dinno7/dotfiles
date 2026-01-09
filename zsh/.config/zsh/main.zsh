@@ -9,7 +9,7 @@ plugins=(
   # NOTE: Global
   sudo
   ssh
-  # ssh-agent
+  ssh-agent
   rsync
   systemd
   urltools
@@ -30,26 +30,18 @@ plugins=(
   docker
   docker-compose
 )
+
 # NOTE: Set oh my zsh
 source $ZSH/oh-my-zsh.sh
-
-# NOTE: Enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# NOTE: vim-mode plugin settings
-bindkey -M viins 'jk' vi-cmd-mode
-
-# NOTE: Autosuggestions accept
-bindkey '^[a' autosuggest-accept
-
-# NOTE: Set Zoxide
-if cmd_exists zoxide;then
-  eval "$(zoxide init zsh)"
-fi
 
 # NOTE: Set up fzf key bindings and fuzzy completion
 if cmd_exists fzf; then
   eval "$(fzf --zsh)"
+fi
+
+# NOTE: Set Zoxide
+if cmd_exists zoxide;then
+  eval "$(zoxide init zsh)"
 fi
 
 # NOTE: Hook direnv (https://direnv.net/)
@@ -57,8 +49,11 @@ if cmd_exists direnv;then
   eval "$(direnv hook zsh)"
 fi
 
-# NOTE: NVM
-sourcefiles "$NVM_DIR/nvm.sh" "$NVM_DIR/bash_completion"
+# NOTE: Autosuggestions accept
+bindkey '^n' autosuggest-accept
 
-# NOTE: before load hook
+# NOTE: vim-mode plugin settings
+# bindkey -M viins 'jk' vi-cmd-mode
+
+# NOTE: after load hook
 sourcefiles "$DINNO_ZSH_DIR/after_load.zsh"
