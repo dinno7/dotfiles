@@ -6,12 +6,12 @@
   },
   "Print format something": {
     "prefix": ["cl", "ll", "pr", "log", "echo"],
-    "body": ["fmt.Printf(\"💀 $1 > %${2:#v}\\n\", $3)$0"],
+    "body": ["fmt.Printf(\"💀 $2 -> %${3:#v}\\n\", $1)$0"],
     "description": "Print format something"
   },
   "Print line something": {
     "prefix": ["lln", "cln", "logn", "println", "echon"],
-    "body": ["fmt.Println(\"💀 $1 > \", $2)$0"],
+    "body": ["fmt.Println(\"💀 $2 -> \", $1)$0"],
     "description": "Print something"
   },
   "Single constant": {
