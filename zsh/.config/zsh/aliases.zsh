@@ -5,23 +5,28 @@ alias mkdir="mkdir -pv"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
+alias rd="rm -riv"
 alias rmdir="rmdir -v"
 alias grep="grep --color=auto"
 alias src="source $HOME/.zshrc"
-alias v="nvim"
-alias vc="nvim $DINNO_NVIM_DIR"
-alias zs="nvim $DINNO_ZSH_DIR/main.zsh"
+alias v="$EDITOR"
+alias vc="$EDITOR $DINNO_NVIM_DIR"
+alias zs="$EDITOR $DINNO_ZSH_DIR/main.zsh"
 alias ll="ls -ltahAF --group-directories-first"
 alias lld="ls -ltahA -d"
-alias gpo="git push origin"
-alias wz="wezterm"
 alias godown="shutdown now"
-alias get_clean_ip="bash <(curl -fsSL https://raw.githubusercontent.com/Ptechgithub/warp/main/endip/install.sh)"
-alias oc="opencode"
 
 
 # NOTE: -- Conditional aliases --
-#
+if cmd_exists git; then
+  alias gpo="git push origin"
+  alias gplo="git pull origin"
+fi
+
+if cmd_exists opencode; then
+  alias oc="opencode"
+fi
+
 if cmd_exists xclip; then
   alias cpc="xclip -sel clip -r"
 fi
