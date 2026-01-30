@@ -35,8 +35,8 @@ if cmd_exists fzf;then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
   fi
-  export FZF_DEFAULT_OPTS="--tmux 75% --border=bold --border=rounded --layout=reverse --preview 'bat {}' --no-height"
-  export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+  export FZF_DEFAULT_OPTS="--tmux center,75% --layout=reverse --preview 'bat --style=full --color=always  --line-range :100 {}'"
+  export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then tree -C {} | head -50; else bat --color=always --line-range :50 {}; fi'"
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
   # https://github.com/tinted-theming/tinted-fzf/tree/main/bash
@@ -60,4 +60,12 @@ if cmd_exists fzf;then
   --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D
   --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C
   --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
+
+
+  # NOTE: fzf-tab plugin
+  # --------------------------
+  # NOTE: Ensure colors match by using FZF_DEFAULT_OPTS.
+  zstyle ":fzf-tab:*" use-fzf-default-opts yes
+  # NOTE: Preview file contents when tab completing directories.
+  zstyle ":fzf-tab:complete:cd:*" fzf-preview "tree -C \${realpath} | head -50"
 fi

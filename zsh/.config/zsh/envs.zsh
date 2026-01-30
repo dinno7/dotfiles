@@ -28,14 +28,14 @@ export OPENCODE_CONFIG="$XDG_CONFIG_HOME/opencode/opencode.json"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export PASSWORD_STORE_GENERATED_LENGTH="64"
 
-# Config vim in zsh
-# zsh-vi-mode
+# NOTE: zsh-vi-mode Config
 export ZVM_OPEN_CMD='open'
 export ZVM_VI_ESCAPE_BINDKEY='jk'
 export ZVM_OPEN_URL_CMD='google-chrome'
 export ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+export ZVM_INIT_MODE=sourcing
 
-# built-in vi-mode
+# NOTE: built-in vi-mode(Not use for now)
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 export VI_MODE_SET_CURSOR=true
 export VI_MODE_CURSOR_NORMAL=2
