@@ -2,7 +2,7 @@
   "Print with println!": {
     "scope": "rust",
     "prefix": ["cl", "ll", "pr", "log", "echo"],
-    "body": "println!(\"💀 $1 > {:?$3}\", $2);$0",
+    "body": "println!(\"💀 $1 > {:#?$2}\", $3);$0",
     "description": "Print variable using println! with debug formatting"
   }
 }
