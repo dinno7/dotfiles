@@ -24,3 +24,5 @@
 	ls = status
 	l = log --graph --oneline --decorate
 	ll = log --graph --decorate
+[init]
+	defaultBranch = main
