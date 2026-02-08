@@ -26,6 +26,7 @@ plugins=(
   nvm
   npm
   node
+  rust
   golang
   docker
   docker-compose
