@@ -79,9 +79,7 @@ map("n", "<leader>Q", function()
 end, { desc = "Close all other buffers" })
 
 nomap("n", "<leader>x")
-map("n", "<leader>q", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "buffer close" })
+map("n", "<leader>q", "<C-W>q", { desc = "buffer close" })
 
 -- NOTE: Reselect the text that has just been pasted
 map("n", "<leader>V", "`[V`]", { desc = "Reselect the text that has just been pasted" })
@@ -94,15 +92,17 @@ map("n", "<A-Left>", "<C-W><", { desc = "Resize Vertical Split Up" })
 
 -- NOTE: Split windows keymaps
 map("n", "<leader>sv", "<C-W>v", { desc = "Split window vertically" })
-map("n", "<leader>ss", "<C-W>s", { desc = "Split window horizontally" })
-map("n", "<leader>se", "<C-W>=", { desc = "Make split windows equal width & height" })
+map("n", "<leader>sh", "<C-W>s", { desc = "Split window horizontally" })
 map("n", "<leader>sx", "<C-W>q", { desc = "Close split windows" })
+map("n", "<leader>se", "<C-W>=", { desc = "Make split windows equal width & height" })
+map("n", "<leader>sm", "<C-W>_ | <C-W>|", { desc = "Maximize window width & heigth" })
+map("n", "<leader>s=", "<C-W>=", { desc = "Make split windows equal width & height" })
 
 -- NOTE: Tabs
 map("n", "<leader>tn", "<cmd> tabnew<CR>", { desc = "Open new tab" })
 map("n", "<leader>tx", "<cmd> tabclose<CR>", { desc = "Close current tab" }) --
-map("n", "<leader>tk", "<cmd> tabn<CR>", { desc = "Go to next tab" })        --
-map("n", "<leader>tj", "<cmd> tabp<CR>", { desc = "Go to previous tab" })    --
+map("n", "<leader>tk", "<cmd> tabn<CR>", { desc = "Go to next tab" }) --
+map("n", "<leader>tj", "<cmd> tabp<CR>", { desc = "Go to previous tab" }) --
 
 -- NOTE: Set tmux-navigator keymaps -> Make compatible Nvim with Tmux
 map("n", "<C-h>", "<cmd> NvimTmuxNavigateLeft <CR>", { desc = "Window left" })
@@ -350,9 +350,13 @@ map("n", "<S-C-d>", function()
 end, { desc = "opencode half page down" })
 
 -- NOTE: Luasnip
-local ls = require("luasnip")
-map({ "i", "s" }, "<A-k>", function() ls.jump(1) end, { silent = true })
-map({ "i", "s" }, "<A-j>", function() ls.jump(-1) end, { silent = true })
+local ls = require "luasnip"
+map({ "i", "s" }, "<A-k>", function()
+  ls.jump(1)
+end, { silent = true })
+map({ "i", "s" }, "<A-j>", function()
+  ls.jump(-1)
+end, { silent = true })
 
 -- NOTE: Inlay hint
 map("n", "<leader>hh", function()
