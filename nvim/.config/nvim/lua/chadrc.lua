@@ -5,7 +5,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "onedark",
+  theme = "tokyonight",
   transparency = true,
 
   hl_add = {
@@ -105,7 +105,8 @@ M.nvdash = {
     [[    ███████████░░████████ ████ █████░░████████    ]],
     [[   ░░░░░░░░░░░  ░░░░░░░░ ░░░░ ░░░░░  ░░░░░░░░     ]],
     [[                                                  ]],
-    [[               Powered By  eovim                ]],
+    -- [[               Powered By  eovim                ]],
+    [[                  I use 󰣇 BTW                     ]],
     [[                                                  ]],
 
     -- [[                                                                       ]],
