@@ -351,10 +351,10 @@ end, { desc = "opencode half page down" })
 
 -- NOTE: Luasnip
 local ls = require "luasnip"
-map({ "i", "s" }, "<A-k>", function()
+map({ "i", "s" }, "<Tab>", function()
   ls.jump(1)
 end, { silent = true })
-map({ "i", "s" }, "<A-j>", function()
+map({ "i", "s" }, "<S-Tab>", function()
   ls.jump(-1)
 end, { silent = true })
 
