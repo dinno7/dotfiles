@@ -1,7 +1,7 @@
 return {
-  "echasnovski/mini.ai",
+  "nvim-mini/mini.ai",
   event = "VeryLazy",
-  version = false,
+  version = "*",
   config = function()
     require("mini.ai").setup()
   end,
