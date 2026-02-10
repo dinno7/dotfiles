@@ -2,9 +2,9 @@ return {
   "monkoose/neocodeium",
   event = "VeryLazy",
   config = function()
-    local neocodeium = require("neocodeium")
+    local neocodeium = require "neocodeium"
     -- NeoCodeium Configuration
-    neocodeium.setup({
+    neocodeium.setup {
       -- If `false`, then would not start windsurf server (disabled state)
       -- You can manually enable it at runtime with `:NeoCodeium enable`
       enabled = true,
@@ -24,7 +24,7 @@ return {
       -- Set to `false` to disable showing the number of suggestions label in the line number column
       show_label = true,
       -- Set to `true` to enable suggestions debounce
-      debounce = false,
+      debounce = true,
       -- Maximum number of lines parsed from loaded buffers (current buffer always fully parsed)
       -- Set to `0` to disable parsing non-current buffers (may lower suggestion quality)
       -- Set it to `-1` to parse all lines
@@ -61,19 +61,31 @@ return {
         ["."] = false,
       },
       -- List of directories and files to detect workspace root directory for Windsurf Chat
-      root_dir = { ".bzr", ".git", ".hg", ".svn", "_FOSSIL_", "package.json" }
-    })
+      root_dir = { ".bzr", ".git", ".hg", ".svn", "_FOSSIL_", "package.json" },
+    }
 
     -- vim.api.nvim_create_autocmd("User", {
     --   pattern = "NeoCodeiumCompletionDisplayed",
     --   callback = function() require("cmp").abort() end
     -- })
 
-    vim.keymap.set("i", "<A-enter>", function() neocodeium.accept() end)
-    vim.keymap.set("i", "<A-a>", function() neocodeium.accept_line() end)
-    vim.keymap.set("i", "<A-w>", function() neocodeium.accept_word() end)
-    vim.keymap.set("i", "<A-R>", function() neocodeium.cycle_or_complete() end)
-    vim.keymap.set("i", "<A-r>", function() neocodeium.cycle_or_complete(-1) end)
-    vim.keymap.set("i", "<A-c>", function() neocodeium.clear() end)
+    vim.keymap.set("i", "<A-enter>", function()
+      neocodeium.accept()
+    end)
+    vim.keymap.set("i", "<A-a>", function()
+      neocodeium.accept_line()
+    end)
+    vim.keymap.set("i", "<A-w>", function()
+      neocodeium.accept_word()
+    end)
+    vim.keymap.set("i", "<A-R>", function()
+      neocodeium.cycle_or_complete()
+    end)
+    vim.keymap.set("i", "<A-r>", function()
+      neocodeium.cycle_or_complete(-1)
+    end)
+    vim.keymap.set("i", "<A-c>", function()
+      neocodeium.clear()
+    end)
   end,
 }
