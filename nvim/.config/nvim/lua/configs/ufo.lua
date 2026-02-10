@@ -46,8 +46,8 @@ local opts = {
     mappings = {
       scrollU = "<C-k>",
       scrollD = "<C-j>",
-      jumpTop = "[",
-      jumpBot = "]",
+      -- jumpTop = "[",
+      -- jumpBot = "]",
     },
   },
   fold_virt_text_handler = handlePreviewMessage,

@@ -112,12 +112,12 @@ map("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>", { desc = "Window right" })
 map("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>", { desc = "Window up" })
 
 -- NOTE: Navigate between buffers with ctrl + alt + j/k
-map("n", "<A-C-K>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "Buffer - goto next" })
-map("n", "<A-C-J>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "Buffer - goto prev" })
+-- map("n", "<A-C-K>", function()
+--   require("nvchad.tabufline").next()
+-- end, { desc = "Buffer - goto next" })
+-- map("n", "<A-C-J>", function()
+--   require("nvchad.tabufline").prev()
+-- end, { desc = "Buffer - goto prev" })
 
 -- NOTE: Enter new line in normal mode
 map("n", "<leader>o", "o<ESC>", { desc = "New-line below" })
@@ -166,13 +166,13 @@ map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle NvimTree" })
 -- NOTE: Todos
 nomap("n", "<leader>h")
 
-map("n", "]t", function()
-  require("todo-comments").jump_next { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
-end, { desc = "Next todo comment" })
-map("n", "[t", function()
-  require("todo-comments").jump_prev { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
-end, { desc = "Previous todo comment" })
-map("n", "<leader>td", "<cmd> TodoTelescope keywords=TODO,FIX,FIXME,BUG,FIXIT,ISSUE <cr>", { desc = "[L]ist of todos" })
+-- map("n", "]t", function()
+--   require("todo-comments").jump_next { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
+-- end, { desc = "Next todo comment" })
+-- map("n", "[t", function()
+--   require("todo-comments").jump_prev { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
+-- end, { desc = "Previous todo comment" })
+-- map("n", "<leader>td", "<cmd> TodoTelescope keywords=TODO,FIX,FIXME,BUG,FIXIT,ISSUE <cr>", { desc = "[L]ist of todos" })
 
 -- NOTE: UFO(pkg) folding:
 map("n", "zR", require("ufo").openAllFolds, { desc = "UFO Open all folds" })
@@ -200,8 +200,8 @@ map({ "n", "v" }, "gr", "<cmd>Lspsaga finder ref<CR>", { desc = "LSP Lspsaga sho
 map({ "n", "v" }, "gi", "<cmd>Lspsaga finder imp<CR>", { desc = "LSP Lspsaga implementation" })
 map({ "n", "v" }, "gt", "<cmd>Lspsaga finder tyd<CR>", { desc = "LSP Lspsaga definition type" })
 map({ "n", "v" }, "gf", "<cmd>Lspsaga finder<CR>", { desc = "Show definition, references" })
-map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Jump to next diagnostic in buffer" })
-map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump to prev diagnostic in buffer" })
+-- map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Jump to next diagnostic in buffer" })
+-- map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump to prev diagnostic in buffer" })
 map({ "n", "v" }, "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "Smart rename" })
 map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "See available code actions" })
 map({ "n", "v" }, "<leader>K", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
@@ -230,7 +230,7 @@ map("n", "]c", function()
   end
 end)
 
-map("n", "[c", function()
+map("n", "[[", function()
   if vim.wo.diff then
     vim.cmd.normal { "[c", bang = true }
   else
@@ -295,10 +295,10 @@ map({ "o", "x" }, "ih", gitsigns.select_hunk, {
 
 -- NOTE:  Multicursor
 local mc = require "multicursor-nvim"
-map({ "n", "x" }, "<C-up>", function()
+map({ "n", "x" }, "<A-C-k>", function()
   mc.lineAddCursor(-1)
 end)
-map({ "n", "x" }, "<C-down>", function()
+map({ "n", "x" }, "<A-C-j>", function()
   mc.lineAddCursor(1)
 end)
 map({ "n", "x" }, "<leader>k", function()
