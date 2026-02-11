@@ -14,6 +14,11 @@
     "body": ["fmt.Println(\"💀 $2 -> \", $1)$0"],
     "description": "Print something"
   },
+  "Print here": {
+    "prefix": ["here"],
+    "body": ["fmt.Println(\"💀 -------------> HERE $1 \")$0"],
+    "description": "Print here"
+  },
   "Single constant": {
     "prefix": "cn",
     "body": "const ${1:name} = ${2:value}",
