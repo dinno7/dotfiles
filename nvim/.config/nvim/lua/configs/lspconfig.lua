@@ -31,7 +31,8 @@ local servers = {
     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "vue", "sass", "scss", "less", "svelte" },
   },
   eslint = {},
-  -- biome = {},
+  biome = {},
+  just = {}, -- Just lsp(justfile)
   tailwindcss = {},
 }
 
