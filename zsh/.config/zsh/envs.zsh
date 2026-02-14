@@ -23,6 +23,7 @@ export PATH_TERM_PROXY="$XDG_BIN_HOME/term_proxy"
 export TMUX_CONFIG_DIR="$XDG_CONFIG_HOME/tmux"
 export OPENCODE_CONFIG_DIR="$XDG_CONFIG_HOME/opencode"
 export OPENCODE_CONFIG="$XDG_CONFIG_HOME/opencode/opencode.json"
+export NVIM_DATA_DIR="$XDG_DATA_HOME/nvim"
 
 # Password manager
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
