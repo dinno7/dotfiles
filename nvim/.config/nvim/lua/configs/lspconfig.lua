@@ -27,13 +27,26 @@ local servers = {
   html = {},
   cssls = {},
   bashls = {},
+  just = {}, -- Just lsp(justfile)
+  biome = {},
+  eslint = {},
+  tailwindcss = {},
+  dockerls = {},
   emmet_ls = {
     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "vue", "sass", "scss", "less", "svelte" },
   },
-  eslint = {},
-  biome = {},
-  just = {}, -- Just lsp(justfile)
-  tailwindcss = {},
+  yamlls = {
+    filetypes = {
+      "yaml",
+      "yml",
+    },
+  },
+  postgres_lsp = {
+    cmd = { "postgres-language-server", "lsp-proxy" },
+  },
+  docker_compose_language_service = {
+    filetypes = { "yml.compose", "yml.docker-compose", "yaml.compose", "yaml.docker-compose" },
+  },
 }
 
 -- INFO: Initiate all defined servers

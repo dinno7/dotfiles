@@ -1,7 +1,6 @@
 local options = {
   formatters_by_ft = {
-    -- Use the "_" filetype to run formatters on filetypes that don't
-    -- have other formatters configured.
+    -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
     ["_"] = { "trim_whitespace" },
     javascript = { "prettierd" },
     typescript = { "prettierd" },
@@ -13,17 +12,20 @@ local options = {
     yaml = { "prettierd" },
     markdown = { "prettierd" },
     graphql = { "prettierd" },
+    rust = { "rustfmt", lsp_format = "fallback" },
     lua = { "stylua" },
-    bash = { "shfmt" },
+    sh = { "shfmt" },
+    zsh = { "shfmt" },
+    sql = { "pg_format" },
     go = {
+      "golangci-lint",
       "golines",
       "goimports",
       "gofumpt",
     },
   },
-  format_on_save = {
-    lsp_fallback = true,
-    async = false,
+  format_after_save = {
+    lsp_format = "fallback",
     timeout_ms = 500,
   },
 }

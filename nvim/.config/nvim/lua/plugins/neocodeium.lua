@@ -7,7 +7,7 @@ return {
     neocodeium.setup {
       -- If `false`, then would not start windsurf server (disabled state)
       -- You can manually enable it at runtime with `:NeoCodeium enable`
-      enabled = true,
+      enabled = false,
       -- Path to a custom windsurf server binary (you can download one from:
       -- https://github.com/Exafunction/codeium/releases)
       bin = nil,
@@ -40,7 +40,7 @@ return {
       -- shows full lines when on the end of the suggested (accepted) line.
       -- So it is less distracting and works better with other completion plugins.
       single_line = {
-        enabled = false,
+        enabled = true,
         label = "...", -- Label indicating that there is multi-line suggestion.
       },
       -- Set to a function that returns `true` if a buffer should be enabled
@@ -56,7 +56,7 @@ return {
       -- You can still enable disabled by this option buffer with `:NeoCodeium enable_buffer`
       filetypes = {
         help = false,
-        gitcommit = false,
+        gitcommit = true,
         gitrebase = false,
         ["."] = false,
       },

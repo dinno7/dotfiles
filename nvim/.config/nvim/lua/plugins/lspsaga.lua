@@ -26,10 +26,34 @@ return {
           split = "x", -- open in split
         },
       },
+      rename = {
+        in_select = true,
+        auto_save = true,
+        project_max_width = 0.5,
+        project_max_height = 0.5,
+        keys = {
+          quit = { "q", "<ESC>" },
+          exec = "<CR>",
+          select = "x",
+        },
+      },
+      code_action = {
+        num_shortcut = 2,
+        show_server_name = true,
+        extend_gitsigns = true,
+        keys = {
+          quit = { "q", "<ESC>" },
+          exec = "<CR>",
+        },
+      },
       diagnostic = {
         show_code_action = true,
         max_width = 0.8,
         max_height = 1,
+      },
+      underline = {
+        -- Do not underline text when severity is low (INFO or HINT).
+        severity = { min = vim.diagnostic.severity.WARN },
       },
       callhierarchy = {
         keys = {
