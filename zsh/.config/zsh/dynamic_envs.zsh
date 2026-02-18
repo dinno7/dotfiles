@@ -1,19 +1,20 @@
-if cmd_exists nvim || cmd_exists vim;then
-  if cmd_exists nvim;then
+if cmd_exists nvim || cmd_exists vim; then
+  if cmd_exists nvim; then
     export EDITOR="nvim"
     export DINNO_NVIM_DIR="$XDG_CONFIG_HOME/nvim"
-  elif cmd_exists vim;then
+  elif cmd_exists vim; then
     export EDITOR='vim'
   fi
   export FCEDIT="$EDITOR"
   export SUDO_EDITOR="$EDITOR"
-  export VISUAL="$EDITOR visudo"
+  export VISUAL="$EDITOR"
+  export GIT_EDITOR="$EDITOR"
+  export SUDO_EDITOR="$EDITOR --clean"
   export ZVM_VI_EDITOR="$EDITOR"
   export ZVM_OPEN_FILE_CMD="$EDITOR"
 fi
 
-
-if cmd_exists batcat || cmd_exists bat;then
+if cmd_exists batcat || cmd_exists bat; then
   if cmd_exists batcat; then
     export PAGER="batcat"
   elif cmd_exists bat; then
@@ -21,16 +22,15 @@ if cmd_exists batcat || cmd_exists bat;then
   fi
   export MANPAGER="sh -c 'col -bx | $PAGER -l man -p'"
   export MANROFFOPT="-c"
-  if cmd_exists less;then
+  if cmd_exists less; then
     export BAT_PAGER="less -RKX"
     export BAT_PAGING="always"
   fi
 fi
 
-
-if cmd_exists fzf;then
+if cmd_exists fzf; then
   export FZF_BASE="$(dirname "$(which fzf)")"
-  if cmd_exists fd;then
+  if cmd_exists fd; then
     export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -40,7 +40,8 @@ if cmd_exists fzf;then
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
   # https://github.com/tinted-theming/tinted-fzf/tree/main/bash
-  local color00='#1a1b26'
+  # local color00='#1a1b26'
+  local color00='#08080b'
   local color01='#16161e'
   local color02='#2f3549'
   local color03='#444b6a'
@@ -60,7 +61,6 @@ if cmd_exists fzf;then
   --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D
   --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C
   --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
-
 
   # NOTE: fzf-tab plugin
   # --------------------------

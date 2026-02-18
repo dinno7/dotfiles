@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+
 # NOTE: Load pre
 source "$DINNO_ZSH_DIR/pre_load.zsh"
 
@@ -40,12 +42,12 @@ if cmd_exists fzf; then
 fi
 
 # NOTE: Set Zoxide
-if cmd_exists zoxide;then
+if cmd_exists zoxide; then
   eval "$(zoxide init zsh)"
 fi
 
 # NOTE: Hook direnv (https://direnv.net/)
-if cmd_exists direnv;then
+if cmd_exists direnv; then
   eval "$(direnv hook zsh)"
 fi
 

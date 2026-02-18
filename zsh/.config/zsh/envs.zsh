@@ -2,16 +2,16 @@ export DEFAULT_USER="$(whoami)"
 export DINNO_ZSH_LOGO="$HOME/.dinno_logo.txt"
 
 # Locale settings
-export LANG="en_US.UTF-8" # Sets default locale for all categories
-export LC_ALL="en_US.UTF-8" # Overrides all other locale settings
+export LANG="en_US.UTF-8"     # Sets default locale for all categories
+export LC_ALL="en_US.UTF-8"   # Overrides all other locale settings
 export LC_CTYPE="en_US.UTF-8" # Controls character classification and case conversion
 
 # XDG Base directory specification
-export XDG_CACHE_HOME="$HOME/.cache"           # Cache files
-export XDG_CONFIG_HOME="$HOME/.config"         # Config files
-export XDG_BIN_HOME="$HOME/.local/bin"         # Binary files
-export XDG_DATA_HOME="$HOME/.local/share"      # Application data
-export XDG_STATE_HOME="$HOME/.local/state"     # Logs and state files
+export XDG_CACHE_HOME="$HOME/.cache"       # Cache files
+export XDG_CONFIG_HOME="$HOME/.config"     # Config files
+export XDG_BIN_HOME="$HOME/.local/bin"     # Binary files
+export XDG_DATA_HOME="$HOME/.local/share"  # Application data
+export XDG_STATE_HOME="$HOME/.local/state" # Logs and state files
 
 export GOPATH="$XDG_DATA_HOME/go"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
@@ -24,6 +24,7 @@ export TMUX_CONFIG_DIR="$XDG_CONFIG_HOME/tmux"
 export OPENCODE_CONFIG_DIR="$XDG_CONFIG_HOME/opencode"
 export OPENCODE_CONFIG="$XDG_CONFIG_HOME/opencode/opencode.json"
 export NVIM_DATA_DIR="$XDG_DATA_HOME/nvim"
+export YAZI_CONFIG_HOME="$XDG_CONFIG_HOME/yazi"
 
 # Password manager
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
@@ -46,7 +47,8 @@ export VI_MODE_CURSOR_OPPEND=0
 export MODE_INDICATOR="%F{white}+%f"
 export INSERT_MODE_INDICATOR="%F{yellow}+%f"
 
-export AI_PROMPT_GIT_COMMIT=$(cat << EOF
+export AI_PROMPT_GIT_COMMIT=$(
+  cat <<EOF
 You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
 
 1. First line: conventional commit format (type: concise description) (remember to use semantic types like feat, fix, docs, style, refactor, perf, test, chore, etc.)
