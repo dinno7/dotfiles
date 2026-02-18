@@ -4,7 +4,6 @@ lint.linters_by_ft = {
   go = { "golangcilint" },
   sh = { "shellcheck" },
   zsh = { "shellcheck" },
-  sql = { "postgres_lsp" },
 }
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

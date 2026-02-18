@@ -41,9 +41,10 @@ local servers = {
       "yml",
     },
   },
-  postgres_lsp = {
-    cmd = { "postgres-language-server", "lsp-proxy" },
-  },
+  eslint = {},
+  biome = {},
+  just = {}, -- Just lsp(justfile)
+  tailwindcss = {},
   docker_compose_language_service = {
     filetypes = { "yml.compose", "yml.docker-compose", "yaml.compose", "yaml.docker-compose" },
   },
