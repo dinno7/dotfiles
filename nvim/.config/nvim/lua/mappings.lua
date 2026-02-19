@@ -57,10 +57,6 @@ map(
   { desc = "Change current working directory locally and print cwd after that" }
 )
 
--- NOTE: Toggle comment with ctrl+/
-map("n", "<C-/>", "gcc", { desc = "toggle comment", remap = true })
-map("v", "<C-/>", "gc", { desc = "toggle comment", remap = true })
-
 -- NOTE: Select whole file
 map("n", "<a-a>", "ggVG", { desc = "Select whole file" })
 
@@ -154,18 +150,42 @@ map({ "n", "i", "v" }, "<C-s>", "<CMD>w<CR>", { desc = "Save file" })
 
 -- NOTE: Undo with ctrl + z
 map({ "i", "n", "v" }, "<C-z>", "<cmd>undo<cr>", { desc = "Undo" })
-map({ "i", "n", "v" }, "<M-C-Z>", "<cmd>redo<cr>", { desc = "Redo" })
 
 -- NOTE: Delete word after cursor in insert mode
 map("i", "<C-Del>", "<ESC>ldwha", { desc = "Delete word after cursor" })
+
+-- NOTE: Inlay hint
+map("n", "<leader>hh", function()
+  local currentState = vim.lsp.inlay_hint.is_enabled()
+  vim.lsp.inlay_hint.enable(not currentState)
+  if currentState then
+    vim.notify("Inlay hint is disabled", vim.log.levels.INFO)
+  else
+    vim.notify("Inlay hint is enabled", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle inlay hint" })
+
+-- NOTE: Add bash shortcuts for command line
+map("c", "<C-a>", "<Home>")
+map("c", "<C-h>", "<Left>")
+map("c", "<C-l>", "<Right>")
+map("c", "<M-h>", "<S-Left>")
+map("c", "<M-l>", "<S-Right>")
+
+-- Map leader-r to do a global replace of a word
+map("n", "<leader>r", [[*N:%s/<C-R>=expand("<cword>")<CR>/]])
+
+--
+-- NOTE: PLUGINS
+--
 
 -- NOTE: Toggle NvimTree
 nomap("n", "<leader>e")
 map("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle NvimTree" })
 
--- NOTE: Todos
 nomap("n", "<leader>h")
 
+-- NOTE: Todos
 -- map("n", "]t", function()
 --   require("todo-comments").jump_next { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
 -- end, { desc = "Next todo comment" })
@@ -204,8 +224,8 @@ map({ "n", "v" }, "gf", "<cmd>Lspsaga finder<CR>", { desc = "Show definition, re
 -- map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump to prev diagnostic in buffer" })
 map({ "n", "v" }, "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "Smart rename" })
 map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "See available code actions" })
-map({ "n", "v" }, "<leader>K", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
-map("n", "K", function()
+map({ "n", "v" }, "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
+map("n", "<leader>K", function()
   local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line "." - 1 })
   if #diagnostics > 0 then
     require("lspsaga.diagnostic.show"):show_diagnostics { line = true }
@@ -357,14 +377,3 @@ end, { silent = true })
 map({ "i", "s" }, "<S-Tab>", function()
   ls.jump(-1)
 end, { silent = true })
-
--- NOTE: Inlay hint
-map("n", "<leader>hh", function()
-  local currentState = vim.lsp.inlay_hint.is_enabled()
-  vim.lsp.inlay_hint.enable(not currentState)
-  if currentState then
-    vim.notify("Inlay hint is disabled", vim.log.levels.INFO)
-  else
-    vim.notify("Inlay hint is enabled", vim.log.levels.INFO)
-  end
-end, { desc = "Toggle inlay hint" })
