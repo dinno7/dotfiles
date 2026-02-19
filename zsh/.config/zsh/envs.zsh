@@ -50,7 +50,7 @@ export MODE_INDICATOR="%F{white}+%f"
 export INSERT_MODE_INDICATOR="%F{yellow}+%f"
 
 export AI_PROMPT_GIT_COMMIT=$(
-	cat <<EOF
+  cat <<EOF
 You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
 
 1. First line: conventional commit format (type: concise description) (remember to use semantic types like feat, fix, docs, style, refactor, perf, test, chore, etc.)
