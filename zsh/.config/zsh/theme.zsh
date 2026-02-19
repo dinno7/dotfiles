@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+
 # Define colors
 blue="#89B4FA"
 cyan="#7dcfff"
@@ -12,63 +14,63 @@ foreground="#a9b1d6"
 
 # Function to get OS icon dynamically
 function get_os_icon() {
-  local os_icon=""  # Default to generic Linux icon
+	local os_icon="" # Default to generic Linux icon
 
-  if [[ -f /etc/os-release ]]; then
-    . /etc/os-release
-    case "$ID" in
-      arch)   os_icon="" ;;  # Arch icon
-      ubuntu) os_icon="" ;;  # Ubuntu icon
-      debian) os_icon="" ;;  # Ubuntu icon
-    esac
-  fi
+	if [[ -f /etc/os-release ]]; then
+		. /etc/os-release
+		case "$ID" in
+		arch) os_icon="" ;;   # Arch icon
+		ubuntu) os_icon="" ;; # Ubuntu icon
+		debian) os_icon="" ;; # Ubuntu icon
+		esac
+	fi
 
-  if [[ -z "$os_icon" ]]; then
-    case "$(uname -s)" in
-      Linux*)   os_icon="" ;;  # Generic Linux icon
-      Darwin*)  os_icon="" ;;  # macOS icon
-      CYGWIN*|MINGW*) os_icon="" ;;  # Windows icon (Cygwin/MinGW)
-    esac
-  fi
+	if [[ -z "$os_icon" ]]; then
+		case "$(uname -s)" in
+		Linux*) os_icon="" ;;           # Generic Linux icon
+		Darwin*) os_icon="" ;;          # macOS icon
+		CYGWIN* | MINGW*) os_icon="" ;; # Windows icon (Cygwin/MinGW)
+		esac
+	fi
 
-  echo "$os_icon"
+	echo "$os_icon"
 }
 
 # Define prompt segments
 function prompt_os() {
-  local os_icon=$(get_os_icon)
-  echo "%F{$foreground}$os_icon%f"
+	local os_icon=$(get_os_icon)
+	echo "%F{$foreground}$os_icon%f"
 }
 
 function prompt_user_host() {
-  echo "%F{$blue}%n@%m%f"
+	echo "%F{$blue}%n@%m%f"
 }
 
 function prompt_path() {
-  echo "%F{$cyan}%~%f"
+	echo "%F{$cyan}%~%f"
 }
 
 function prompt_git() {
-  local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-  if [[ -n $branch ]]; then
-    echo "%F{$green} $branch%f"
-  fi
+	local branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+	if [[ -n $branch ]]; then
+		echo "%F{$green} $branch%f"
+	fi
 }
 
 function prompt_exit_code() {
-  if [[ $? -eq 0 ]]; then
-    echo "%F{$magenta}
+	if [[ $? -eq 0 ]]; then
+		echo "%F{$magenta}
 ❯%f"
-  else
-    echo "%F{$red}
+	else
+		echo "%F{$red}
 ❯%f"
-  fi
+	fi
 }
 
 function prompt_python() {
-  if [[ -n $VIRTUAL_ENV ]]; then
-    echo "%F{$yellow} $(basename $VIRTUAL_ENV) > %f"
-  fi
+	if [[ -n $VIRTUAL_ENV ]]; then
+		echo "%F{$yellow} $(basename "$VIRTUAL_ENV") > %f"
+	fi
 }
 
 # Define main prompt

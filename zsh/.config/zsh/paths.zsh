@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+
 # NOTE: Add the most common personal binary paths located inside the home folder
 # (these directories are only added if they exist)
 pathprepend "$XDG_BIN_HOME" "$HOME/bin" "$NVIM_DATA_DIR/mason/bin"
@@ -12,4 +14,4 @@ pathappend "/usr/local/go/bin" "$GOPATH/bin"
 sourcefiles "$NVM_DIR/nvm.sh" "$NVM_DIR/bash_completion"
 
 # NOTE: pnpm
-pathappend $PNPM_HOME
+pathappend "$PNPM_HOME"
