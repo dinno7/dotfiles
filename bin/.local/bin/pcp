@@ -13,41 +13,41 @@ declare -A file_count
 
 # Process files with fd and xargs
 fd --glob "$SEARCH_PATTERN" "$SEARCH_PATH" -t f -0 | while IFS= read -r -d '' file; do
-    # Get the original filename
-    basename=$(basename "$file")
-    dir=$(dirname "$file")
+	# Get the original filename
+	basename=$(basename "$file")
+	dir=$(dirname "$file")
 
-    # Check if file already exists in destination
-    if [[ ! -e "$DEST_DIR/$basename" ]]; then
-        # No conflict - copy directly
-        cp "$file" "$DEST_DIR/"
-        echo "Copied: $file -> $DEST_DIR/$basename"
-    else
-        # Conflict exists - create unique name
-        name="${basename%.*}"  # filename without extension
-        ext="${basename##*.}"  # extension only
+	# Check if file already exists in destination
+	if [[ ! -e "$DEST_DIR/$basename" ]]; then
+		# No conflict - copy directly
+		cp "$file" "$DEST_DIR/"
+		echo "Copied: $file -> $DEST_DIR/$basename"
+	else
+		# Conflict exists - create unique name
+		name="${basename%.*}" # filename without extension
+		ext="${basename##*.}" # extension only
 
-        # Handle case where there's no extension
-        if [[ "$name" == "$ext" ]]; then
-            name="$basename"
-            ext=""
-        fi
+		# Handle case where there's no extension
+		if [[ "$name" == "$ext" ]]; then
+			name="$basename"
+			ext=""
+		fi
 
-        # Find unique name with counter
-        counter=1
-        while true; do
-            if [[ -n "$ext" && "$ext" != "$name" ]]; then
-                new_name="${name}_${counter}.${ext}"
-            else
-                new_name="${basename}_${counter}"
-            fi
+		# Find unique name with counter
+		counter=1
+		while true; do
+			if [[ -n "$ext" && "$ext" != "$name" ]]; then
+				new_name="${name}_${counter}.${ext}"
+			else
+				new_name="${basename}_${counter}"
+			fi
 
-            if [[ ! -e "$DEST_DIR/$new_name" ]]; then
-                cp "$file" "$DEST_DIR/$new_name"
-                echo "Copied (renamed): $file -> $DEST_DIR/$new_name"
-                break
-            fi
-            ((counter++))
-        done
-    fi
+			if [[ ! -e "$DEST_DIR/$new_name" ]]; then
+				cp "$file" "$DEST_DIR/$new_name"
+				echo "Copied (renamed): $file -> $DEST_DIR/$new_name"
+				break
+			fi
+			((counter++))
+		done
+	fi
 done

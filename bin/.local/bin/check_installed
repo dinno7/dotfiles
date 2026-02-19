@@ -1,11 +1,11 @@
 #!/bin/bash
 
 is_package_exist() {
-  if pacman -Qe $1 &>/dev/null; then
-    echo "$1 is installed"
-    return 0
-  else
-    echo "$1 is not installed" >&2
-    return 1
-  fi
+	if pacman -Qe $1 &>/dev/null; then
+		echo "$1 is installed"
+		return 0
+	else
+		echo "$1 is not installed" >&2
+		return 1
+	fi
 }
