@@ -11,6 +11,10 @@ return {
         width = 0.8,
         height = 0.6,
       },
+      hover_doc = {
+        max_width = 0.9,
+        max_height = 0.9,
+      },
       finder = {
         max_height = 0.8,
         default = "ref+def+imp+tyd", -- def -> textDocument/definition, ref -> textDocument/references, and imp -> textDocuemnt/implementation
