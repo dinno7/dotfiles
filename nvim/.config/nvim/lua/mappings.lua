@@ -230,6 +230,9 @@ map("n", "<leader>tb", "<cmd>Telescope builtin<CR>", { desc = "Telescope see bui
 
 -- NOTE: LspSaga
 map({ "n", "v" }, "gd", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP definition" })
+map({ "n", "v" }, "gD", function()
+  vim.lsp.buf.definition()
+end, { desc = "LSP go to definition" })
 map({ "n", "v" }, "gr", "<cmd>Lspsaga finder ref<CR>", { desc = "LSP show refrences" })
 map({ "n", "v" }, "gi", "<cmd>Lspsaga finder imp<CR>", { desc = "LSP implementation" })
 map({ "n", "v" }, "gt", "<cmd>Lspsaga finder tyd<CR>", { desc = "LSP definition type" })
@@ -243,6 +246,8 @@ map({ "n", "v" }, "gn", "<cmd>Lspsaga incoming_calls<CR>", { desc = "LSP show in
 map({ "n", "v" }, "go", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "LSP show outgoing calls" })
 map({ "n", "v" }, "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP peek definition" })
 map({ "n", "v" }, "gpt", "<cmd>Lspsaga peek_type_definition<CR>", { desc = "LSP type peek definition" })
+map("n", "gl", "<cmd>Lspsaga outline<CR>", { desc = "LSP show outline" })
+map({ "n", "v" }, "<leader>lr", "<cmd>lsp restart<CR>", { desc = "LSP restart lsp" })
 map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "LSP jump to next diagnostic in buffer" })
 map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "LSP jump to prev diagnostic in buffer" })
 map({ "n", "v" }, "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "LSP smart rename" })

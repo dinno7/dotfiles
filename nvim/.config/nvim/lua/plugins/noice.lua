@@ -18,7 +18,7 @@ return {
         search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
         filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
         lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
-        help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
+        help = { pattern = "^:%s*he?l?p?%s+", icon = "󰋖" },
         input = { view = "cmdline_input", icon = "󰥻 " }, -- Used by input()
         -- lua = false, -- to disable a format, set to `false`
       },
@@ -132,7 +132,7 @@ return {
         opts = {}, -- merged with defaults from documentation
       },
       signature = {
-        enabled = true,
+        enabled = false,
         auto_open = {
           enabled = true,
           trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
@@ -184,9 +184,9 @@ return {
       -- you can enable a preset by setting it to true, or a table that will override the preset config
       -- you can also add custom presets that you can enable/disable with enabled=true
       bottom_search = true, -- use a classic bottom cmdline for search
-      command_palette = true, -- position the cmdline and popupmenu together
-      long_message_to_split = true, -- long messages will be sent to a split
-      inc_rename = true, -- enables an input dialog for inc-rename.nvim
+      command_palette = false, -- position the cmdline and popupmenu together
+      long_message_to_split = false, -- long messages will be sent to a split
+      inc_rename = false, -- enables an input dialog for inc-rename.nvim
       lsp_doc_border = true, -- add a border to hover docs and signature help
     },
     throttle = 1000 / 30, -- how frequently does Noice need to check for ui updates? This has no effect when in blocking mode.
@@ -205,7 +205,7 @@ return {
       popupmenu = {
         relative = "editor",
         position = {
-          row = "40%",
+          row = "45%",
           col = "50%",
         },
         size = {
@@ -222,7 +222,12 @@ return {
       },
     }, ---@see section on views
     ---@type NoiceRouteConfig[]
-    routes = {}, --- @see section on routes
+    routes = {
+      {
+        view = "mini",
+        filter = { event = "msg_showmode" },
+      },
+    }, --- @see section on routes
     ---@type table<string, NoiceFilter>
     status = {}, --- @see section on statusline components
     ---@type NoiceFormatOptions
