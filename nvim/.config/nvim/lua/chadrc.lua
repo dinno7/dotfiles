@@ -44,8 +44,22 @@ M.ui = {
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "default",
-    order = nil,
-    modules = nil,
+    order = { "mode", "full_path", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor", "cwd" },
+    modules = {
+      full_path = function()
+        local x = require("nvchad.stl.utils").file()
+        local icon = x[1]
+        local file_name = x[2]
+        local cwd = vim.uv.cwd()
+        local home = vim.fn.expand "$HOME"
+        local path_without_home = cwd:gsub("^" .. home, "~")
+        local full_path = "%#StText#" .. "  " .. path_without_home
+        if file_name ~= "Empty" then
+          full_path = full_path .. " " .. icon .. " " .. file_name
+        end
+        return full_path
+      end,
+    },
   },
 
   -- lazyload it when there are 1+ buffers
