@@ -10,7 +10,7 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(
   # NOTE: Global
   ssh
-  ssh-agent
+  # ssh-agent
   rsync
   systemd
   urltools

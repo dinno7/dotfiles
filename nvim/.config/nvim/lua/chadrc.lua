@@ -28,9 +28,10 @@ M.base46 = {
 
 M.ui = {
   cmp = {
+    icons = true,
     icons_left = false, -- only for non-atom styles!
     lspkind_text = true,
-    style = "atom_colored", -- default/flat_light/flat_dark/atom/atom_colored
+    style = "atom", -- default/flat_light/flat_dark/atom/atom_colored
     format_colors = {
       tailwind = true, -- will work for css lsp too
       icon = "󱓻",
@@ -71,20 +72,54 @@ M.ui = {
     show_numbers = true,
     buffer_id_index = true,
     bufwidth = 30,
-    icon_colors = false,
+    icon_colors = true,
   },
 }
 
 M.term = {
   winopts = { number = false, relativenumber = false },
-  sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
+  sizes = { sp = 0.3, vsp = 0.3, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
   float = {
     relative = "editor",
-    row = 0.3,
-    col = 0.25,
-    width = 0.5,
-    height = 0.5,
+    row = 0.02,
+    col = 0.02,
+    width = 0.95,
+    height = 0.95,
     border = "single",
+  },
+}
+
+M.mason = {
+  pkgs = {
+    "dockerfile-language-server",
+    "docker-compose-language-service",
+    "bash-language-server",
+    "cspell-lsp",
+    "css-lsp",
+    "docker-language-server",
+    "emmet-ls",
+    "eslint-lsp",
+    "html-lsp",
+    "json-lsp",
+    "just-lsp",
+    "lua-language-server",
+    "postgres-language-server",
+    "prettierd",
+    "rust-analyzer",
+    "shellcheck",
+    "shfmt",
+    "sql-formatter",
+    "stylua",
+    "tailwindcss-language-server",
+    "typescript-language-server",
+    "yaml-language-server",
+
+    -- > GO lang
+    "gopls",
+    "gofumpt",
+    "goimports",
+    "golangci-lint",
+    "golines",
   },
 }
 
@@ -146,7 +181,6 @@ M.nvdash = {
     { txt = "  Find Word", keys = "Spc f w", cmd = "Telescope live_grep" },
     { txt = "  Bookmarks", keys = "Spc m a", cmd = "Telescope marks" },
     { txt = "  Themes", keys = "Spc t h", cmd = "Telescope themes" },
-    { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
     {
       txt = function()
         local stats = require("lazy").stats()

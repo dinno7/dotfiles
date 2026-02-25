@@ -147,6 +147,10 @@ function omz_plugin_get {
   fi
 }
 
+function aicommitmsg() {
+  echo -ne "$AI_PROMPT_GIT_COMMIT $(git diff --staged)"
+}
+
 function omz_plugin_sync {
   local OMZ_PLUGINS=(
     "Aloxaf/fzf-tab"
@@ -154,6 +158,8 @@ function omz_plugin_sync {
     "zsh-users/zsh-autosuggestions"
     "MichaelAquilina/zsh-you-should-use"
     "zdharma-continuum/fast-syntax-highlighting"
+    "zdharma-continuum/fast-syntax-highlighting"
+    "zetlen/zsh-completion-generators"
   )
   echo "Syncing 3-party's oh-my-zsh plugins"
   for plugin in "${OMZ_PLUGINS[@]}"; do

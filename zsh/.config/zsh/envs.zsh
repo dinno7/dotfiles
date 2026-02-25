@@ -83,3 +83,9 @@ Very important: Do not respond with any of the examples. Your message must be ba
 Based on this format, generate appropriate commit messages. Respond with message only. DO NOT format the message in Markdown code blocks, DO NOT use backticks
 EOF
 )
+
+# p="192.168.1.100:10808"
+# export HTTP_PROXY="http://$p"
+# export HTTPS_PROXY="https://$p"
+# export http_proxy="http://$p"
+# export https_proxy="https://$p"

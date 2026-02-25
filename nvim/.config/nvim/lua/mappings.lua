@@ -41,7 +41,7 @@ map("v", "//", 'y/<C-R>"<CR>', { desc = "Search for highlighted text" })
 
 -- NOTE: Copy file paths
 map("n", "<leader>cf", '<cmd>let @+ = expand("%")<CR>', { desc = "Copy File Name" })
-map("n", "<leader>cp", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
+map("n", "<leader>cc", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
 
 -- NOTE: Fix lsp bug with macro mode
 map("n", "q", "", { desc = "Remove q to go macro mode" })
@@ -75,7 +75,15 @@ map("n", "<leader>Q", function()
 end, { desc = "Close all other buffers" })
 
 nomap("n", "<leader>x")
-map("n", "<leader>q", "<C-W>q", { desc = "buffer close" })
+map("n", "<leader>q", function()
+  local win_count = vim.fn.winnr "$"
+  if win_count > 1 then
+    -- More than one window (split), close current window
+    vim.cmd "close"
+  else
+    require("nvchad.tabufline").close_buffer()
+  end
+end, { desc = "Smart close window/buffer" })
 
 -- NOTE: Reselect the text that has just been pasted
 map("n", "<leader>V", "`[V`]", { desc = "Reselect the text that has just been pasted" })
@@ -99,6 +107,8 @@ map("n", "<leader>tn", "<cmd> tabnew<CR>", { desc = "Open new tab" })
 map("n", "<leader>tx", "<cmd> tabclose<CR>", { desc = "Close current tab" }) --
 map("n", "<leader>tk", "<cmd> tabn<CR>", { desc = "Go to next tab" }) --
 map("n", "<leader>tj", "<cmd> tabp<CR>", { desc = "Go to previous tab" }) --
+map("n", "]]", "<cmd> tabn<CR>", { desc = "Go to next tab" }) --
+map("n", "[[", "<cmd> tabp<CR>", { desc = "Go to previous tab" }) --
 
 -- NOTE: Set tmux-navigator keymaps -> Make compatible Nvim with Tmux
 map("n", "<C-h>", "<cmd> NvimTmuxNavigateLeft <CR>", { desc = "Window left" })
@@ -210,6 +220,7 @@ map("n", "<leader>mm", "<cmd>Telescope marks<CR>", { desc = "See all marks" })
 map("n", "<leader>dd", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
 map("n", "<leader>rr", ":Telescope registers<CR>", { desc = "Registers in telescope" })
 map("n", "<leader>tt", "<cmd>Telescope builtin<CR>", { desc = "[S]earch [S]elect Telescope" })
+map({ "n", "v" }, "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "LSP Telescope show refrences" })
 map({ "n", "v" }, "<leader>gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP Telescope show refrences" })
 map({ "n", "v" }, "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "LSP implementation" })
 map({ "n", "v" }, "<leader>gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "LSP definition type" })
@@ -250,13 +261,13 @@ map("n", "]c", function()
   end
 end)
 
-map("n", "[[", function()
-  if vim.wo.diff then
-    vim.cmd.normal { "[c", bang = true }
-  else
-    gitsigns.nav_hunk "prev"
-  end
-end)
+-- map("n", "[[", function()
+--   if vim.wo.diff then
+--     vim.cmd.normal { "[c", bang = true }
+--   else
+--     gitsigns.nav_hunk "prev"
+--   end
+-- end)
 
 -- Actions
 map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "[S]tage Hunk" })

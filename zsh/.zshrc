@@ -8,3 +8,6 @@ else
   echo "The zsh configs are not exists in $DINNO_ZSH_DIR"
 fi
 
+
+# opencode
+export PATH=/home/dinno/.opencode/bin:$PATH

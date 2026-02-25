@@ -37,9 +37,27 @@ if cmd_exists fzf; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
   fi
-  export FZF_DEFAULT_OPTS="--tmux center,75% --layout=reverse --preview 'bat --style=full --color=always  --line-range :100 {}'"
-  export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then tree -C {} | head -50; else bat --color=always --line-range :50 {}; fi'"
-  export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+  FZF_FILE_PREVIEW='bat --style=full --color=always  --line-range :100 {}'
+  FZF_DIR_PREVIEW='tree -C {} | head -100'
+  FZF_PREVIEW="if [ -d {} ]; then $FZF_DIR_PREVIEW; else $FZF_FILE_PREVIEW; fi"
+  export FZF_DEFAULT_OPTS="
+    --tmux center,75% 
+    --layout=reverse 
+    --walker-skip .git,node_modules,target
+  "
+  export FZF_CTRL_R_OPTS="
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -sel clip)+abort'
+    --color header:italic
+    --header 'Press CTRL-Y to copy command into clipboard'
+  "
+
+  export FZF_CTRL_T_OPTS="
+    --bind 'ctrl-/:change-preview-window(down|hidden|)'
+    --preview '$FZF_PREVIEW'
+  "
+  export FZF_ALT_C_OPTS="
+    --preview '$FZF_PREVIEW'
+  "
 
   # https://github.com/tinted-theming/tinted-fzf/tree/main/bash
   # local color00='#1a1b26'

@@ -18,8 +18,8 @@ return {
       finder = {
         max_height = 0.8,
         default = "ref+def+imp+tyd", -- def -> textDocument/definition, ref -> textDocument/references, and imp -> textDocuemnt/implementation
-        left_width = 0.2,
-        right_width = 0.8,
+        left_width = 0.3,
+        right_width = 0.7,
         layout = "float", -- float, normal
         methods = {
           tyd = "textDocument/typeDefinition",

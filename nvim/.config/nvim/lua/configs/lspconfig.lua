@@ -1,5 +1,4 @@
 local configs = require "nvchad.configs.lspconfig"
-local lspconfig = require "lspconfig"
 
 -- INFO: Server options
 local tsserverOptions = require "configs.lspservers.tsserver"
@@ -50,6 +49,9 @@ local servers = {
   },
 }
 
+require("lspconfig").postgres_lsp.setup {
+  cmd = { "postgres-language-server", "lsp-proxy" },
+}
 -- INFO: Initiate all defined servers
 for name, opts in pairs(servers) do
   opts.on_init = configs.on_init
