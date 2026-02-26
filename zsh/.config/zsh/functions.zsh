@@ -154,6 +154,8 @@ function omz_plugin_sync {
     "zsh-users/zsh-autosuggestions"
     "MichaelAquilina/zsh-you-should-use"
     "zdharma-continuum/fast-syntax-highlighting"
+    "zdharma-continuum/fast-syntax-highlighting"
+    "zetlen/zsh-completion-generators"
   )
   echo "Syncing 3-party's oh-my-zsh plugins"
   for plugin in "${OMZ_PLUGINS[@]}"; do
