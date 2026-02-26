@@ -24,6 +24,11 @@ local options = {
       "gofumpt",
     },
   },
+  formatters = {
+    pg_format = {
+      args = { "--function-case", "2" },
+    },
+  },
   format_after_save = {
     lsp_format = "fallback",
     timeout_ms = 500,
