@@ -88,6 +88,40 @@ M.term = {
   },
 }
 
+M.mason = {
+  pkgs = {
+    "dockerfile-language-server",
+    "docker-compose-language-service",
+    "bash-language-server",
+    "cspell-lsp",
+    "css-lsp",
+    "docker-language-server",
+    "emmet-ls",
+    "eslint-lsp",
+    "html-lsp",
+    "json-lsp",
+    "just-lsp",
+    "lua-language-server",
+    "postgres-language-server",
+    "prettierd",
+    "rust-analyzer",
+    "shellcheck",
+    "shfmt",
+    "sql-formatter",
+    "stylua",
+    "tailwindcss-language-server",
+    "typescript-language-server",
+    "yaml-language-server",
+
+    -- > GO lang
+    "gopls",
+    "gofumpt",
+    "goimports",
+    "golangci-lint",
+    "golines",
+  },
+}
+
 -- Highlight colors in Neovim
 M.colorify = {
   enabled = true,
