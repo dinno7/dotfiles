@@ -76,14 +76,15 @@ M.ui = {
 }
 
 M.term = {
-  winopts = { number = false, relativenumber = false },
-  sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
+  startinsert = true,
+  winopts = { number = true, relativenumber = true },
+  sizes = { sp = 0.3, vsp = 0.3, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
   float = {
     relative = "editor",
-    row = 0.3,
-    col = 0.25,
-    width = 0.5,
-    height = 0.5,
+    row = 0.1,
+    col = 0.1,
+    width = 0.8,
+    height = 0.7,
     border = "single",
   },
 }
@@ -180,7 +181,6 @@ M.nvdash = {
     { txt = "  Find Word", keys = "Spc f w", cmd = "Telescope live_grep" },
     { txt = "  Bookmarks", keys = "Spc m a", cmd = "Telescope marks" },
     { txt = "  Themes", keys = "Spc t h", cmd = "Telescope themes" },
-    { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
     {
       txt = function()
         local stats = require("lazy").stats()
