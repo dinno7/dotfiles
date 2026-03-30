@@ -324,10 +324,6 @@ augroup END
 
 "{ Custom key mappings
 " Save key strokes (now we do not need to press shift to enter command mode).
-" Vim-sneak has also mapped `;`, so using the below mapping will break the map
-" used by vim-sneak
-nnoremap ; :
-xnoremap ; :
 
 " Quicker way to open command window
 nnoremap q; q:
@@ -350,8 +346,12 @@ nnoremap <leader>P m`O<ESC>p``
 
 " Shortcut for faster save and quit
 nnoremap <silent> <leader>w :update<CR>
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <C-O>:w<CR>
+vnoremap <C-s> <C-C>:w<CR>
+
 " Saves the file if modified and quit
-nnoremap <silent> <leader>q :x<CR>
+nnoremap <silent> <leader>q :q<CR>
 " Quit all opened buffers
 nnoremap <silent> <leader>Q :qa<CR>
 
@@ -378,8 +378,8 @@ nnoremap <silent><expr> <Leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls').
 
 " Insert a blank line below or above current line (do not move the cursor),
 " see https://stackoverflow.com/a/16136133/6064933
-nnoremap <expr> oo 'm`' . v:count1 . 'o<Esc>``'
-nnoremap <expr> OO 'm`' . v:count1 . 'O<Esc>``'
+nnoremap <expr> <leader>o 'm`' . v:count1 . 'o<Esc>``'
+nnoremap <expr> <leader>O 'm`' . v:count1 . 'O<Esc>``'
 
 " nnoremap oo @='m`o<c-v><Esc>``'<cr>
 " nnoremap OO @='m`O<c-v><Esc>``'<cr>
@@ -412,23 +412,23 @@ nnoremap <Tab> %
 " Go to start or end of line easier
 nnoremap H ^
 xnoremap H ^
-nnoremap L g_
-xnoremap L g_
+nnoremap L $
+xnoremap L $
 
 " Resize windows using <Alt> and h,j,k,l, inspiration from
 " https://vim.fandom.com/wiki/Fast_window_resizing_with_plus/minus_keys (bottom page).
 " If you enable mouse support, shorcuts below may not be necessary.
-nnoremap <silent> <M-h> <C-w><
-nnoremap <silent> <M-l> <C-w>>
-nnoremap <silent> <M-j> <C-W>-
-nnoremap <silent> <M-k> <C-W>+
+nnoremap <silent> <M-Left> <C-w><
+nnoremap <silent> <M-Right> <C-w>>
+nnoremap <silent> <M-Down> <C-W>-
+nnoremap <silent> <M-Up> <C-W>+
 
 " Fast window switching, inspiration from
 " https://stackoverflow.com/a/4373470/6064933
-nnoremap <silent> <M-left> <C-w>h
-nnoremap <silent> <M-right> <C-w>l
-nnoremap <silent> <M-down> <C-w>j
-nnoremap <silent> <M-up> <C-w>k
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-l> <C-w>l
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
 
 " Continuous visual shifting (does not exit Visual mode), `gv` means
 " to reselect previous visual area, see https://superuser.com/q/310417/736190
@@ -451,8 +451,8 @@ inoremap <expr> <tab>  pumvisible()?"\<C-n>":"\<tab>"
 
 " Edit and reload init.vim quickly
 nnoremap <silent> <leader>ev :edit $MYVIMRC<cr>
-nnoremap <silent> <leader>sv :silent update $MYVIMRC <bar> source $MYVIMRC <bar>
-    \ echomsg "Nvim config successfully reloaded!"<cr>
+nnoremap <silent> <leader>ss :silent update $MYVIMRC <bar> source $MYVIMRC <bar>
+    \ echomsg "Vim config successfully reloaded!"<cr>
 
 " Reselect the text that has just been pasted
 nnoremap <leader>v `[V`]
@@ -460,9 +460,9 @@ nnoremap <leader>v `[V`]
 " Search in selected region
 vnoremap / :<C-U>call feedkeys('/\%>'.(line("'<")-1).'l\%<'.(line("'>")+1)."l")<CR>
 
-" Find and replace (like Sublime Text 3)
-nnoremap <C-H> :%s/
-xnoremap <C-H> :s/
+" Find and replace (like Sublime Text 3) Alt-H
+" nnoremap <M-H> :%s/
+" xnoremap <M-H> :s/
 
 " Change current working directory locally and print cwd after that,
 " see https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
@@ -474,6 +474,7 @@ if exists(':tnoremap')
 endif
 
 " Toggle spell checking
+set spell!
 nnoremap <silent> <F11> :set spell!<cr>
 inoremap <silent> <F11> <C-O>:set spell!<cr>
 
@@ -482,17 +483,21 @@ inoremap <S-Tab> <ESC><<i
 
 " Change text without putting the text into register,
 " see https://stackoverflow.com/q/54255/6064933
-nnoremap c "_c
-nnoremap C "_C
-nnoremap cc "_cc
+" Do not copy remove in below actions
+noremap cc "_cc
+nnoremap x "_x
+vnoremap X "_X
+" nnoremap c "_c
+" nnoremap C "_C
 
 " Remove trailing whitespace characters
-nnoremap <silent> <leader><Space> :call StripTrailingWhitespaces()<CR>
+" nnoremap <silent> <leader><Space> :call StripTrailingWhitespaces()<CR>
 
 " Clear highlighting
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
+nnoremap <silent> <Esc> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+" if maparg('<C-L>', 'n') ==# ''
+"   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+" endif
 
 nnoremap <up> :echoerr "Don't use arrow keys, use H, J, K, L instead!"<CR>
 nnoremap <down> :echoerr "Don't use arrow keys, use H, J, K, L instead!"<CR>
@@ -764,61 +769,79 @@ endfunction
 "}
 
 " Added from Neovim config
-nnoremap j gj
-nnoremap k gk
+" Center page after `o` and `O`
 nnoremap o zzo
 nnoremap O zzO
+
+" Center page after scroll
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
+
+" Center page after navigate
 nnoremap n nzzzv
 nnoremap N Nzzzv
+
+" Do not copy after paste on selected text
 vnoremap p "_dP
-nnoremap x "_x
-vnoremap x "_x
+
+" Search pattern in selected
 vnoremap // y/<C-R>"<CR>
-nnoremap <leader>cf :let @+ = expand("%")<CR>
-nnoremap <leader>cp :let @+ = expand("%:p")<CR>
+
+" Remap q to Q
 nnoremap Q q
+
+" Save without autocmds
 nnoremap <leader>sn :noautocmd w <CR>
+
+" Select all buffer
 nnoremap <leader>a ggVG
-nnoremap <leader>ya :%y+<CR>
-nnoremap <leader>V `[V`]`
-nnoremap <A-Up> :resize +5<CR>
-nnoremap <A-Down> :resize -5<CR>
-nnoremap <A-Right> :vertical resize -5<CR>
-nnoremap <A-Left> :vertical resize +5<CR>
+
+" Yank all buffer
+nnoremap <leader>ya :%y<CR>
+
+" Windows
 nnoremap <leader>sv <C-w>v
-nnoremap <leader>ss <C-w>s
+nnoremap <leader>sh <C-w>s
 nnoremap <leader>se <C-w>=
 nnoremap <leader>sx :close<CR>
+
+" Tabs
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>tx :tabclose<CR>
-nnoremap <leader>tl :tabn<CR>
-nnoremap <leader>th :tabp<CR>
-nnoremap <A-C-l> :tabn<CR>
-nnoremap <A-C-h> :tabp<CR>
-nnoremap <leader>o o<ESC>
-nnoremap <leader>O O<ESC>
-inoremap <M-C-V> <C-v>
+nnoremap ]t :tabn<CR>
+nnoremap [t :tabp<CR>
+
+" Buffers
+nnoremap <leader>x :bd<CR>
+nnoremap ]b :bn<CR>
+nnoremap [b :bp<CR>
+
+" Map C-V to `p` in insert mode
 inoremap <C-v> <ESC>pa
+
+" Copy with c-c
 inoremap <C-c> <C-O>:yank<CR>
 nnoremap <C-c> :yank<CR>
 vnoremap <C-c> :yank<CR>
+
+" Delete line in insert mode
 inoremap <C-x> <esc>0Da
-nnoremap <C-s> :w<CR>
-inoremap <C-s> <C-O>:w<CR>
-vnoremap <C-s> <C-C>:w<CR>
+
+" Undo with c-z
 inoremap <C-z> <C-O>:undo<CR>
 nnoremap <C-z> :undo<CR>
-vnoremap <C-z> u
+
+" Redo with c-a-z
 inoremap <M-C-Z> <C-O>:redo<CR>
 nnoremap <M-C-Z> :redo<CR>
-vnoremap <M-C-Z> <C-R>
-inoremap <C-Del> <ESC>ldwha
+
+" Navigate in insert mode
 inoremap <C-k> <Up>
 inoremap <C-j> <Down>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+
+" Start & end of line in insert mode
 inoremap <C-b> <ESC>^i
 inoremap <C-e> <End>
 
