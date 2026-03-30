@@ -505,6 +505,84 @@ nnoremap <right> :echoerr "Don't use arrow keys, use H, J, K, L instead!"<CR>
 nnoremap <left> :echoerr "Don't use arrow keys, use H, J, K, L instead!"<CR>
 "}
 
+" Center page after `o` and `O`
+nnoremap o zzo
+nnoremap O zzO
+
+" Center page after scroll
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" Center page after navigate
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Do not copy after paste on selected text
+vnoremap p "_dP
+
+" Search pattern in selected
+vnoremap // y/<C-R>"<CR>
+
+" Remap q to Q
+nnoremap Q q
+
+" Save without autocmds
+nnoremap <leader>sn :noautocmd w <CR>
+
+" Select all buffer
+nnoremap <leader>a ggVG
+
+" Yank all buffer
+nnoremap <leader>ya :%y<CR>
+
+" Windows
+nnoremap <leader>sv <C-w>v
+nnoremap <leader>sh <C-w>s
+nnoremap <leader>se <C-w>=
+nnoremap <leader>sx :close<CR>
+
+" Tabs
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>tx :tabclose<CR>
+nnoremap ]t :tabn<CR>
+nnoremap [t :tabp<CR>
+
+" Buffers
+nnoremap <leader>x :bd<CR>
+nnoremap ]b :bn<CR>
+nnoremap [b :bp<CR>
+
+" Map C-V to `p` in insert mode
+inoremap <C-v> <ESC>pa
+
+" Copy with c-c
+inoremap <C-c> <C-O>:yank<CR>
+nnoremap <C-c> :yank<CR>
+vnoremap <C-c> :yank<CR>
+
+" Delete line in insert mode
+inoremap <C-x> <esc>0Da
+
+" Undo with c-z
+inoremap <C-z> <C-O>:undo<CR>
+nnoremap <C-z> :undo<CR>
+
+" Redo with c-a-z
+inoremap <M-C-Z> <C-O>:redo<CR>
+nnoremap <M-C-Z> :redo<CR>
+
+" Navigate in insert mode
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+" Start & end of line in insert mode
+inoremap <C-b> <ESC>^i
+inoremap <C-e> <End>
+
+" ================= END OF KEYMAPS =================
+
 "{ UI settings
 if !has('gui_running')
     augroup MyColors
@@ -767,81 +845,3 @@ endfunction
 " 2. https://gist.github.com/autrimpo/f40e4eda233977dd3a619c6083d9bebd
 " 3. https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
 "}
-
-" Added from Neovim config
-" Center page after `o` and `O`
-nnoremap o zzo
-nnoremap O zzO
-
-" Center page after scroll
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
-
-" Center page after navigate
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
-" Do not copy after paste on selected text
-vnoremap p "_dP
-
-" Search pattern in selected
-vnoremap // y/<C-R>"<CR>
-
-" Remap q to Q
-nnoremap Q q
-
-" Save without autocmds
-nnoremap <leader>sn :noautocmd w <CR>
-
-" Select all buffer
-nnoremap <leader>a ggVG
-
-" Yank all buffer
-nnoremap <leader>ya :%y<CR>
-
-" Windows
-nnoremap <leader>sv <C-w>v
-nnoremap <leader>sh <C-w>s
-nnoremap <leader>se <C-w>=
-nnoremap <leader>sx :close<CR>
-
-" Tabs
-nnoremap <leader>tn :tabnew<CR>
-nnoremap <leader>tx :tabclose<CR>
-nnoremap ]t :tabn<CR>
-nnoremap [t :tabp<CR>
-
-" Buffers
-nnoremap <leader>x :bd<CR>
-nnoremap ]b :bn<CR>
-nnoremap [b :bp<CR>
-
-" Map C-V to `p` in insert mode
-inoremap <C-v> <ESC>pa
-
-" Copy with c-c
-inoremap <C-c> <C-O>:yank<CR>
-nnoremap <C-c> :yank<CR>
-vnoremap <C-c> :yank<CR>
-
-" Delete line in insert mode
-inoremap <C-x> <esc>0Da
-
-" Undo with c-z
-inoremap <C-z> <C-O>:undo<CR>
-nnoremap <C-z> :undo<CR>
-
-" Redo with c-a-z
-inoremap <M-C-Z> <C-O>:redo<CR>
-nnoremap <M-C-Z> :redo<CR>
-
-" Navigate in insert mode
-inoremap <C-k> <Up>
-inoremap <C-j> <Down>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-
-" Start & end of line in insert mode
-inoremap <C-b> <ESC>^i
-inoremap <C-e> <End>
-
