@@ -138,6 +138,14 @@ function shareportsafe() {
   lt --port "$1" --print-requests -o -s "dinno-$(date +%s)"
 }
 
+function viddown() {
+  local URL="${1:?Please enter url}"
+  local QUALITY="${2:-720}"
+  local YTDLP_F="-f bestvideo[ext=mp4][height<=$QUALITY]+bestaudio[ext=m4a]/best[ext=mp4][height<=$QUALITY]/best --merge-output-format mp4"
+  yt-dlp $YTDLP_F -o "$PWD/%(title)s.%(ext)s" "$URL"
+
+}
+
 function omz_plugin_get {
   local repo_path="${1}"
   local project="$(echo "${repo_path}" | cut -d"/" -f2)"
