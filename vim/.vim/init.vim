@@ -544,13 +544,14 @@ nnoremap <leader>sx :close<CR>
 " Tabs
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>tx :tabclose<CR>
-nnoremap ]t :tabn<CR>
-nnoremap [t :tabp<CR>
+nnoremap <leader>tk :tabn<CR>
+nnoremap <leader>tj :tabp<CR>
 
 " Buffers
-nnoremap <leader>x :bd<CR>
-nnoremap ]b :bn<CR>
-nnoremap [b :bp<CR>
+nnoremap <leader>bn :enew<CR>
+nnoremap <leader>bx :bd<CR>
+nnoremap <leader>bk :bn<CR>
+nnoremap <leader>bj :bp<CR>
 
 " Map C-V to `p` in insert mode
 inoremap <C-v> <ESC>pa
