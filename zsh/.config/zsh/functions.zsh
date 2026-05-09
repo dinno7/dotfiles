@@ -98,6 +98,12 @@ function clog() {
   echo "ℹ️ $(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$DINNO_ZSH_LOGS"
 }
 
+function servehere() {
+  local port="${1:-9009}"
+  open http://localhost:$port
+  python3 -m http.server $port
+}
+
 # NOTE: Commands cheatsheet
 function how() {
   if [[ -z $1 ]]; then
