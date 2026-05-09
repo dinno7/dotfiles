@@ -15,6 +15,7 @@ plugins=(
   systemd
   urltools
   copyfile
+  copypath
   dirhistory
   # NOTE: External
   fzf-tab
