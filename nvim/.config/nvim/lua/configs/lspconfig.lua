@@ -1,5 +1,4 @@
 local configs = require "nvchad.configs.lspconfig"
-local lspconfig = require "lspconfig"
 
 -- INFO: Server options
 local tsserverOptions = require "configs.lspservers.tsserver"
@@ -27,10 +26,6 @@ local servers = {
   html = {},
   cssls = {},
   bashls = {},
-  just = {}, -- Just lsp(justfile)
-  biome = {},
-  eslint = {},
-  tailwindcss = {},
   dockerls = {},
   emmet_ls = {
     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "vue", "sass", "scss", "less", "svelte" },
@@ -42,14 +37,20 @@ local servers = {
     },
   },
   eslint = {},
+  vue_ls = {}, --> vue-lsp
+  -- vuels = {}, --> vetur
   biome = {},
   just = {}, -- Just lsp(justfile)
+  taplo = {}, -- Toml files
   tailwindcss = {},
   docker_compose_language_service = {
     filetypes = { "yml.compose", "yml.docker-compose", "yaml.compose", "yaml.docker-compose" },
   },
 }
 
+-- require("lspconfig").postgres_lsp.setup {
+--   cmd = { "postgres-language-server", "lsp-proxy" },
+-- }
 -- INFO: Initiate all defined servers
 for name, opts in pairs(servers) do
   opts.on_init = configs.on_init

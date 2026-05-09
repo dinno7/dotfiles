@@ -23,6 +23,9 @@ local options = {
       "goimports",
       "gofumpt",
     },
+    toml = {
+      "taplo",
+    },
   },
   formatters = {
     pg_format = {
