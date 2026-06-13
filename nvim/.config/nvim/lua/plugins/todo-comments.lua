@@ -68,5 +68,10 @@ return {
         -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
       },
     }
+
+    -- You can also specify a list of valid jump keywords
+    -- vim.keymap.set("n", "]t", function()
+    --   todo.jump_next { keywords = { "ERROR", "WARNING" } }
+    -- end, { desc = "Next error/warning todo comment" })
   end,
 }
