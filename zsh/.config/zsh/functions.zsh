@@ -106,16 +106,13 @@ function servehere() {
 
 # NOTE: Commands cheatsheet
 function how() {
-  if [[ -z $1 ]]; then
-    echo "Please provide command in first arg"
-    return
-  fi
+  local cmd="${1?Please provide command in first arg}"
   if ! cmd_exists curl; then
     echo "Please install curl first"
-    return
+    return 1
   fi
-
-  curl -s "cheat.sh/$1" | cat
+  echo "Getting $cmd tldr..."
+  curl -s "cheat.sh/$cmd" | cat
 }
 
 # NOTE: Getting weather
