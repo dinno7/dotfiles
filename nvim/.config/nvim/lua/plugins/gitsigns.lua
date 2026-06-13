@@ -13,6 +13,14 @@ return {
         use_focus = true,
       },
       current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
+      numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
+      preview_config = {
+        -- Options passed to nvim_open_win
+        style = "minimal",
+        relative = "cursor",
+        row = 0,
+        col = 1,
+      },
     })
 
     require("gitsigns").setup(opts)
