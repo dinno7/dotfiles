@@ -38,6 +38,9 @@ plugins=(
 # NOTE: Set oh my zsh
 source "$ZSH/oh-my-zsh.sh"
 
+# NOTE: Enable add zsh hook
+autoload -U add-zsh-hook
+
 # NOTE: Set up fzf key bindings and fuzzy completion
 if cmd_exists fzf; then
   eval "$(fzf --zsh)"
