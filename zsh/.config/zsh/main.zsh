@@ -38,6 +38,9 @@ plugins=(
 # NOTE: Set oh my zsh
 source "$ZSH/oh-my-zsh.sh"
 
+# NOTE: Set starship
+eval "$(starship init zsh)"
+
 # NOTE: Enable add zsh hook
 autoload -U add-zsh-hook
 
@@ -58,9 +61,6 @@ fi
 
 # NOTE: Autosuggestions accept
 bindkey '^n' autosuggest-accept
-
-# NOTE: vim-mode plugin settings
-# bindkey -M viins 'jk' vi-cmd-mode
 
 # NOTE: after load hook
 sourcefiles "$DINNO_ZSH_DIR/after_load.zsh"

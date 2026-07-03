@@ -15,6 +15,8 @@ export XDG_BIN_HOME="$HOME/.local/bin"     # Binary files
 export XDG_DATA_HOME="$HOME/.local/share"  # Application data
 export XDG_STATE_HOME="$HOME/.local/state" # Logs and state files
 
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+
 export GOPATH="$XDG_DATA_HOME/go"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
