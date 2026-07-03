@@ -46,8 +46,9 @@ if cmd_exists xdg-open; then
 fi
 
 function mcd() {
-  mkdir -p "$1"
-  cd "$1" || exit
+  local path="${1?Path not define}"
+  mkdir -p "$path"
+  cd "$path" || exit
 }
 
 function ds() {
@@ -66,19 +67,12 @@ fi
 
 if cmd_exists bw; then
   function bwunlock() {
-    if ! cmd_exists pass; then
-      echo "the bitwarden master key should main in pass, the pass is not installed"
+    if [ -z "$BW_MASTER_PASSWORD" ]; then
+      echo "The BW_MASTER_PASSWORD not set"
       return 1
     fi
-    if ! cmd_exists bw; then
-      echo "please install bitwarden-cli first"
-      return 1
-    fi
-    export BW_PASSWORD="$(pass main/bw)"
-    local _bw_session="$(bw unlock --passwordenv BW_PASSWORD --raw)"
-    export BW_SESSION=$_bw_session
-    unset BW_PASSWORD
-    echo "Vault is now unlocked!"
+    bw unlock --passwordenv BW_MASTER_PASSWORD --raw
+    echo "Vault unlocked!"
   }
 fi
 
@@ -95,7 +89,7 @@ function clog() {
   if [[ -z $1 ]]; then
     return
   fi
-  echo "ℹ️ $(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$DINNO_ZSH_LOGS"
+  echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$DINNO_ZSH_LOGS"
 }
 
 function servehere() {
@@ -131,8 +125,8 @@ function shareportsafe() {
     echo "please install Localtunnel first"
     return 1
   fi
-
-  lt --port "$1" --print-requests -o -s "dinno-$(date +%s)"
+  local shared_port="${1?Please pass port in first argument}"
+  lt --port "$shared_port" --print-requests -o -s "dinno-$(date +%s)"
 }
 
 function viddown() {
@@ -141,6 +135,15 @@ function viddown() {
   local YTDLP_F="-f bestvideo[ext=mp4][height<=$QUALITY]+bestaudio[ext=m4a]/best[ext=mp4][height<=$QUALITY]/best --merge-output-format mp4"
   yt-dlp $YTDLP_F -o "$PWD/%(title)s.%(ext)s" "$URL"
 
+}
+
+function omz_plugin_sync {
+  echo "Syncing 3-party's oh-my-zsh plugins"
+  for plugin in "${OMZ_EXTERNAL_PLUGINS[@]}"; do
+    echo "---------- Syncing $plugin ----------"
+    omz_plugin_get "$plugin"
+    echo
+  done
 }
 
 function omz_plugin_get {
@@ -158,20 +161,6 @@ function omz_plugin_get {
   fi
 }
 
-function omz_plugin_sync {
-  local OMZ_PLUGINS=(
-    "Aloxaf/fzf-tab"
-    "jeffreytse/zsh-vi-mode"
-    "zsh-users/zsh-autosuggestions"
-    "MichaelAquilina/zsh-you-should-use"
-    "zdharma-continuum/fast-syntax-highlighting"
-    "zdharma-continuum/fast-syntax-highlighting"
-    "zetlen/zsh-completion-generators"
-  )
-  echo "Syncing 3-party's oh-my-zsh plugins"
-  for plugin in "${OMZ_PLUGINS[@]}"; do
-    echo "---------- Syncing $plugin ----------"
-    omz_plugin_get "$plugin"
-    echo
-  done
+function aicommitprompt() {
+  echo -ne "$AI_PROMPT_GIT_COMMIT $(git diff --staged)"
 }

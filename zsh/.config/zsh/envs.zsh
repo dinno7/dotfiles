@@ -49,6 +49,16 @@ export VI_MODE_CURSOR_OPPEND=0
 export MODE_INDICATOR="%F{white}+%f"
 export INSERT_MODE_INDICATOR="%F{yellow}+%f"
 
+export OMZ_EXTERNAL_PLUGINS=(
+  "Aloxaf/fzf-tab"
+  "jeffreytse/zsh-vi-mode"
+  "zsh-users/zsh-autosuggestions"
+  "MichaelAquilina/zsh-you-should-use"
+  "zdharma-continuum/fast-syntax-highlighting"
+  "zdharma-continuum/fast-syntax-highlighting"
+  "zetlen/zsh-completion-generators"
+)
+
 export AI_PROMPT_GIT_COMMIT=$(
   cat <<EOF
 You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:

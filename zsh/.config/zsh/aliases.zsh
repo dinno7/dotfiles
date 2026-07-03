@@ -35,8 +35,9 @@ fi
 # Alias for lsd
 if cmd_exists lsd; then
   alias ls="lsd"
-  alias lt='lsd --tree --depth=2 --long --group-directories-first'
-  alias tree='lt'
+  if ! cmd_exists tree; then
+    alias tree='lsd --tree --depth=2 --long --group-directories-first'
+  fi
 fi
 
 if cmd_exists just; then
