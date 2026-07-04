@@ -11,12 +11,9 @@ plugins=(
   # NOTE: Global
   ssh
   ssh-agent
-  rsync
-  systemd
   urltools
   copyfile
   copypath
-  dirhistory
   # NOTE: External
   fzf-tab
   zsh-vi-mode
@@ -28,7 +25,6 @@ plugins=(
   git
   nvm
   npm
-  node
   rust
   golang
   docker
