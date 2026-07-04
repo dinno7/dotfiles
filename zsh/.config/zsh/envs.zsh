@@ -57,7 +57,6 @@ export OMZ_EXTERNAL_PLUGINS=(
   "MichaelAquilina/zsh-you-should-use"
   "zdharma-continuum/fast-syntax-highlighting"
   "zdharma-continuum/fast-syntax-highlighting"
-  "zetlen/zsh-completion-generators"
 )
 
 export AI_PROMPT_GIT_COMMIT=$(
