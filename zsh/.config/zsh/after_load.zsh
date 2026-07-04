@@ -1,13 +1,16 @@
 #! /usr/bin/env bash
 
-tmux_sessions_count="$(tmux list-sessions | wc -l)"
-if [[ "$tmux_sessions_count" -eq 1 ]]; then
-  if command -v fastfetch >/dev/null 2>&1; then
-    fastfetch --logo "$DINNO_ZSH_LOGO"
-  elif command -v neofetch >/dev/null 2>&1; then
-    neofetch --source "$DINNO_ZSH_LOGO"
-  else
-    cat -p "$DINNO_ZSH_LOGO"
+if [ -n "$TMUX" ]; then
+  tmux_sessions_count="$(tmux list-sessions | wc -l)"
+  tmux_windows_count="$(tmux list-windows | wc -l)"
+  if [[ "$tmux_sessions_count" = 1 && "$tmux_windows_count" = 1 ]]; then
+    if command -v fastfetch >/dev/null 2>&1; then
+      fastfetch --logo "$DINNO_ZSH_LOGO"
+    elif command -v neofetch >/dev/null 2>&1; then
+      neofetch --source "$DINNO_ZSH_LOGO"
+    else
+      cat -p "$DINNO_ZSH_LOGO"
+    fi
   fi
 fi
 
