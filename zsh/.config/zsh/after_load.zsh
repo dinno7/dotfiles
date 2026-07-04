@@ -1,12 +1,5 @@
 #! /usr/bin/env bash
 
-# NOTE: Run tmux session
-if [ -z "$TMUX" ] && [ -n "$PS1" ]; then
-  echo "Starting Tmux..."
-  session_name="Dinno"
-  tmux new -A -s "$session_name"
-fi
-
 tmux_sessions_count="$(tmux list-sessions | wc -l)"
 if [[ "$tmux_sessions_count" -eq 1 ]]; then
   if command -v fastfetch >/dev/null 2>&1; then
