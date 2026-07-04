@@ -4,14 +4,11 @@
 # (these directories are only added if they exist)
 pathprepend "$XDG_BIN_HOME" "$HOME/bin" "$NVIM_DATA_DIR/mason/bin"
 
-# NOTE: Add rust cargo
-pathappend "$CARGO_HOME/bin"
+# NOTE: pnpm
+pathprepend "$PNPM_HOME"
 
 # NOTE: Add Go to path
-pathappend "/usr/local/go/bin" "$GOPATH/bin"
+pathprepend "/usr/local/go/bin" "$GOPATH/bin"
 
-# NOTE: NVM
-sourcefiles "$NVM_DIR/nvm.sh" "$NVM_DIR/bash_completion"
-
-# NOTE: pnpm
-pathappend "$PNPM_HOME"
+# NOTE: Add rust cargo
+pathprepend "$CARGO_HOME/bin"
