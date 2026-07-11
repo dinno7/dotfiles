@@ -5,4 +5,5 @@ return {
   require "plugins.mini.mini-surround",
   require "plugins.mini.mini-indentscope",
   require "plugins.mini.mini-bracketed",
+  require "plugins.mini.mini-trailspace",
 }
