@@ -45,10 +45,10 @@ if cmd_exists xdg-open; then
   }
 fi
 
-function mcd() {
-  local path="${1?Path not define}"
-  mkdir -p "$path"
-  cd "$path" || exit
+function mdd() {
+  local p="${1?Path not define}"
+  mkdir -p "$p" || return 1
+  cd "$p" || return 1
 }
 
 function ds() {
