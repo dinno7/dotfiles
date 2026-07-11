@@ -200,3 +200,9 @@ term_proxy() {
     ;;
   esac
 }
+
+capitalize_word() {
+  word="${1?Please pass the word in first argument}"
+  firstCharUpper="$(echo "${word:0:1}" | tr '[:lower:]' '[:upper:]')"
+  echo "$firstCharUpper${word:1}"
+}
