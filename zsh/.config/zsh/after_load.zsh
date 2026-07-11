@@ -28,7 +28,7 @@ fi
 
 # NOTE: load main parts
 # envs load again to do not overwritten with other apps
-sourcefiles "$DINNO_ZSH_DIR/dynamic_envs.zsh" "$DINNO_ZSH_DIR/aliases.zsh" "$DINNO_ZSH_DIR/functions.zsh" "$DINNO_ZSH_DIR/setup_tools.zsh"
+sourcefiles "$DINNO_ZSH_DIR/dynamic_envs.zsh" "$DINNO_ZSH_DIR/functions.zsh" "$DINNO_ZSH_DIR/aliases.zsh" "$DINNO_ZSH_DIR/setup_tools.zsh"
 
 # NOTE: Remove duplicated path in $PATH
 declare -A saw
