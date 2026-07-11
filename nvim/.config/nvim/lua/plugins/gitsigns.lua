@@ -2,10 +2,11 @@ return {
   "lewis6991/gitsigns.nvim",
   config = function()
     local defualtConfigs = require "nvchad.configs.gitsigns"
+
     local opts = vim.tbl_deep_extend("force", defualtConfigs, {
       current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
       current_line_blame_opts = {
-        virt_text = true,
+
         virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
         delay = 1000,
         ignore_whitespace = false,
@@ -16,6 +17,7 @@ return {
       numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
       preview_config = {
         -- Options passed to nvim_open_win
+        border = "single", -- or 'rounded', 'solid'
         style = "minimal",
         relative = "cursor",
         row = 0,
