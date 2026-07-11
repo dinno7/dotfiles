@@ -44,8 +44,8 @@ local opts = {
       winblend = 0,
     },
     mappings = {
-      scrollU = "<C-k>",
-      scrollD = "<C-j>",
+      scrollU = "<C-u>",
+      scrollD = "<C-d>",
       -- jumpTop = "[",
       -- jumpBot = "]",
     },
