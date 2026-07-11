@@ -1,3 +1,23 @@
+-- TODO: test text
+-- NOTE: test text
+-- INFO: test text
+-- PERF: test text
+-- OPTIM: test text
+-- PERFORMANCE: test text
+-- OPTIMIZE: test text
+-- WARN: test text
+-- WARNING: test text
+-- XXX: test text
+-- HACK: test text
+-- FIX: test text
+-- FIXME: test text
+-- BUG: test text
+-- FIXIT: test text
+-- ISSUE: test text
+-- TEST: test text
+-- TESTING: test text
+-- PASSED: test text
+-- FAILED: test text
 return {
   "folke/todo-comments.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
@@ -45,14 +65,14 @@ return {
       },
       -- list of named colors where we try to extract the guifg from the
       -- list of highlight groups or use the hex color if hl not found as a fallback
-      colors = {
-        error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
-        warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
-        info = { "DiagnosticInfo", "#2563EB" },
-        hint = { "DiagnosticHint", "#10B981" },
-        default = { "Identifier", "#7C3AED" },
-        test = { "Identifier", "#FF00FF" },
-      },
+      -- colors = {
+      --   error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+      --   warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+      --   info = { "DiagnosticInfo", "#2563EB" },
+      --   hint = { "DiagnosticHint", "#10B981" },
+      --   default = { "Identifier", "#7C3AED" },
+      --   test = { "Identifier", "#FF00FF" },
+      -- },
       search = {
         command = "rg",
         args = {
@@ -68,7 +88,6 @@ return {
         -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
       },
     }
-
     -- You can also specify a list of valid jump keywords
     -- vim.keymap.set("n", "]t", function()
     --   todo.jump_next { keywords = { "ERROR", "WARNING" } }
