@@ -44,8 +44,8 @@ map("n", "<leader>cf", '<cmd>let @+ = expand("%")<CR>', { desc = "Copy File Name
 map("n", "<leader>cc", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
 
 -- NOTE: Fix lsp bug with macro mode
-map("n", "q", "", { desc = "Remove q to go macro mode" })
-map("n", "Q", "q", { desc = "Mapping macro mode to Q" })
+-- map("n", "q", "", { desc = "Remove q to go macro mode" })
+-- map("n", "Q", "q", { desc = "Mapping macro mode to Q" })
 
 -- NOTE: Save file without auto-formatting
 map("n", "<leader>sn", "<cmd>noautocmd w <CR>", { desc = "Save file without auto-formatting" })
@@ -58,7 +58,7 @@ map(
 )
 
 -- NOTE: Select whole file
-map("n", "<a-a>", "ggVG", { desc = "Select whole file" })
+map("n", "<M-a>", "ggVG", { desc = "Select whole file" })
 
 -- NOTE: Copy whole file
 map("n", "<leader>ya", "<cmd>%y+<CR>", { desc = "Copy whole file" })
@@ -198,46 +198,56 @@ map({ "n", "t" }, "<A-b>", function()
 end, { desc = "terminal toggleable horizontal term" })
 
 -- NOTE: Todos
--- map("n", "]t", function()
---   require("todo-comments").jump_next { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
--- end, { desc = "Next todo comment" })
--- map("n", "[t", function()
---   require("todo-comments").jump_prev { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
--- end, { desc = "Previous todo comment" })
--- map("n", "<leader>td", "<cmd> TodoTelescope keywords=TODO,FIX,FIXME,BUG,FIXIT,ISSUE <cr>", { desc = "[L]ist of todos" })
+map("n", "]t", function()
+  require("todo-comments").jump_next { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
+end, { desc = "Next todo comment" })
+map("n", "[t", function()
+  require("todo-comments").jump_prev { keywords = { "TODO", "FIX", "FIXME", "BUG", "FIXIT", "ISSUE" } }
+end, { desc = "Previous todo comment" })
+map("n", "<leader>tt", ":TodoTelescope keywords=TODO,FIX,FIXME,BUG,FIXIT,ISSUE<CR>", { desc = "[L]ist of todos" })
 
 -- NOTE: UFO(pkg) folding:
 map("n", "zR", require("ufo").openAllFolds, { desc = "UFO Open all folds" })
 map("n", "zM", require("ufo").closeAllFolds, { desc = "UFO Close all folds" })
 map("n", "zk", function()
-  local winid = require("ufo").peekFoldedLinesUnderCursor()
-  if not winid then
-    -- vim.lsp.buf.hover()
-    require("lspsaga.hover"):render_hover_doc()
-  end
-end, { desc = "Show fold preview else show hover documentation" })
+  require("ufo").peekFoldedLinesUnderCursor()
+end, { desc = "UFO Show fold preview" })
+
+-- NOTE: Context
+map("n", "gC", function()
+  require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = true, desc = "Go to top context" })
+
+-- NOTE: Text Case
+map({ "n", "x" }, "<leader>tc", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope see all available text cases" })
 
 -- NOTE: Telescope
-map("n", "<leader>mm", "<cmd>Telescope marks<CR>", { desc = "See all marks" })
-map("n", "<leader>dd", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
-map("n", "<leader>rr", ":Telescope registers<CR>", { desc = "Registers in telescope" })
-map("n", "<leader>tt", "<cmd>Telescope builtin<CR>", { desc = "[S]earch [S]elect Telescope" })
-map({ "n", "v" }, "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "LSP Telescope show refrences" })
-map({ "n", "v" }, "<leader>gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP Telescope show refrences" })
-map({ "n", "v" }, "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "LSP implementation" })
-map({ "n", "v" }, "<leader>gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "LSP definition type" })
+map("n", "<leader>mm", "<cmd>Telescope marks<CR>", { desc = "Telescope see all marks" })
+map("n", "<leader>dd", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Telescope show buffer diagnostics" })
+map("n", "<leader>rr", ":Telescope registers<CR>", { desc = "Telescope show Registers" })
+map("n", "<leader>kk", ":Telescope keymaps<CR>", { desc = "Telescope show Keymaps" })
+map("n", "<leader>tb", "<cmd>Telescope builtin<CR>", { desc = "Telescope see builtin features" })
 
 -- NOTE: LspSaga
 map({ "n", "v" }, "gd", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP definition" })
-map({ "n", "v" }, "gr", "<cmd>Lspsaga finder ref<CR>", { desc = "LSP Lspsaga show refrences" })
-map({ "n", "v" }, "gi", "<cmd>Lspsaga finder imp<CR>", { desc = "LSP Lspsaga implementation" })
-map({ "n", "v" }, "gt", "<cmd>Lspsaga finder tyd<CR>", { desc = "LSP Lspsaga definition type" })
-map({ "n", "v" }, "gf", "<cmd>Lspsaga finder<CR>", { desc = "Show definition, references" })
--- map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Jump to next diagnostic in buffer" })
--- map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump to prev diagnostic in buffer" })
-map({ "n", "v" }, "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "Smart rename" })
-map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "See available code actions" })
-map({ "n", "v" }, "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "See hover doc" })
+map({ "n", "v" }, "gr", "<cmd>Lspsaga finder ref<CR>", { desc = "LSP show refrences" })
+map({ "n", "v" }, "gi", "<cmd>Lspsaga finder imp<CR>", { desc = "LSP implementation" })
+map({ "n", "v" }, "gt", "<cmd>Lspsaga finder tyd<CR>", { desc = "LSP definition type" })
+map(
+  { "n", "v" },
+  "gf",
+  "<cmd>Lspsaga finder<CR>",
+  { desc = "LSP show definition, references, implementation, type definition" }
+)
+map({ "n", "v" }, "gn", "<cmd>Lspsaga incoming_calls<CR>", { desc = "LSP show incomming calls" })
+map({ "n", "v" }, "go", "<cmd>Lspsaga outgoing_calls<CR>", { desc = "LSP show outgoing calls" })
+map({ "n", "v" }, "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP peek definition" })
+map({ "n", "v" }, "gpt", "<cmd>Lspsaga peek_type_definition<CR>", { desc = "LSP type peek definition" })
+map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "LSP jump to next diagnostic in buffer" })
+map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "LSP jump to prev diagnostic in buffer" })
+map({ "n", "v" }, "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "LSP smart rename" })
+map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "LSP see available code actions" })
+map({ "n", "v" }, "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "LSP See hover doc" })
 map("n", "<leader>K", function()
   local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line "." - 1 })
   if #diagnostics > 0 then
@@ -255,76 +265,54 @@ end, { desc = "Show errors if exist, else show fold preview, else Show documenta
 local gitsigns = require "gitsigns"
 
 -- Navigation
-map("n", "]c", function()
-  if vim.wo.diff then
-    vim.cmd.normal { "]c", bang = true }
-  else
-    gitsigns.nav_hunk "next"
-  end
+map("n", "]g", function()
+  gitsigns.nav_hunk "next"
 end)
 
--- map("n", "[[", function()
---   if vim.wo.diff then
---     vim.cmd.normal { "[c", bang = true }
---   else
---     gitsigns.nav_hunk "prev"
---   end
--- end)
+map("n", "[g", function()
+  gitsigns.nav_hunk "prev"
+end)
 
 -- Actions
-map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "[S]tage Hunk" })
-map("v", "<leader>hs", function()
+map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "[S]tage Hunk" })
+map("v", "<leader>gs", function()
   gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
 end, { desc = "[S]tage Hunk" })
+map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "[S]tage Buffer" })
 
-map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "[R]eset Hunk" })
-
-map("v", "<leader>hr", function()
+map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "[R]eset Hunk" })
+map("v", "<leader>gr", function()
   gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
 end, { desc = "[R]eset Hunk" })
+map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "[R]eset Buffer" })
 
-map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "[S]tage Buffer" })
-map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "[R]eset Buffer" })
-map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "[P]review Hunk" })
-map("n", "<leader>hi", gitsigns.preview_hunk_inline, { desc = "[P]review Hunk Inline" })
+map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "[P]review Hunk" })
+map("n", "<leader>gi", gitsigns.preview_hunk_inline, { desc = "[P]review Hunk Inline" })
 
-map("n", "<leader>hb", function()
+map("n", "<leader>gb", function()
   gitsigns.blame_line { full = true }
 end, {
   desc = "[B]lame line",
 })
 
-map("n", "<leader>hd", gitsigns.diffthis, {
+map("n", "<leader>gd", gitsigns.diffthis, {
   desc = "[D]iff this",
 })
-
-map("n", "<leader>hD", function()
+map("n", "<leader>gD", function()
   gitsigns.diffthis "~"
 end, {
   desc = "[D]iff this",
 })
 
-map("n", "<leader>hQ", function()
+map("n", "<leader>gQ", function()
   gitsigns.setqflist "all"
-end, {
-  desc = "[S]etqflist all",
-})
-map("n", "<leader>hq", gitsigns.setqflist, {
-  desc = "[S]etqflist",
-})
+end, { desc = "[S]etqflist all" })
+map("n", "<leader>gq", gitsigns.setqflist, { desc = "[S]etqflist" })
 
 -- Toggles
-map("n", "<leader>tb", gitsigns.toggle_current_line_blame, {
-  desc = "[T]oggle current line blame",
-})
-map("n", "<leader>tw", gitsigns.toggle_word_diff, {
-  desc = "[T]oggle word diff",
-})
-
--- Text object
-map({ "o", "x" }, "ih", gitsigns.select_hunk, {
-  desc = "[S]elect Hunk",
-})
+map("n", "<leader>gt", gitsigns.toggle_current_line_blame, { desc = "[T]oggle current line blame" })
+map("n", "<leader>gw", gitsigns.toggle_word_diff, { desc = "[T]oggle word diff" })
+map({ "o", "x", "n" }, "gv", gitsigns.select_hunk, { desc = "[S]elect Hunk" })
 
 -- NOTE:  Multicursor
 local mc = require "multicursor-nvim"
@@ -355,32 +343,13 @@ end)
 map({ "n", "x" }, "<leader>S", function()
   mc.matchSkipCursor(-1)
 end)
+
 -- Add and remove cursors with control + left click.
 map("n", "<c-leftmouse>", mc.handleMouse)
 map("n", "<c-leftdrag>", mc.handleMouseDrag)
 map("n", "<c-leftrelease>", mc.handleMouseRelease)
 -- Disable and enable cursors.
 map({ "n", "x" }, "<c-q>", mc.toggleCursor)
-
--- NOTE: Opencode
-map({ "n", "x" }, "<leader>ai", function()
-  require("opencode").ask("@this: ", { submit = true })
-end, { desc = "Ask opencode" })
-map({ "n", "x" }, "<leader>ax", function()
-  require("opencode").select()
-end, { desc = "Execute opencode action…" })
-map({ "n", "x" }, "<leader>ar", function()
-  return require("opencode").operator "@this "
-end, { expr = true, desc = "Add range to opencode" })
-map("n", "<leader>al", function()
-  return require("opencode").operator "@this " .. "_"
-end, { expr = true, desc = "Add line to opencode" })
-map("n", "<S-C-u>", function()
-  require("opencode").command "session.half.page.up"
-end, { desc = "opencode half page up" })
-map("n", "<S-C-d>", function()
-  require("opencode").command "session.half.page.down"
-end, { desc = "opencode half page down" })
 
 -- NOTE: Luasnip
 local ls = require "luasnip"
