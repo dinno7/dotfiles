@@ -30,6 +30,7 @@ plugins=(
 # NOTE: Plugin settings
 # NOTE: Make ssh-agent lazy load
 zstyle :omz:plugins:ssh-agent lazy yes
+zstyle :omz:plugins:ssh-agent quiet yes
 
 # NOTE: Defer nvm's load until use it to speed-up zsh startup
 zstyle ':omz:plugins:nvm' lazy yes
