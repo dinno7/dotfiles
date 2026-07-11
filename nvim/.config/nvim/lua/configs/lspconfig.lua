@@ -1,5 +1,15 @@
 local configs = require "nvchad.configs.lspconfig"
 
+-- INFO: Replace NvChad renamer with Lspsaga renamer
+local original_on_attach = configs.on_attach
+local function on_attach(client, bufnr)
+  -- Call the original NvChad on_attach first
+  original_on_attach(client, bufnr)
+  -- Now remove the <leader>ra mapping that NvChad set up, i want set Lspsaga renamer
+  pcall(vim.keymap.del, "n", "<leader>ra", { buffer = bufnr }) -- INFO: Handled by lspsaga
+  pcall(vim.keymap.del, "n", "gd", { buffer = bufnr }) -- INFO: Handled by lspsaga
+end
+
 -- INFO: Server options
 local tsserverOptions = require "configs.lspservers.tsserver"
 local goplsOptions = require "configs.lspservers.gopls"
@@ -54,7 +64,7 @@ local servers = {
 -- INFO: Initiate all defined servers
 for name, opts in pairs(servers) do
   opts.on_init = configs.on_init
-  opts.on_attach = configs.on_attach
+  opts.on_attach = on_attach
   opts.capabilities = configs.capabilities
   vim.lsp.config(name, opts)
   vim.lsp.enable(name)
