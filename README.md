@@ -56,23 +56,30 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 _Arch_
 
 ```bash
-pacman -S stow
+sudo pacman -S stow
 ```
 
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/yourusername/dotfiles.git "$HOME/dotfiles"
+   git clone https://github.com/dinno7/dotfiles.git "$HOME/dotfiles" && cd "$HOME/dotfiles"
    ```
 
 2. **Sync**
 
-   ```bash
-    cd $HOME/dotfiles && stow */ && source $HOME/.zshrc
-   ```
-
-## Uninstall
+> [!NOTE]
+> Please just stow/unstow with the `$HOME/dotfiles/setup.sh` file. it is prevent stow/unstow redundant stuff.
 
 ```bash
-    cd $HOME/dotfiles && stow -D */
+ ./setup.sh
+```
+
+Then stow or unstow
+
+3. **Install omz additional plugins**
+
+just run the blow command:
+
+```bash
+omz_plugin_sync
 ```
