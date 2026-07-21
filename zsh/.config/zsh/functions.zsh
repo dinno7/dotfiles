@@ -137,38 +137,100 @@ function aicommitprompt() {
   echo -ne "$AI_PROMPT_GIT_COMMIT $(git diff --staged)"
 }
 
-term_proxy() {
-  case "$1" in
-  enable)
-    if [ -z "$2" ]; then
-      echo "Error: Port number is required for 'enable'"
-      return 1
-    fi
-    export http_proxy="http://localhost:$2"
-    export https_proxy="http://localhost:$2"
-    echo "Proxy enabled on port $2"
-    ;;
-  disable)
-    unset http_proxy
-    unset https_proxy
-    echo "Proxy disabled"
-    ;;
-  status)
-    if [ -n "$http_proxy" ] || [ -n "$https_proxy" ]; then
-      echo "Proxy is currently enabled"
-      [ -n "$http_proxy" ] && echo "HTTP Proxy: $http_proxy"
-      [ -n "$https_proxy" ] && echo "HTTPS Proxy: $https_proxy"
-    else
-      echo "Proxy is currently disabled"
-    fi
-    ;;
-  *)
-    echo "Usage: term_proxy [enable|disable|status] [port]"
-    echo "  enable: Enable proxy for the specified port"
-    echo "  disable: Disable proxy"
-    echo "  status: Show current proxy status"
-    echo "  port: The port number for the proxy (required for 'enable')"
-    return 1
-    ;;
-  esac
+termproxy() {
+  while true; do
+    cat <<EOF
+1) Enable local proxy
+2) Enable proxy with host
+3) Disable proxy
+4) Status
+5) Quite
+
+EOF
+
+    echo -n "Enter choice: "
+    read user_choice
+    printf '\033[1A\r\033[K'
+
+    case "$user_choice" in
+    1 | e)
+      echo -n "Enter port: "
+      read user_port
+
+      if [ -z "$user_port" ]; then
+        echo "Error: Port number is required for 'enable'"
+        return 1
+      fi
+      if [ "$user_port" -lt 0 ] || [ "$user_port" -gt 65535 ]; then
+        echo "Invalid port range, port must be 0-65535"
+      else
+        settermproxy "localhost" "$user_port"
+        echo "Proxy enabled on localhost port $user_port"
+      fi
+      ;;
+    2 | ee)
+      echo -n "Enter host: "
+      read user_host
+      echo -n "Enter port: "
+      read user_port
+
+      if [ -z "$user_host" ]; then
+        user_host="localhost"
+      fi
+      if [ -z "$user_port" ]; then
+        echo "Error: Port number is required for 'enable'"
+        return 1
+      fi
+
+      if [ "$user_port" -lt 0 ] || [ "$user_port" -gt 65535 ]; then
+        echo "Invalid port range, port must be 0-65535"
+      else
+        settermproxy "$user_host" "$user_port"
+        echo "Proxy enabled on $user_host port $user_port"
+      fi
+      ;;
+    3 | d)
+      unset all_proxy
+      unset http_proxy
+      unset https_proxy
+      unset ALL_PROXY
+      unset HTTP_PROXY
+      unset HTTPS_PROXY
+      echo "Proxy disabled"
+      ;;
+    4 | s)
+      if [ -n "$all_proxy" ] || [ -n "$https_proxy" ] || [ -n "$https_proxy" ] || [ -n "$ALL_PROXY" ] || [ -n "$HTTP_PROXY" ] || [ -n "$HTTPS_PROXY" ]; then
+        echo "Proxy is currently enabled"
+        [ -n "$all_proxy" ] && echo "all_proxy: $all_proxy"
+        [ -n "$http_proxy" ] && echo "http_proxy: $http_proxy"
+        [ -n "$https_proxy" ] && echo "https_proxy: $https_proxy"
+
+        [ -n "$ALL_PROXY" ] && echo "ALL_PROXY: $ALL_PROXY"
+        [ -n "$HTTP_PROXY" ] && echo "HTTP_PROXY: $HTTP_PROXY"
+        [ -n "$HTTPS_PROXY" ] && echo "HTTPS_PROXY: $HTTPS_PROXY"
+      else
+        echo "Proxy is currently disabled"
+      fi
+      ;;
+    5 | q)
+      return 0
+      ;;
+    *)
+      echo "\nPlease enter valid option!"
+      ;;
+    esac
+
+    echo -n "\nPress enter to continue..."
+    read
+    clear
+  done
+}
+
+settermproxy() {
+  export all_proxy="http://$1:$2"
+  export http_proxy="http://$1:$2"
+  export https_proxy="http://$1:$2"
+  export ALL_PROXY="http://$1:$2"
+  export HTTP_PROXY="http://$1:$2"
+  export HTTPS_PROXY="http://$1:$2"
 }
