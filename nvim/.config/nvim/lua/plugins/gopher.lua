@@ -49,7 +49,7 @@ return {
     iferr = {
       -- choose a custom error message, nil to use default
       -- e.g: `message = 'fmt.Errorf("failed to %w", err)'`
-      message = 'fmt.Errorf("failed to %w", err)',
+      message = "err",
     },
     json2go = {
       -- command used to open interactive input.
