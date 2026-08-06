@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
 export ZSH="$HOME/.oh-my-zsh"
+export TERM="xterm-256color"
 export DEFAULT_USER="$(whoami)"
 export DINNO_ZSH_LOGO="$HOME/.dinno_logo.txt"
 

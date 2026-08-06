@@ -1,9 +1,6 @@
 [general]
 import = ["~/.config/alacritty/themes/tokyo_night.toml"]
 
-[env]
-TERM = "xterm-256color"
-
 [window]
 title = "Alacritty"
 dynamic_title = true
