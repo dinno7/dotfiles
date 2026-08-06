@@ -133,6 +133,14 @@ function omz_plugin_get {
   fi
 }
 
+function catrecursive() {
+  local p="${1-$PWD}"
+  find "$p" -type f -print0 | while IFS= read -r -d '' f; do
+    printf '\n===== %s =====\n' "$f"
+    cat -- "$f"
+  done
+}
+
 function aicommitprompt() {
   echo -ne "$AI_PROMPT_GIT_COMMIT $(git diff --staged)"
 }
