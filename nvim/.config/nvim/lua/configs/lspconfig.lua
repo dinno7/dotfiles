@@ -8,6 +8,7 @@ local function on_attach(client, bufnr)
   -- Now remove the <leader>ra mapping that NvChad set up, i want set Lspsaga renamer
   pcall(vim.keymap.del, "n", "<leader>ra", { buffer = bufnr }) -- INFO: Handled by lspsaga
   pcall(vim.keymap.del, "n", "gd", { buffer = bufnr }) -- INFO: Handled by lspsaga
+  pcall(vim.keymap.del, "n", "gD", { buffer = bufnr }) -- INFO: Handled by lspsaga
 end
 
 -- INFO: Server options
