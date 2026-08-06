@@ -9,7 +9,7 @@ setopt globdots
 sourcefiles "$DINNO_ZSH_DIR/paths.zsh" "$DINNO_ZSH_DIR/envs.zsh"
 
 # NOTE: Run tmux session
-if [ -z "$TMUX" ] && [ -n "$PS1" ]; then
+if [ "$WITHOUT_TMUX" != "true" ] && [ -z "$TMUX" ] && [ -n "$PS1" ]; then
   echo "Starting Tmux..."
   session_name="$(capitalize_word "$DEFAULT_USER")"
   tmux new -A -s "$session_name"
