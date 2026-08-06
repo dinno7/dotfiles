@@ -44,8 +44,8 @@ map("n", "<leader>cf", '<cmd>let @+ = expand("%")<CR>', { desc = "Copy File Name
 map("n", "<leader>cc", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
 
 -- NOTE: Fix lsp bug with macro mode
--- map("n", "q", "", { desc = "Remove q to go macro mode" })
--- map("n", "Q", "q", { desc = "Mapping macro mode to Q" })
+map("n", "q", "", { desc = "Remove q to go macro mode" })
+map("n", "Q", "q", { desc = "Mapping macro mode to Q" })
 
 -- NOTE: Save file without auto-formatting
 map("n", "<leader>sn", "<cmd>noautocmd w <CR>", { desc = "Save file without auto-formatting" })
@@ -299,6 +299,9 @@ map("n", "<leader>gb", function()
 end, {
   desc = "[B]lame line",
 })
+
+map("n", "[[", "bp")
+map("n", "]]", "bn")
 
 map("n", "<leader>gd", gitsigns.diffthis, {
   desc = "[D]iff this",
