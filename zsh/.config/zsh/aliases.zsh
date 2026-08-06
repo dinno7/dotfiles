@@ -87,3 +87,7 @@ elif cmd_exists wget; then
   alias myipshow='wget -qO- http://ip-api.com/line'
   alias myip='wget -qO- http://ip-api.com/line | grep -P --invert-match --line-buffered "(\d+\.?)+"'
 fi
+
+if cmd_exists kubectl; then
+  alias ktl="kubectl"
+fi
