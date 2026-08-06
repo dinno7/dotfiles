@@ -1,14 +1,22 @@
 #! /usr/bin/env bash
 
-# NOTE: Add the most common personal binary paths located inside the home folder
+# INFO: Add the most common personal binary paths located inside the home folder
 # (these directories are only added if they exist)
-pathprepend "$XDG_BIN_HOME" "$HOME/bin" "$NVIM_DATA_DIR/mason/bin"
 
-# NOTE: pnpm
-pathprepend "$PNPM_HOME"
+export PATH=""
 
-# NOTE: Add Go to path
-pathprepend "/usr/local/go/bin" "$GOPATH/bin"
+# INFO: Add rust cargo
+pathappend "$CARGO_HOME/bin"
 
-# NOTE: Add rust cargo
-pathprepend "$CARGO_HOME/bin"
+# INFO: Add Go to path
+pathappend "/usr/local/go/bin" "$GOPATH/bin"
+
+# INFO: pnpm
+pathappend "$PNPM_HOME"
+
+# INFO: System/User(pkg manager) installed bin
+pathappend "$HOME/bin" "$XDG_BIN_HOME"
+pathappend "/usr/local/bin" "/usr/bin" "/bin" "/usr/local/sbin" "/usr/sbin" "/sbin"
+
+# INFO: Nvim's mason bin
+pathappend "$NVIM_DATA_DIR/mason/bin"
