@@ -61,8 +61,19 @@ unstow_all() {
   echo_success "Unstowed successfully"
 }
 
+pacmanDeps=("alacritty" "zsh" "git" "wget" "curl" "tmux" "nvim" "vim" "starship" "vlc" "zoxide" "lazygit" "bat" "btop" "docker" "yazi" "lsd" "ripgrep" "fd" "fzf" "unzip" "unrar" "tree-sitter-cli" "dnsutils" "netcat" "just")
+
+yayDeps=(easydocker-bin" "lazyssh-bin" "lazysql-bin)
+install_dependencies() {
+  pacmanInstallCmd="sudo pacman -S --needed --noconfirm ${pacmanDeps[*]}"
+  yayInstallCmd="yay -S --needed --noconfirm ${yayDeps[*]}"
+  sudo pacman -Syyy --noconfirm
+  bash -c "$pacmanInstallCmd"
+  bash -c "$yayInstallCmd"
+}
+
 echo_info_bold "Please select one of the below options"
-subCommands=("Stow all" "Unstow all" "Exit")
+subCommands=("Stow all" "Unstow all" "Install Dependencies" "Exit")
 select subcmd in "${subCommands[@]}"; do
   case "$subcmd" in
   "Stow all")
@@ -75,6 +86,11 @@ select subcmd in "${subCommands[@]}"; do
     ensure_stow_installed
     echo "-----------------"
     unstow_all
+    exit 0
+    ;;
+  "Install Dependencies")
+    echo "-----------------"
+    install_dependencies
     exit 0
     ;;
   "Exit")
