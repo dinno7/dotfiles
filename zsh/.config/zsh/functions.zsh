@@ -147,7 +147,7 @@ function aicommitprompt() {
 
 termproxy() {
   while true; do
-    cat <<EOF
+    /usr/bin/cat <<EOF
 1) Enable local proxy
 2) Enable proxy with host
 3) Disable proxy
@@ -219,6 +219,8 @@ EOF
       else
         echo "Proxy is currently disabled"
       fi
+      echo "Geting ip..."
+      curl -s 'http://ip-api.com/line'
       ;;
     5 | q)
       return 0
