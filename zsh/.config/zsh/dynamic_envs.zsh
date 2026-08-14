@@ -37,14 +37,15 @@ if cmd_exists fzf; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
   fi
-  FZF_FILE_PREVIEW='bat --style=full --color=always  --line-range :100 {}'
+  FZF_FILE_PREVIEW='bat --style=full --color=always --line-range :100 {}'
   FZF_DIR_PREVIEW='tree -C {} | head -100'
   FZF_PREVIEW="if [ -d {} ]; then $FZF_DIR_PREVIEW; else $FZF_FILE_PREVIEW; fi"
-  export FZF_DEFAULT_OPTS="
-    --tmux center,75% 
-    --layout=reverse 
-    --walker-skip .git,node_modules,target
-  "
+  # export FZF_DEFAULT_OPTS="
+  #   --tmux center,75%
+  #   --layout=reverse
+  #   --walker-skip .git,node_modules,target
+  # "
+
   export FZF_CTRL_R_OPTS="
     --bind 'ctrl-y:execute-silent(echo -n {2..} | xclip -sel clip)+abort'
     --color header:italic
@@ -84,6 +85,20 @@ if cmd_exists fzf; then
 
   # NOTE: fzf-tab plugin
   # --------------------------
+  # disable sort when completing `git checkout`
+  # zstyle ':completion:*:git-checkout:*' sort false
+  # zstyle ':completion:*:git-checkout:*' sort false
+  zstyle ':completion:*' sort false
+  # set descriptions format to enable group support
+  # NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+  zstyle ':completion:*:descriptions' format '[%d]'
+  # set list-colors to enable filename colorizing
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+  # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+  zstyle ':completion:*' menu no
+  # custom fzf flags
+  # NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+  # zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2
   # NOTE: Ensure colors match by using FZF_DEFAULT_OPTS.
   zstyle ":fzf-tab:*" use-fzf-default-opts yes
   # NOTE: Preview file contents when tab completing directories.
