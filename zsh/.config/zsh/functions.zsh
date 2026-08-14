@@ -145,6 +145,22 @@ function aicommitprompt() {
   echo -ne "$AI_PROMPT_GIT_COMMIT $(git diff --staged)"
 }
 
+incognito() {
+  if [ -n "$ZSH_VERSION" ]; then
+    echo "[incognito] Entering isolated zsh session. Type 'exit' or ctrl-d to return."
+    HISTFILE=/dev/null SAVEHIST=0 HISTSIZE=0 \
+      ZDOTDIR=/dev/null zsh --no-rcs -i
+  elif [ -n "$BASH_VERSION" ]; then
+    echo "[incognito] Entering isolated bash session. Type 'exit' to return."
+    HISTFILE=/dev/null HISTSIZE=0 \
+      bash --norc --noprofile -i
+  else
+    echo "incognito: unsupported shell" >&2
+    return 1
+  fi
+  echo "[incognito] Returned to normal shell."
+}
+
 termproxy() {
   while true; do
     /usr/bin/cat <<EOF
