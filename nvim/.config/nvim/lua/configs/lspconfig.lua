@@ -15,7 +15,8 @@ end
 local tsserverOptions = require "configs.lspservers.tsserver"
 local goplsOptions = require "configs.lspservers.gopls"
 local cspellOptions = require "configs.lspservers.cspell"
-local rustAnalyzerOptions = require "configs.lspservers.rustanalyzer"
+-- local rustAnalyzerOptions = require "configs.lspservers.rustanalyzer"
+local basedpyrightOptions = require "configs.lspservers.basedpyright"
 
 local x = vim.diagnostic.severity
 vim.diagnostic.config {
@@ -54,6 +55,7 @@ local servers = {
   just = {}, -- Just lsp(justfile)
   taplo = {}, -- Toml files
   tailwindcss = {},
+  basedpyright = basedpyrightOptions,
   docker_compose_language_service = {
     filetypes = { "yml.compose", "yml.docker-compose", "yaml.compose", "yaml.docker-compose" },
   },
