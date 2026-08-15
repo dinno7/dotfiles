@@ -14,18 +14,6 @@ if [ -n "$TMUX" ]; then
   fi
 fi
 
-# NOTE: Automatically run nvm use when entering a directory if it contains a .nvm file.
-if cmd_exists nvm; then
-  autoload -U add-zsh-hook
-  load-nvmrc() {
-    if [[ -f .nvmrc && -r .nvmrc ]]; then
-      nvm use
-    fi
-  }
-  add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
-fi
-
 # NOTE: load main parts
 # envs load again to do not overwritten with other apps
 sourcefiles "$DINNO_ZSH_DIR/dynamic_envs.zsh" "$DINNO_ZSH_DIR/functions.zsh" "$DINNO_ZSH_DIR/aliases.zsh" "$DINNO_ZSH_DIR/setup_tools.zsh"

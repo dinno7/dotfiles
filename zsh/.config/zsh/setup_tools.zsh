@@ -20,6 +20,11 @@ if cmd_exists direnv; then
   eval "$(direnv hook zsh)"
 fi
 
+# NOTE: FNM for nodejs
+if cmd_exists fnm; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
 # NOTE: Set up just completion
 if cmd_exists just; then
   eval "$(just --completions zsh)"
