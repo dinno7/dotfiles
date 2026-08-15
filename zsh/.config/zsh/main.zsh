@@ -6,7 +6,6 @@ source "$DINNO_ZSH_DIR/pre_load.zsh"
 # NOTE: Plugins
 plugins=(
   # NOTE: Global
-  ssh
   ssh-agent
   urltools
   copyfile
