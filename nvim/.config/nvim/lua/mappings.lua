@@ -292,7 +292,13 @@ end, { desc = "[R]eset Hunk" })
 map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "[R]eset Buffer" })
 
 map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "[P]review Hunk" })
+map("v", "<leader>gp", function()
+  gitsigns.preview_hunk { vim.fn.line ".", vim.fn.line "v" }
+end, { desc = "[P]review Hunk" })
 map("n", "<leader>gi", gitsigns.preview_hunk_inline, { desc = "[P]review Hunk Inline" })
+map("n", "<leader>gi", function()
+  gitsigns.preview_hunk_inline { vim.fn.line ".", vim.fn.line "v" }
+end, { desc = "[P]review Hunk Inline" })
 
 map("n", "<leader>gb", function()
   gitsigns.blame_line { full = true }
