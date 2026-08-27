@@ -101,7 +101,25 @@ function shareportsafe() {
   lt --port "$shared_port" --print-requests -o -s "dinno-$(date +%s)"
 }
 
+function shbng() {
+  filename="${1:?Please enter file name in first arg}"
+  if [[ "$filename" != *.sh ]]; then
+    filename="$filename.sh"
+  fi
+  cat <<EOF >"$filename"
+#! /bin/bash
+
+set -euo pipefail
+EOF
+
+  chmod +x "$filename"
+}
+
 function viddown() {
+  if ! cmd_exists yt-dlp; then
+    echo "Please install yt-dlp first"
+    return 1
+  fi
   local URL="${1:?Please enter url}"
   local QUALITY="${2:-720}"
   local YTDLP_F="-f bestvideo[ext=mp4][height<=$QUALITY]+bestaudio[ext=m4a]/best[ext=mp4][height<=$QUALITY]/best --merge-output-format mp4"
