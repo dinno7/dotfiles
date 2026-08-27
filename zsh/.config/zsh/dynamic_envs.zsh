@@ -59,10 +59,10 @@ if cmd_exists fzf; then
   fi
   FZF_PREVIEW_COMMAND="if [ -d {} ]; then $FZF_DIR_PREVIEW; else $FZF_FILE_PREVIEW; fi"
   FZF_PREVIEW_OPTS="
-    --bind 'ctrl-/:change-preview-window(down|right|hidden|)'
+    --bind 'ctrl-/:change-preview-window(up|right|hidden|)'
     --bind 'ctrl-\:change-preview-window(hidden|)'
     --preview '$FZF_PREVIEW_COMMAND'
-    --preview-window 'up:80%'
+    --preview-window 'bottom:80%'
     --preview-border 'rounded'
     --preview-label 'Press CTRL-\ or CTRL-/ to toggle preview'
   "
@@ -79,6 +79,8 @@ if cmd_exists fzf; then
     --bind "space:toggle"
     --bind "ctrl-space:toggle"
     --bind "ctrl-o:execute($EDITOR {})"
+    --bind "ctrl-u:preview-page-up,ctrl-d:preview-page-down"
+    --bind "ctrl-alt-k:preview-up,ctrl-alt-j:preview-down"
     --bind "ctrl-y:execute(v=\"\"; for f in {+};do v+=\"$(echo \"\nFILE: $f\n-----\n$(cat $f)\n-----\n\")\" done; echo \"$v\" | sed \"s/^[[:space:]]*//;s/[[:space:]]*$//\" | xclip -sel clip)"
   '
   FZF_ALT_C_BINDS='
@@ -87,6 +89,8 @@ if cmd_exists fzf; then
     --bind "ctrl-o:execute(xdg-open {})"
     --bind "ctrl-e:execute($EDITOR {})"
     --bind "ctrl-y:execute(realpath {} | xclip -sel clip)"
+    --bind "ctrl-u:preview-page-up,ctrl-d:preview-page-down"
+    --bind "ctrl-alt-k:preview-up,ctrl-alt-j:preview-down"
   '
 
   export FZF_CTRL_R_OPTS="$FZF_CTRL_R_BINDS"
