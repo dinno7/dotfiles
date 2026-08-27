@@ -4,22 +4,40 @@
     "bash": {
       "*": "ask",
       "git log": "allow",
-      "git diff": "allow"
+      "git add": "allow",
+      "ls": "allow",
+      "wc": "allow",
+      "sed": "allow",
+      "cat": "allow",
+      "head": "allow",
+      "tail": "allow",
+      "rg": "allow",
+      "find": "allow",
+      "echo": "allow",
+      "sort": "allow",
+      "grep": "allow",
+      "git diff": "allow",
+      "rm": "deny"
     },
-    "edit": "ask",
+    "edit": {
+      "*": "ask",
+      "*.md": "allow",
+      "*.mdx": "allow"
+    },
     "read": {
       "*": "allow",
       ".env": "ask"
     },
     "grep": "allow",
+    "task": "allow",
     "glob": "allow",
     "list": "allow",
     "lsp": "allow",
     "skill": "allow",
-    "websearch": "allow",
     "question": "allow",
+    "websearch": "allow",
     "webfetch": "allow",
     "doom_loop": "ask",
     "external_directory": "ask"
-  }
+  },
 }
