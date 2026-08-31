@@ -13,3 +13,5 @@ require("hyprland.rules")
 require("hyprland.rules")
 require("hyprland.permissions")
 
+-- For Noctalia Color templates
+require("noctaliatheme").apply_theme()

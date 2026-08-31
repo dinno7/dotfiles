@@ -104,8 +104,8 @@ if cmd_exists fzf; then
   "
 
   # https://github.com/tinted-theming/tinted-fzf/tree/main/bash
-  # local color00='#1a1b26'
-  color00='#08080b'
+  # color00='#08080b'
+  color00='#000000'
   color01='#16161e'
   #color02='#2f3549'
   #color03='#444b6a'
