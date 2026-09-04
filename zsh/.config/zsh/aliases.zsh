@@ -28,7 +28,9 @@ if cmd_exists opencode; then
   alias oc="opencode"
 fi
 
-if cmd_exists xclip; then
+if cmd_exists wl-copy; then
+  alias cpc="wl-copy"
+elif cmd_exists xclip; then
   alias cpc="xclip -sel clip -r"
 fi
 
