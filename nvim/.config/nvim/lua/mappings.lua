@@ -250,6 +250,12 @@ map("n", "gl", "<cmd>Lspsaga outline<CR>", { desc = "LSP show outline" })
 map({ "n", "v" }, "<leader>lr", "<cmd>lsp restart<CR>", { desc = "LSP restart lsp" })
 map("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "LSP jump to next diagnostic in buffer" })
 map("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "LSP jump to prev diagnostic in buffer" })
+map("n", "]e", function()
+  require("lspsaga.diagnostic"):goto_next { severity = vim.diagnostic.severity.ERROR }
+end, { desc = "LSP jump to next error diagnostic in buffer" })
+map("n", "[e", function()
+  require("lspsaga.diagnostic"):goto_prev { severity = vim.diagnostic.severity.ERROR }
+end, { desc = "LSP jump to prev error diagnostic in buffer" })
 map({ "n", "v" }, "<leader>ra", "<cmd>Lspsaga rename<CR>", { desc = "LSP smart rename" })
 map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "LSP see available code actions" })
 map({ "n", "v" }, "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "LSP See hover doc" })
