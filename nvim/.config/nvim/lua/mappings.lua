@@ -91,7 +91,7 @@ map("n", "<leader>sv", "<C-W>v", { desc = "Split window vertically" })
 map("n", "<leader>sh", "<C-W>s", { desc = "Split window horizontally" })
 map("n", "<leader>sx", "<C-W>q", { desc = "Close split windows" })
 map("n", "<leader>se", "<C-W>=", { desc = "Make split windows equal width & height" })
-map("n", "<leader>sm", "<C-W>_ | <C-W>|", { desc = "Maximize window width & heigth" })
+map("n", "<leader>sm", ":NvimTreeClose<CR> <C-W>_ | <C-W>|", { desc = "Maximize window width & heigth" })
 map("n", "<leader>s=", "<C-W>=", { desc = "Make split windows equal width & height" })
 
 -- NOTE: Tabs
