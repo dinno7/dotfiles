@@ -38,6 +38,27 @@ widget_spacing = 5
 [battery]
 warning_threshold = 20
 
+[control_center]
+width = 800
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "mic_mute"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "audio"
+
+    [[control_center.shortcuts]]
+    type = "caffeine"
+
+    [[control_center.shortcuts]]
+    type = "session"
+
 [desktop_widgets]
 schema_version = 2
 widget_order = [ "desktop-widget-0000000000000006", "desktop-widget-0000000000000007", "desktop-widget-0000000000000008" ]
@@ -50,8 +71,8 @@ widget_order = [ "desktop-widget-0000000000000006", "desktop-widget-000000000000
     [desktop_widgets.widget.desktop-widget-0000000000000006]
     box_height = 120.0
     box_width = 208.0
-    cx = 683.0
-    cy = 676.0
+    cx = 691.0
+    cy = 100.0
     output = "eDP-1"
     placement_height = 768.0
     placement_width = 1366.0
@@ -182,8 +203,10 @@ settings_window_translucent = true
     [shell.launcher]
     auto_paste = "off"
     categories = false
+    show_app_actions = true
 
     [shell.panel]
+    control_center_placement = "floating"
     transparency_mode = "glass"
 
 [theme]
@@ -200,16 +223,20 @@ wallpaper_scheme = "m3-content"
 directory = "/home/dinno/Pictures"
 
     [wallpaper.default]
-    path = "/home/dinno/Pictures/endsin.jpg"
+    path = "/home/dinno/Pictures/humanbot.png"
 
     [wallpaper.last]
-    path = "/home/dinno/Pictures/endsin.jpg"
+    path = "/home/dinno/Pictures/humanbot.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/dinno/Pictures/endsin.jpg"
+    path = "/home/dinno/Pictures/humanbot.png"
 
 [weather]
 enabled = false
+
+[widget.clock]
+format = "{:%H:%M:%S}"
+timezone = "Asia/Tehran"
 
 [widget.date]
 format = "{:%Y-%m-%d}"
