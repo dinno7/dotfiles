@@ -18,10 +18,11 @@ local settings = "noctalia msg settings-toggle"
 local lock = "noctalia msg session lock"
 local windowSwitcher = "noctalia msg window-switcher"
 local clipboardHistory = "noctalia msg panel-open clipboard"
+local vpn = "throne"
 local volumeUp = "noctalia msg volume-up 10"
 local volumeDown = "noctalia msg volume-down 10"
-local brightnessUp = "noctalia msg brightness-up 5"
-local brightnessDown = "noctalia msg brightness-down 5"
+local brightnessUp = "noctalia msg brightness-up 1"
+local brightnessDown = "noctalia msg brightness-down 1"
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local secondMod = "SUPER + SHIFT" -- Sets "Windows" + "SHIFT" key as second modifier
@@ -31,8 +32,9 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(launcher))
 hl.bind(secondMod .. " + Space", hl.dsp.exec_cmd(controlCenter))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(clipboardHistory))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(calculator))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(vpn))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(clipboardHistory))
+hl.bind(secondMod .. " + C", hl.dsp.exec_cmd(calculator))
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(session))
 hl.bind(mainMod .. " + Comma", hl.dsp.exec_cmd(monitor))
 hl.bind(mainMod .. " + Period", hl.dsp.exec_cmd(emojiToggle))
