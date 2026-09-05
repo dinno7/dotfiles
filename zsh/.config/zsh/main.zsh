@@ -13,7 +13,7 @@ plugins=(
   # NOTE: External
   fzf-tab
   zsh-vi-mode
-  you-should-use
+  zsh-you-should-use
   zsh-autosuggestions
   fast-syntax-highlighting
   # NOTE: languages & tools
