@@ -43,8 +43,8 @@ if cmd_exists lsd; then
 fi
 
 if cmd_exists just; then
-  alias js="just"
-  alias jsc="just --choose"
+  alias j="just"
+  alias jc="just --choose"
 fi
 
 # Alias For bat
