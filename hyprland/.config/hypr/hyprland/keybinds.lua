@@ -7,6 +7,7 @@ local fileManagerUI = "nautilus"
 local monitor = "alacritty msg create-window --command='btop'"
 
 local baseNoctaliaBase = "noctalia msg panel-toggle"
+local note = baseNoctaliaBase .. " davemhammer/obsidian:manager"
 local controlCenter = baseNoctaliaBase .. " control-center"
 local clipboardHistory = baseNoctaliaBase .. " clipboard"
 
