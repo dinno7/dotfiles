@@ -1,24 +1,25 @@
 local terminal = "alacritty"
+local browser = "floorp"
+local vpn = "throne"
 local telegram = "telegram-desktop"
 local fileManager = "alacritty msg create-window --command='yazi'"
 local fileManagerUI = "nautilus"
 local monitor = "alacritty msg create-window --command='btop'"
-local note = "obsidian"
-local browser = "google-chrome-stable"
-local spotify = browser .. " --app=https://open.spotify.com"
-local ai = browser .. " --app=https://chat.qwen.ai"
 
-local launcher = "noctalia msg panel-open launcher"
-local calculator = "noctalia msg panel-toggle launcher /calc"
-local emojiToggle = "noctalia msg panel-toggle launcher /emo"
-local windows = "noctalia msg panel-toggle launcher /win"
-local session = "noctalia msg panel-toggle launcher /session"
-local controlCenter = "noctalia msg panel-toggle control-center"
+local baseNoctaliaBase = "noctalia msg panel-toggle"
+local controlCenter = baseNoctaliaBase .. " control-center"
+local clipboardHistory = baseNoctaliaBase .. " clipboard"
+
+local launcher = baseNoctaliaBase .. " launcher"
+local calculator = launcher .. " /calc"
+local emojiToggle = launcher .. " /emo"
+local windows = launcher .. " /win"
+local session = launcher .. " /session"
+local dictionaryTranslator = launcher .. " /tr"
+
 local settings = "noctalia msg settings-toggle"
 local lock = "noctalia msg session lock"
 local windowSwitcher = "noctalia msg window-switcher"
-local clipboardHistory = "noctalia msg panel-open clipboard"
-local vpn = "throne"
 local volumeUp = "noctalia msg volume-up 10"
 local volumeDown = "noctalia msg volume-down 10"
 local brightnessUp = "noctalia msg brightness-up 1"
@@ -36,6 +37,7 @@ hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(vpn))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(clipboardHistory))
 hl.bind(secondMod .. " + C", hl.dsp.exec_cmd(calculator))
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(session))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(dictionaryTranslator))
 hl.bind(mainMod .. " + Comma", hl.dsp.exec_cmd(monitor))
 hl.bind(mainMod .. " + Period", hl.dsp.exec_cmd(emojiToggle))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(settings))
@@ -53,8 +55,6 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(secondMod .. " + E", hl.dsp.exec_cmd(fileManagerUI))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd(note))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(ai))
-hl.bind(secondMod .. " + M", hl.dsp.exec_cmd(spotify))
 hl.bind("ALT + TAB", hl.dsp.exec_cmd(windowSwitcher))
 
 -- hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
@@ -121,7 +121,7 @@ hl.bind(secondMod .. " + h", function()
 end)
 
 -- Toggle window maximization
-hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized" }))
+hl.bind(mainMod .. " + Z", hl.dsp.window.fullscreen({ mode = "maximized" }))
 -- toggle floating
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 
@@ -134,8 +134,8 @@ for i = 1, 10 do
 end
 
 -- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + D", hl.dsp.workspace.toggle_special("magic"))
-hl.bind(secondMod .. " + D", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + M", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(secondMod .. " + M", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
