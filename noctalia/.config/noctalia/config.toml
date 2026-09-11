@@ -173,11 +173,17 @@ git_commit_message = ""
 vault_name = "dinno"
 vault_path = "/home/dinno/Documents/obsidian/mine"
 
+[plugin_settings."noctalia/bitwarden"]
+clear_clipboard_seconds = 30
+gen_length = 32
+gen_special = true
+server_url = "https://vw.dinnoland.com"
+
 [plugin_settings."noctalia/translator"]
 target_lang = "fa"
 
 [plugins]
-enabled = [ "noctalia/translator", "davemhammer/obsidian" ]
+enabled = [ "noctalia/translator", "davemhammer/obsidian", "noctalia/bitwarden" ]
 
 [shell]
 clipboard_auto_paste = "ctrl_v"

@@ -16,6 +16,7 @@ local calculator = launcher .. " /calc"
 local emojiToggle = launcher .. " /emo"
 local windows = launcher .. " /win"
 local session = launcher .. " /session"
+local passwordManager = launcher .. " /bw"
 local dictionaryTranslator = launcher .. " /tr"
 
 local settings = "noctalia msg settings-toggle"
@@ -36,6 +37,7 @@ hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(launcher))
 hl.bind(secondMod .. " + Space", hl.dsp.exec_cmd(controlCenter))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(vpn))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(clipboardHistory))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(passwordManager))
 hl.bind(secondMod .. " + C", hl.dsp.exec_cmd(calculator))
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(session))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(dictionaryTranslator))
