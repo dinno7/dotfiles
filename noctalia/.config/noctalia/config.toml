@@ -10,22 +10,6 @@ capsule_padding = 2.0
 capsule_radius = 3
 capsule_thickness = 0.74999998696148396
 center = [ "date", "clock" ]
-end = [
-    "tray",
-    "status",
-    "keyboard_layout",
-    "notifications",
-    "wallpaper",
-    "clipboard",
-    "bluetooth",
-    "network",
-    "volume",
-    "brightness",
-    "battery",
-    "caffeine",
-    "control-center",
-    "session"
-]
 font_family = "JetBrainsMonoNL Nerd Font Propo"
 font_weight = 400
 margin_edge = 1
@@ -33,7 +17,7 @@ margin_ends = 1
 radius = 0
 scale = 1.0000000074505806
 shadow = false
-start = [ "launcher", "workspaces", "ram", "temp", "cpu" ]
+start = [ "launcher", "workspaces", "ram", "temp", "cpu", "hypr-submap" ]
 thickness = 24
 widget_spacing = 4
 
@@ -95,7 +79,6 @@ enabled = true
 icon_size = 34
 inactive_opacity = 0.68999998457729816
 item_spacing = 0
-layer = "overlay"
 main_axis_padding = 10
 margin_edge = 10
 radius = 0
@@ -170,10 +153,11 @@ temperature_night = 4600
 [plugin_settings."davemhammer/obsidian"]
 daily_folder = "daily"
 git_commit_message = ""
-vault_name = "dinno"
-vault_path = "/home/dinno/Documents/obsidian/mine"
+vault_name = ""
+vault_path = "/home/dinno/Documents/obsidian/works"
 
 [plugin_settings."noctalia/bitwarden"]
+auto_serve = false
 clear_clipboard_seconds = 30
 gen_length = 32
 gen_special = true
@@ -182,8 +166,12 @@ server_url = "https://vw.dinnoland.com"
 [plugin_settings."noctalia/translator"]
 target_lang = "fa"
 
+[plugin_settings."noctalia/umbriel-companion"]
+panel_placement = "floating"
+panel_position = "center"
+
 [plugins]
-enabled = [ "noctalia/translator", "davemhammer/obsidian", "noctalia/bitwarden" ]
+enabled = [ "noctalia/translator", "davemhammer/obsidian", "noctalia/bitwarden", "k4n4t4/hypr-submap" ]
 
 [shell]
 clipboard_auto_paste = "ctrl_v"
@@ -208,6 +196,15 @@ settings_window_translucent = true
     control_center_placement = "floating"
     transparency_mode = "glass"
 
+    [shell.screen_corners]
+    enabled = true
+
+    [shell.screenshot]
+    annotate = true
+    confirm_region = true
+    pipe_to_command = true
+    remember_last_region = true
+
 [theme]
 builtin = "Tokyo-Night"
 mode = "dark"
@@ -222,13 +219,13 @@ wallpaper_scheme = "m3-content"
 directory = "/home/dinno/Pictures"
 
     [wallpaper.default]
-    path = "/home/dinno/Pictures/Dinnowalls/wp4462135-alan-turing-wallpapers.png"
+    path = "/home/dinno/Pictures/Dinnowalls/humanbot.png"
 
     [wallpaper.last]
-    path = "/home/dinno/Pictures/Dinnowalls/wp4462135-alan-turing-wallpapers.png"
+    path = "/home/dinno/Pictures/Dinnowalls/humanbot.png"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/dinno/Pictures/Dinnowalls/wp4462135-alan-turing-wallpapers.png"
+    path = "/home/dinno/Pictures/Dinnowalls/humanbot.png"
 
 [weather]
 enabled = false
@@ -237,15 +234,28 @@ enabled = false
 format = "{:%H:%M:%S}"
 timezone = "Asia/Tehran"
 
+[widget.control-center]
+enabled = false
+
 [widget.date]
 format = "{:%Y-%m-%d}"
 timezone = "Asia/Tehran"
 
+[widget.hypr-submap]
+color = "error"
+font_weight = 800
+glyph = ""
+hide_when_default = true
+type = "k4n4t4/hypr-submap:hypr-submap"
+
 [widget.keyboard_layout]
 capsule_radius = "auto"
 
+[widget.launcher]
+glyph = "apps"
+
 [widget.media]
-enabled = true
+hide_when_no_media = true
 
 [widget.status]
 type = "davemhammer/obsidian:status"
