@@ -156,19 +156,39 @@ hl.bind("SUPER + Print", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-hl.dsp.window.resize()
--- Resize right (increase width)
-hl.bind(mainMod .. " + Right", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 10 0"))
-
--- Resize left (decrease width)
-hl.bind(mainMod .. " + Left", hl.dsp.exec_cmd("hyprctl dispatch resizeactive -10 0"))
-
--- Resize up (decrease height)
-hl.bind(mainMod .. " + Up", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 -10"))
-
--- Resize down (increase height)
-hl.bind(mainMod .. " + Down", hl.dsp.exec_cmd("hyprctl dispatch resizeactive 0 10"))
 -- Submaps
+--
+-- Resizing
+hl.bind(mainMod .. " + A", hl.dsp.submap("󰆾"))
+hl.define_submap("󰆾", function()
+	-- os.execute("notify-send 'Resize Mode Active' -t 2000")
+
+	-- Resize right (increase width)
+	hl.bind("l", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+
+	-- Resize left (decrease width)
+	hl.bind("h", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+
+	-- Resize up (decrease height)
+	hl.bind("k", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+
+	-- Resize down (increase height)
+	hl.bind("j", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
+
+	hl.bind(mainMod .. " + l", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+
+	-- Resize left (decrease width)
+	hl.bind(mainMod .. " + h", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+
+	-- Resize up (decrease height)
+	hl.bind(mainMod .. " + k", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+
+	-- Resize down (increase height)
+	hl.bind(mainMod .. " + j", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
+
+	-- Use `reset` to go back to the global submap
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
 
 -- power binds
 hl.bind(secondMod .. " + P", hl.dsp.submap("⏻"))
@@ -198,10 +218,10 @@ hl.bind(secondMod .. " + W", hl.dsp.submap(""))
 
 hl.define_submap("", function()
 	-- next wallpaper
-	hl.bind("l", hl.dsp.exec_cmd("wpaperctl next"))
+	hl.bind("l", hl.dsp.exec_cmd("noctalia msg wallpaper-next"))
 
 	-- previous wallpaper
-	hl.bind("h", hl.dsp.exec_cmd("wpaperctl previous"))
+	hl.bind("h", hl.dsp.exec_cmd("noctalia msg wallpaper-previous"))
 
 	-- Use `reset` to go back to the global submap
 	hl.bind("escape", hl.dsp.submap("reset"))
