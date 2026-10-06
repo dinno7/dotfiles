@@ -14,18 +14,14 @@ alias src="source $HOME/.zshrc"
 alias v="$EDITOR"
 alias vc="$EDITOR $DINNO_NVIM_DIR"
 alias zs="$EDITOR $DINNO_ZSH_DIR/main.zsh"
-alias ll="ls -ltahAF --group-directories-first"
-alias lld="ls -ltahA -d"
+alias ll="ls -ltahAF --group-dirs=first"
+alias lld="ls -ltahA -d */"
 alias godown="shutdown now"
 
 # NOTE: -- Conditional aliases --
 if cmd_exists git; then
   alias gpo="git push origin"
   alias gplo="git pull origin"
-fi
-
-if cmd_exists opencode; then
-  alias oc="opencode"
 fi
 
 if cmd_exists wl-copy; then
@@ -36,9 +32,10 @@ fi
 
 # Alias for lsd
 if cmd_exists lsd; then
+  alias rls="/usr/bin/ls"
   alias ls="lsd"
   if ! cmd_exists tree; then
-    alias tree='lsd --tree --depth=2 --long --group-directories-first'
+    alias tree='lsd --tree --depth=2 --long --group-dirs=first'
   fi
 fi
 
@@ -63,33 +60,37 @@ if cmd_exists lazygit; then
   alias lg='lazygit'
 fi
 
-# Alias for FZF
-# Link: https://github.com/junegunn/fzf
-if cmd_exists fzf; then
-  # Alias to fuzzy find files in the current folder(s), preview them, and launch in an editor
-  if cmd_exists xdg-open; then
-    alias preview='open $(fzf --info=inline --query="${@}")'
-  else
-    alias preview='edit $(fzf --info=inline --query="${@}")'
-  fi
-fi
-
 # Get local IP addresses
 if cmd_exists ip; then
-  alias iplocal="ip -br -c a"
+  alias ipl="ip -br -c a"
 else
-  alias iplocal="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+  alias ipl="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 fi
 
 # Get public IP addresses
-if cmd_exists curl; then
+if cmd_exists xh; then
+  alias myipshow='xh --body http://ip-api.com/json'
+  alias myip='xh --body --pretty=all http://ip-api.com/json | grep -Pv "query.+"'
+elif cmd_exists curl; then
   alias myipshow='curl -s http://ip-api.com/line'
-  alias myip='curl -s http://ip-api.com/line | grep -P --invert-match --line-buffered "(\d+\.?)+"'
+  alias myip='curl -s http://ip-api.com/line | grep -P --invert-match --line-buffered "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"'
 elif cmd_exists wget; then
   alias myipshow='wget -qO- http://ip-api.com/line'
-  alias myip='wget -qO- http://ip-api.com/line | grep -P --invert-match --line-buffered "(\d+\.?)+"'
+  alias myip='wget -qO- http://ip-api.com/line | grep -P --invert-match --line-buffered "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"'
 fi
 
 if cmd_exists kubectl; then
   alias ktl="kubectl"
+fi
+
+# AI
+if cmd_exists cursor-agent; then
+  if cmd_exists cursor; then
+    alias cursordesktop="cursor"
+  fi
+  alias cursor="cursor-agent"
+fi
+
+if cmd_exists opencode; then
+  alias oc="opencode"
 fi
