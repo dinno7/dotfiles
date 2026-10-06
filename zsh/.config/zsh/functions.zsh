@@ -49,6 +49,16 @@ if cmd_exists bw; then
   }
 fi
 
+function watch() {
+  local cmd="$1"
+  if ! cmd_exists "$cmd"; then
+    echo "First argument must be a command" >&2
+    return 1
+  fi
+  shift
+  command watch "$@" "zsh -ic '$cmd'"
+}
+
 function get_ips() {
   cat "$1" | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n "$2" | xargs | sed "s/ /,/g"
 }
