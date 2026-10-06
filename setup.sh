@@ -128,7 +128,8 @@ install_yay() {
   cd -
 }
 
-pkgs=("pipewire" "wireplumber" "pipewire-audio" "pipewire-pulse" "pipewire-alsa" "pipewire-jack" "pavucontrol" "alacritty" "zsh" "git" "base" "base-devel" "wget" "curl" "tmux" "neovim" "ncdu" "man-db" "man-pages" "less" "vim" "stow" "rsync" "reflector" "starship" "vlc" "vlc-plugins-all" "zoxide" "lazygit" "bat" "btop" "docker" "docker-buildx" "yazi" "lsd" "ripgrep" "fd" "fzf" "unzip" "unrar" "tree" "tree-sitter-cli" "dnsutils" "netcat" "just" "xclip" "xh" "uv" "obsidian" "jq" "git-delta" "fnm" "fastfetch" "ark" "7zip" "google-chrome" "noto-fonts" "noto-fonts-cjk" "noto-fonts-emoji" "ttf-jetbrains-mono-nerd" "easydocker-bin" "lazyssh-bin" "lazysql-bin" "throne-bin" "telegram-desktop-bin" "opencode-bin" "localsend-bin" "git-open" "bruno-bin" "visual-studio-code-bin")
+pkgs=("openssh" "pipewire" "wireplumber" "pipewire-audio" "pipewire-pulse" "pipewire-alsa" "pipewire-jack" "pavucontrol" "alacritty" "zsh" "git" "base" "base-devel" "wget" "curl" "tmux" "neovim" "ncdu" "man-db" "man-pages" "less" "vim" "stow" "rsync" "reflector" "starship" "vlc" "vlc-plugins-all" "zoxide" "lazygit" "bat" "btop" "docker" "docker-compose" "docker-buildx" "yazi" "lsd" "ripgrep" "fd" "fzf" "unzip" "unrar" "tree" "tree-sitter-cli" "dnsutils" "netcat" "just" "xclip" "xh" "uv" "obsidian" "jq" "git-delta" "fnm" "fastfetch" "ark" "7zip" "google-chrome" "noto-fonts" "noto-fonts-cjk" "noto-fonts-emoji" "ttf-jetbrains-mono-nerd" "lazydocker" "lazyssh-bin" "lazysql-bin" "throne-bin" "telegram-desktop-bin" "opencode" "localsend-bin" "git-open" "bruno-bin" "visual-studio-code-bin")
+hyprlandPkgs=("hyprland" "noctalia" "socat" "xdg-desktop-portal-hyprland" "hyprpolkitagent" "ly" "mako" "qt5-wayland" "qt6-wayland" "playerctl" "brightnessctl" "nwg-look" "gnome-themes-extra" "qt6ct" "bibata-cursor-theme" "hypridle")
 install_dependencies() {
   if get_bool "Do you want update mirrors?"; then
     echo_info "Getting last 10 mirrors..."
@@ -146,6 +147,10 @@ install_dependencies() {
   yayInstallCmd="yay -S --needed --noconfirm ${pkgs[*]}"
   eval "$yayInstallCmd"
   fc-cache -fv
+
+  # TODO:
+  # install omz
+  # install tmux tpm
 }
 
 echo_info_bold "Please select one of the below options"
