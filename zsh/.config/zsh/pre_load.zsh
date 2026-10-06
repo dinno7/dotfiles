@@ -11,7 +11,7 @@ sourcefiles "$DINNO_ZSH_DIR/paths.zsh" "$DINNO_ZSH_DIR/envs.zsh"
 # NOTE: Run tmux session
 if [ "$WITHOUT_TMUX" != "true" ] && [ -z "$TMUX" ] && [ -n "$PS1" ]; then
   session_name="$(capitalize_word "$DEFAULT_USER")"
-  if tmux has -t "$session_name"; then
+  if tmux has -t "$session_name" 2>/dev/null; then
     session_name="$session_name-$(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 3)"
   fi
   echo "Starting \"$session_name\" session in Tmux..."
