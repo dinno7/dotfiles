@@ -144,6 +144,8 @@ hl.bind(secondMod .. " + M", hl.dsp.window.move({ workspace = "special:magic" })
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
+hl.bind("CTRL + " .. mainMod .. " + H", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind("CTRL + " .. mainMod .. " + L", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + bracketright", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + bracketleft", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(secondMod .. " + bracketright", hl.dsp.window.move({ workspace = "e+1" }))
