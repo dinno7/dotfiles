@@ -13,7 +13,7 @@ function cmd_exists() {
 if cmd_exists xdg-open; then
   function open() {
     local target="${1:-$PWD}"
-    runfree xdg-open "$target"
+    [[ -f "$target" ]] && bash -c "$EDITOR $target" || runfree xdg-open "$target"
   }
 fi
 
