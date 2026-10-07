@@ -191,6 +191,75 @@ incognito() {
 }
 
 termproxy() {
+  _set_term_proxy() {
+    export all_proxy="http://$1:$2"
+    export http_proxy="http://$1:$2"
+    export https_proxy="http://$1:$2"
+    export ALL_PROXY="http://$1:$2"
+    export HTTP_PROXY="http://$1:$2"
+    export HTTPS_PROXY="http://$1:$2"
+  }
+
+  _unset_term_proxy() {
+    unset all_proxy http_proxy https_proxy ALL_PROXY HTTP_PROXY HTTPS_PROXY
+    echo "Proxy disabled"
+  }
+
+  _show_proxy_status() {
+    if [ -n "$all_proxy" ] || [ -n "$http_proxy" ] || [ -n "$https_proxy" ] ||
+      [ -n "$ALL_PROXY" ] || [ -n "$HTTP_PROXY" ] || [ -n "$HTTPS_PROXY" ]; then
+      echo "Proxy is currently enabled"
+      [ -n "$all_proxy" ] && echo "all_proxy: $all_proxy"
+      [ -n "$http_proxy" ] && echo "http_proxy: $http_proxy"
+      [ -n "$https_proxy" ] && echo "https_proxy: $https_proxy"
+      [ -n "$ALL_PROXY" ] && echo "ALL_PROXY: $ALL_PROXY"
+      [ -n "$HTTP_PROXY" ] && echo "HTTP_PROXY: $HTTP_PROXY"
+      [ -n "$HTTPS_PROXY" ] && echo "HTTPS_PROXY: $HTTPS_PROXY"
+    else
+      echo "Proxy is currently disabled"
+    fi
+    echo "Getting ip..."
+    curl -s 'http://ip-api.com/line'
+  }
+
+  # If arguments were passed, parse flags and exit without looping
+  if [ $# -gt 0 ]; then
+    local OPTIND opt host port
+    host="localhost"
+
+    while getopts "p:h:ds" opt; do
+      case "$opt" in
+      p) port="$OPTARG" ;;
+      h) host="$OPTARG" ;;
+      d)
+        _unset_term_proxy
+        return 0
+        ;;
+      s)
+        _show_proxy_status
+        return 0
+        ;;
+      *)
+        echo "Usage: termproxy [-p port] [-h host] | [-d] | [-s]"
+        return 1
+        ;;
+      esac
+    done
+
+    if [ -n "$port" ]; then
+      if [ "$port" -lt 0 ] || [ "$port" -gt 65535 ]; then
+        echo "Invalid port range, port must be 0-65535"
+        return 1
+      fi
+      _set_term_proxy "$host" "$port"
+      echo "Proxy enabled on $host port $port"
+      return 0
+    else
+      echo "Error: Port number (-p) is required to enable proxy."
+      return 1
+    fi
+  fi
+
   while true; do
     /usr/bin/cat <<EOF
 1) Enable local proxy
@@ -200,7 +269,6 @@ termproxy() {
 5) Quite
 
 EOF
-
     echo -n "Enter choice: "
     read user_choice
     printf '\033[1A\r\033[K'
@@ -279,13 +347,4 @@ EOF
     read
     clear
   done
-}
-
-_set_term_proxy() {
-  export all_proxy="http://$1:$2"
-  export http_proxy="http://$1:$2"
-  export https_proxy="http://$1:$2"
-  export ALL_PROXY="http://$1:$2"
-  export HTTP_PROXY="http://$1:$2"
-  export HTTPS_PROXY="http://$1:$2"
 }
