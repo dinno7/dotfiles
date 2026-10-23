@@ -47,7 +47,7 @@ hl.config({
 		workspace_swipe_create_new = true,
 	},
 	general = {
-		layout = "master", -- dwindle, master, scrolling, monocle
+		layout = "scrolling", -- dwindle, master, scrolling, monocle
 		-- Gaps and border
 		gaps_in = 2,
 		gaps_out = 1,
