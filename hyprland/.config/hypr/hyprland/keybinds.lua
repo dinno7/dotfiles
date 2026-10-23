@@ -151,8 +151,8 @@ hl.bind(mainMod .. " + bracketleft", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(secondMod .. " + bracketright", hl.dsp.window.move({ workspace = "e+1" }))
 hl.bind(secondMod .. " + bracketleft", hl.dsp.window.move({ workspace = "e-1" }))
 
-hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
-hl.bind("SUPER + Print", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
+-- Take screenshot
+hl.bind(secondMod .. " + S", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -161,9 +161,9 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 -- Submaps
 --
 -- Resizing
-hl.bind(mainMod .. " + A", hl.dsp.submap("󰆾"))
+hl.bind(secondMod .. " + R", hl.dsp.submap("󰆾"))
 hl.define_submap("󰆾", function()
-	-- os.execute("notify-send 'Resize Mode Active' -t 2000")
+	os.execute("notify-send 'Resize Mode Active' -t 2000")
 
 	-- Resize right (increase width)
 	hl.bind("l", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
@@ -232,7 +232,7 @@ end)
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind(
 	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @default_AUDIO_SINK@ 5%+"),
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
