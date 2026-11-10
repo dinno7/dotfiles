@@ -286,7 +286,8 @@ endif
 " More accurate syntax highlighting? (see `:h syn-sync`)
 augroup accurate_syn_highlight
     autocmd!
-    autocmd BufEnter * :syntax sync fromstart
+    " Only for reasonably sized buffers: `fromstart` re-parses the whole file on every BufEnter
+    autocmd BufEnter * if line('$') < 5000 | syntax sync fromstart | endif
 augroup END
 
 " Return to last edit position when opening a file
@@ -821,8 +822,8 @@ function! StatuslineTabWarning()
     if !exists('b:statusline_tab_warning')
         " If the file is unmodifiable, do not warn this.
         if !&modifiable
-            let b:statusline_trailing_space_warning = ''
-            return b:statusline_trailing_space_warning
+            let b:statusline_tab_warning = ''
+            return b:statusline_tab_warning
         endif
 
         let has_leading_tabs = search('^\t\+', 'nw') != 0
