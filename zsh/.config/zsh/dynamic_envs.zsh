@@ -8,7 +8,6 @@ if cmd_exists nvim || cmd_exists vim; then
     export EDITOR='vim'
   fi
   export FCEDIT="$EDITOR"
-  export SUDO_EDITOR="$EDITOR"
   export VISUAL="$EDITOR"
   export GIT_EDITOR="$EDITOR"
   export SUDO_EDITOR="$EDITOR --clean"
@@ -31,15 +30,25 @@ if cmd_exists batcat || cmd_exists bat; then
 fi
 
 if cmd_exists fzf; then
-  export FZF_BASE="$(dirname "$(which fzf)")"
+  export FZF_BASE="${commands[fzf]:h}"
+
+  # INFO: Clipboard sink used by the fzf `ctrl-y` binds (prefer Wayland-native)
+  if cmd_exists wl-copy && [ -n "$WAYLAND_DISPLAY" ]; then
+    _fzf_clip="wl-copy"
+  elif cmd_exists xclip; then
+    _fzf_clip="xclip -sel clip"
+  else
+    _fzf_clip="cat >/dev/null"
+  fi
+
   if cmd_exists fd; then
     export FZF_DEFAULT_COMMAND="fd --type=f --hidden --max-depth 10 --strip-cwd-prefix --exclude .git"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
   else
-    export FZF_DEFAULT_COMMAND="find -type f . -maxdepth 10 -not -path '*/\.git/*' -not -name '.git' -print0 | xargs -0 sed 's|^\./||'"
+    export FZF_DEFAULT_COMMAND="find . -maxdepth 10 -type f -not -path '*/.git/*' -print | sed 's|^\./||'"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-    export FZF_ALT_C_COMMAND="find . -maxdepth 10 -type d -not -path '*/\.git/*' -not -name '.git'"
+    export FZF_ALT_C_COMMAND="find . -maxdepth 10 -type d -not -path '*/.git/*' -not -name '.git'"
   fi
 
   export FZF_DEFAULT_OPTS="--walker-skip .git,node_modules,target"
@@ -71,7 +80,7 @@ if cmd_exists fzf; then
   FZF_CTRL_R_BINDS='
     --color "header:italic"
     --header "Press CTRL-Y to copy command into clipboard"
-    --bind "ctrl-y:execute-silent(echo -n {2..} | xclip -sel clip)+abort"
+    --bind "ctrl-y:execute-silent(echo -n {2..} | '"$_fzf_clip"')+abort"
   '
   FZF_CTRL_T_BINDS='
     --color "header:italic"
@@ -81,14 +90,14 @@ if cmd_exists fzf; then
     --bind "ctrl-o:execute($EDITOR {})"
     --bind "ctrl-u:preview-page-up,ctrl-d:preview-page-down"
     --bind "ctrl-alt-k:preview-up,ctrl-alt-j:preview-down"
-    --bind "ctrl-y:execute(v=\"\"; for f in {+};do v+=\"$(echo \"\nFILE: $f\n-----\n$(cat $f)\n-----\n\")\" done; echo \"$v\" | sed \"s/^[[:space:]]*//;s/[[:space:]]*$//\" | xclip -sel clip)"
+    --bind "ctrl-y:execute-silent[tail -v -n +1 -- {+} | '"$_fzf_clip"']"
   '
   FZF_ALT_C_BINDS='
     --color "header:italic"
     --header "CTRL-Y -> Copy path, CTRL-O -> Open direcotry(UI), CTRL-E -> Open direcotry(EDITOR)"
     --bind "ctrl-o:execute(xdg-open {})"
     --bind "ctrl-e:execute($EDITOR {})"
-    --bind "ctrl-y:execute(realpath {} | xclip -sel clip)"
+    --bind "ctrl-y:execute-silent(realpath {} | '"$_fzf_clip"')"
     --bind "ctrl-u:preview-page-up,ctrl-d:preview-page-down"
     --bind "ctrl-alt-k:preview-up,ctrl-alt-j:preview-down"
   '

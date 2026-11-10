@@ -2,7 +2,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 export TERM="xterm-256color"
-export DEFAULT_USER="$(whoami)"
+export DEFAULT_USER="${USER:-$(whoami)}"
 export DINNO_ZSH_LOGO="$HOME/.dinno_logo.txt"
 
 # Locale settings
@@ -32,7 +32,10 @@ export NVIM_DATA_DIR="$XDG_DATA_HOME/nvim"
 export YAZI_CONFIG_HOME="$XDG_CONFIG_HOME/yazi"
 export JAVA_HOME=/opt/android-studio/jbr
 export ANDROID_HOME="$HOME/Android/Sdk"
-export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
+# INFO: Pick the newest installed NDK (zsh glob: dirs only, sorted by name, last one)
+_ndk_latest=("$ANDROID_HOME"/ndk/*(N/on[-1]))
+[ -n "$_ndk_latest" ] && export NDK_HOME="$_ndk_latest"
+unset _ndk_latest
 
 # Password manager
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
@@ -61,40 +64,6 @@ export OMZ_EXTERNAL_PLUGINS=(
   "zsh-users/zsh-autosuggestions"
   "MichaelAquilina/zsh-you-should-use"
   "zdharma-continuum/fast-syntax-highlighting"
-  "zdharma-continuum/fast-syntax-highlighting"
 )
 
-export AI_PROMPT_GIT_COMMIT=$(
-  cat <<EOF
-You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
 
-1. First line: conventional commit format (type: concise description) (remember to use semantic types like feat, fix, docs, style, refactor, perf, test, chore, etc.)
-2. Optional bullet points if more context helps:
-   - Keep the second line blank
-   - Keep them short and direct
-   - Focus on what changed
-   - Always be terse
-   - Don't overly explain
-   - Drop any fluffy or formal language
-
-Return ONLY the commit message - no introduction, no explanation, no quotes around it.
-
-Examples:
-feat: add user auth system
-
-- Add JWT tokens for API auth
-- Handle token refresh for long sessions
-
-fix: resolve memory leak in worker pool
-
-- Clean up idle connections
-- Add timeout for stale workers
-
-Simple change example:
-fix: typo in README.md
-
-Very important: Do not respond with any of the examples. Your message must be based off the diff that is about to be provided, with a little bit of styling informed by the recent commits you're about to see.
-
-Based on this format, generate appropriate commit messages. Respond with message only. DO NOT format the message in Markdown code blocks, DO NOT use backticks
-EOF
-)

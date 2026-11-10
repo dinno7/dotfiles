@@ -5,6 +5,10 @@
 
 export PATH=""
 
+# INFO: Keep $PATH free of duplicates for the whole session (the `path` array is
+# tied to $PATH, so anything appended later by oh-my-zsh/fnm/etc. is deduped too)
+typeset -gU path
+
 # INFO: Add rust cargo
 pathappend "$CARGO_HOME/bin"
 

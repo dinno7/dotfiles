@@ -35,7 +35,7 @@ function cmd_exists() {
 }
 
 capitalize_word() {
-  word="${1?Please pass the word in first argument}"
-  firstCharUpper="$(echo "${word:0:1}" | tr '[:lower:]' '[:upper:]')"
-  echo "$firstCharUpper${word:1}"
+  local word="${1?Please pass the word in first argument}"
+  # NOTE: pure-zsh (no subshell/tr): upper-case the first char, keep the rest
+  echo "${(U)word:0:1}${word:1}"
 }
