@@ -4,7 +4,7 @@ hl.monitor({
 	output = "",
 	mode = "preferred",
 	position = "auto",
-	scale = 1,
+	scale = 1.6,
 })
 
 hl.gesture({
@@ -103,7 +103,7 @@ hl.config({
 			enabled = true,
 			range = 20,
 			offset = { 0, 2 },
-			render_power = 10,
+			render_power = 4,
 			color = "rgba(00000020)",
 		},
 		-- Dim
