@@ -23,8 +23,8 @@ function mdd() {
   cd "$p" || return 1
 }
 
-function ds() {
-  du "${1:-$PWD}" -h -d 1 | sort -hr
+function dud() {
+  du -shx "${*:-.}"/* | sort -hr
 }
 
 if cmd_exists yazi; then
@@ -48,16 +48,6 @@ if cmd_exists bw; then
     echo "Vault unlocked!"
   }
 fi
-
-function watch() {
-  local cmd="$1"
-  if ! cmd_exists "$cmd"; then
-    echo "First argument must be a command" >&2
-    return 1
-  fi
-  shift
-  command watch "$@" "zsh -ic '$cmd'"
-}
 
 function get_ips() {
   cat "$1" | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n "$2" | xargs | sed "s/ /,/g"
@@ -134,6 +124,7 @@ function viddown() {
   local URL="${1:?Please enter url}"
   local QUALITY="${2:-720}"
   local YTDLP_F="-f bestvideo[ext=mp4][height<=$QUALITY]+bestaudio[ext=m4a]/best[ext=mp4][height<=$QUALITY]/best --merge-output-format mp4"
+  echo "yt-dlp $YTDLP_F -o $PWD/%(title)s.%(ext)s $URL"
   yt-dlp $YTDLP_F -o "$PWD/%(title)s.%(ext)s" "$URL"
 
 }
@@ -222,11 +213,14 @@ termproxy() {
     curl -s 'http://ip-api.com/line'
   }
 
+  _print_help() {
+    echo "Usage: termproxy [-p port] [-h host] | [-d] | [-s]"
+  }
+
   # If arguments were passed, parse flags and exit without looping
   if [ $# -gt 0 ]; then
     local OPTIND opt host port
     host="localhost"
-
     while getopts "p:h:ds" opt; do
       case "$opt" in
       p) port="$OPTARG" ;;
@@ -240,7 +234,7 @@ termproxy() {
         return 0
         ;;
       *)
-        echo "Usage: termproxy [-p port] [-h host] | [-d] | [-s]"
+        _print_help
         return 1
         ;;
       esac
@@ -258,93 +252,8 @@ termproxy() {
       echo "Error: Port number (-p) is required to enable proxy."
       return 1
     fi
+  else
+    _print_help
+    return 1
   fi
-
-  while true; do
-    /usr/bin/cat <<EOF
-1) Enable local proxy
-2) Enable proxy with host
-3) Disable proxy
-4) Status
-5) Quite
-
-EOF
-    echo -n "Enter choice: "
-    read user_choice
-    printf '\033[1A\r\033[K'
-
-    case "$user_choice" in
-    1 | e)
-      echo -n "Enter port: "
-      read user_port
-
-      if [ -z "$user_port" ]; then
-        echo "Error: Port number is required for 'enable'"
-        return 1
-      fi
-      if [ "$user_port" -lt 0 ] || [ "$user_port" -gt 65535 ]; then
-        echo "Invalid port range, port must be 0-65535"
-      else
-        _set_term_proxy "localhost" "$user_port"
-        echo "Proxy enabled on localhost port $user_port"
-      fi
-      ;;
-    2 | ee)
-      echo -n "Enter host: "
-      read user_host
-      echo -n "Enter port: "
-      read user_port
-
-      if [ -z "$user_host" ]; then
-        user_host="localhost"
-      fi
-      if [ -z "$user_port" ]; then
-        echo "Error: Port number is required for 'enable'"
-        return 1
-      fi
-
-      if [ "$user_port" -lt 0 ] || [ "$user_port" -gt 65535 ]; then
-        echo "Invalid port range, port must be 0-65535"
-      else
-        _set_term_proxy "$user_host" "$user_port"
-        echo "Proxy enabled on $user_host port $user_port"
-      fi
-      ;;
-    3 | d)
-      unset all_proxy
-      unset http_proxy
-      unset https_proxy
-      unset ALL_PROXY
-      unset HTTP_PROXY
-      unset HTTPS_PROXY
-      echo "Proxy disabled"
-      ;;
-    4 | s)
-      if [ -n "$all_proxy" ] || [ -n "$https_proxy" ] || [ -n "$https_proxy" ] || [ -n "$ALL_PROXY" ] || [ -n "$HTTP_PROXY" ] || [ -n "$HTTPS_PROXY" ]; then
-        echo "Proxy is currently enabled"
-        [ -n "$all_proxy" ] && echo "all_proxy: $all_proxy"
-        [ -n "$http_proxy" ] && echo "http_proxy: $http_proxy"
-        [ -n "$https_proxy" ] && echo "https_proxy: $https_proxy"
-
-        [ -n "$ALL_PROXY" ] && echo "ALL_PROXY: $ALL_PROXY"
-        [ -n "$HTTP_PROXY" ] && echo "HTTP_PROXY: $HTTP_PROXY"
-        [ -n "$HTTPS_PROXY" ] && echo "HTTPS_PROXY: $HTTPS_PROXY"
-      else
-        echo "Proxy is currently disabled"
-      fi
-      echo "Geting ip..."
-      curl -s 'http://ip-api.com/line'
-      ;;
-    5 | q)
-      return 0
-      ;;
-    *)
-      echo "\nPlease enter valid option!"
-      ;;
-    esac
-
-    echo -n "\nPress enter to continue..."
-    read
-    clear
-  done
 }
