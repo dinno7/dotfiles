@@ -193,6 +193,11 @@ hl.define_submap("󰆾", function()
 end)
 
 -- power binds
+-- Use hyprshutdown for a graceful exit when it is installed, otherwise fall back to the plain command
+local function powerCmd(action)
+	return string.format("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown --post-cmd '%s' || %s", action, action)
+end
+
 hl.bind(secondMod .. " + P", hl.dsp.submap("⏻"))
 
 hl.define_submap("⏻", function()
@@ -203,13 +208,13 @@ hl.define_submap("⏻", function()
 	end)
 
 	-- shutdown
-	hl.bind("p", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'systemctl poweroff'"))
+	hl.bind("p", hl.dsp.exec_cmd(powerCmd("systemctl poweroff")))
 
 	-- reboot
-	hl.bind("r", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'systemctl reboot'"))
+	hl.bind("r", hl.dsp.exec_cmd(powerCmd("systemctl reboot")))
 
 	-- logout
-	hl.bind("SHIFT + l", hl.dsp.exec_cmd("hyprshutdown --post-cmd 'loginctl terminate-user $USER'"))
+	hl.bind("SHIFT + l", hl.dsp.exec_cmd(powerCmd("loginctl terminate-user $USER")))
 
 	-- Use `reset` to go back to the global submap
 	hl.bind("escape", hl.dsp.submap("reset"))

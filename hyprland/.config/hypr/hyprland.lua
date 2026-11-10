@@ -10,7 +10,6 @@ require("hyprland.autostart")
 require("hyprland.envs")
 require("hyprland.keybinds")
 require("hyprland.rules")
-require("hyprland.rules")
 require("hyprland.permissions")
 
 -- For Noctalia Color templates

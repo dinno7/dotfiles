@@ -15,13 +15,11 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("playerctld daemon")
 
 	-- Clipboard: history
-	--hl.exec_cmd("wl-paste --watch cliphist store")
-	hl.exec_cmd(
-		"wl-paste --type text --watch bash -c 'cliphist store && qs -c $qsConfig ipc call cliphistService update'"
-	)
-	hl.exec_cmd(
-		"wl-paste --type image --watch bash -c 'cliphist store && qs -c $qsConfig ipc call cliphistService update'"
-	)
+	-- NOTE: only started when cliphist is installed (otherwise every copy would spawn a failing
+	-- shell), and without the old `qs ... $qsConfig` call: `qs` is not used with noctalia and
+	-- `$qsConfig` was never defined.
+	hl.exec_cmd("command -v cliphist >/dev/null 2>&1 && wl-paste --type text --watch cliphist store")
+	hl.exec_cmd("command -v cliphist >/dev/null 2>&1 && wl-paste --type image --watch cliphist store")
 
 	-- Cursor
 	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 16")
