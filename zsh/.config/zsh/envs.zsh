@@ -30,6 +30,9 @@ export OPENCODE_CONFIG_DIR="$XDG_CONFIG_HOME/opencode"
 export OPENCODE_CONFIG="$XDG_CONFIG_HOME/opencode/opencode.json"
 export NVIM_DATA_DIR="$XDG_DATA_HOME/nvim"
 export YAZI_CONFIG_HOME="$XDG_CONFIG_HOME/yazi"
+export JAVA_HOME=/opt/android-studio/jbr
+export ANDROID_HOME="$HOME/Android/Sdk"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 
 # Password manager
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
