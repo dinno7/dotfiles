@@ -5,15 +5,15 @@ function runfree() {
   disown
 }
 
-function cmd_exists() {
-  command -v "$1" >/dev/null 2>&1
-}
-
-# Alias to launch a document, file, or URL in it's default X application
+# Open regular files in $EDITOR, anything else (dir, URL, ...) with the default app
 if cmd_exists xdg-open; then
   function open() {
     local target="${1:-$PWD}"
-    [[ -f "$target" ]] && bash -c "$EDITOR $target" || runfree xdg-open "$target"
+    if [[ -f "$target" ]]; then
+      ${=EDITOR} "$target"
+    else
+      runfree xdg-open "$target"
+    fi
   }
 fi
 
@@ -50,7 +50,7 @@ if cmd_exists bw; then
 fi
 
 function get_ips() {
-  cat "$1" | grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" | head -n "$2" | xargs | sed "s/ /,/g"
+  command grep -Po "(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}" -- "$1" | head -n "$2" | xargs | sed "s/ /,/g"
 }
 
 function ips_test() {
@@ -62,13 +62,14 @@ function clog() {
   if [[ -z $1 ]]; then
     return
   fi
-  echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$DINNO_ZSH_LOGS"
+  mkdir -p -- "${DINNO_ZSH_LOGS:h}"
+  echo "$(date '+%Y-%m-%d %H:%M:%S') - $*" | tee -a "$DINNO_ZSH_LOGS"
 }
 
 function servehere() {
   local port="${1:-9009}"
-  open http://localhost:$port
-  python3 -m http.server $port
+  open "http://localhost:$port"
+  python3 -m http.server "$port"
 }
 
 # NOTE: Commands cheatsheet
@@ -84,8 +85,8 @@ function how() {
 
 # NOTE: Getting weather
 function weather() {
-  CITY="${1:-tehran}"
-  curl "wttr.in/$CITY"
+  local city="${1:-tehran}"
+  curl "wttr.in/$city"
 }
 
 # NOTE: Sharing local port to internet
@@ -103,7 +104,7 @@ function shareportsafe() {
 }
 
 function shbng() {
-  filename="${1:?Please enter file name in first arg}"
+  local filename="${1:?Please enter file name in first arg}"
   if [[ "$filename" != *.sh ]]; then
     filename="$filename.sh"
   fi
@@ -123,10 +124,14 @@ function viddown() {
   fi
   local URL="${1:?Please enter url}"
   local QUALITY="${2:-720}"
-  local YTDLP_F="-f bestvideo[ext=mp4][height<=$QUALITY]+bestaudio[ext=m4a]/best[ext=mp4][height<=$QUALITY]/best --merge-output-format mp4"
-  echo "yt-dlp $YTDLP_F -o $PWD/%(title)s.%(ext)s $URL"
-  yt-dlp $YTDLP_F -o "$PWD/%(title)s.%(ext)s" "$URL"
-
+  # NOTE: zsh does not word-split unquoted variables, so keep the args in an array
+  local -a ytdlp_args=(
+    -f "bestvideo[ext=mp4][height<=$QUALITY]+bestaudio[ext=m4a]/best[ext=mp4][height<=$QUALITY]/best"
+    --merge-output-format mp4
+    -o "$PWD/%(title)s.%(ext)s"
+  )
+  echo "yt-dlp ${(q)ytdlp_args[@]} ${(q)URL}"
+  yt-dlp "${ytdlp_args[@]}" "$URL"
 }
 
 function omz_plugin_sync {
@@ -140,13 +145,12 @@ function omz_plugin_sync {
 
 function omz_plugin_get {
   local repo_path="${1}"
-  local project="$(echo "${repo_path}" | cut -d"/" -f2)"
+  local project="${repo_path##*/}"
   local project_path="$ZSH_CUSTOM/plugins/$project"
 
-  if cd "${project_path}" >/dev/null 2>&1; then
+  if [ -d "${project_path}" ]; then
     echo "Updating ${repo_path}..."
-    git pull
-    cd - >/dev/null 2>&1 || exit
+    git -C "${project_path}" pull
   else
     echo "Installing ${repo_path}..."
     git clone "https://github.com/${repo_path}" "${project_path}"
@@ -157,12 +161,13 @@ function catrecursive() {
   local p="${1-$PWD}"
   find "$p" -type f -print0 | while IFS= read -r -d '' f; do
     printf '\n===== %s =====\n' "$f"
-    cat -- "$f"
+    command cat -- "$f"
   done
 }
 
 function aicommitprompt() {
-  echo -ne "$AI_PROMPT_GIT_COMMIT $(git diff --staged)"
+  # NOTE: printf, not `echo -e` (zsh's echo would interpret backslashes inside the diff)
+  printf '%s %s' "$AI_PROMPT_GIT_COMMIT" "$(git diff --staged)"
 }
 
 incognito() {
@@ -241,7 +246,7 @@ termproxy() {
     done
 
     if [ -n "$port" ]; then
-      if [ "$port" -lt 0 ] || [ "$port" -gt 65535 ]; then
+      if ! [[ "$port" =~ ^[0-9]+$ ]] || [ "$port" -gt 65535 ]; then
         echo "Invalid port range, port must be 0-65535"
         return 1
       fi

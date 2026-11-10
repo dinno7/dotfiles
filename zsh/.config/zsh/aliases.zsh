@@ -14,8 +14,6 @@ alias src="source $HOME/.zshrc"
 alias v="$EDITOR"
 alias vc="$EDITOR $DINNO_NVIM_DIR"
 alias zs="$EDITOR $DINNO_ZSH_DIR/main.zsh"
-alias ll="ls -ltahAF --group-dirs=first"
-alias lld="ls -ltahA -d */"
 alias godown="shutdown now"
 
 # NOTE: -- Conditional aliases --
@@ -34,9 +32,14 @@ fi
 if cmd_exists lsd; then
   alias rls="/usr/bin/ls"
   alias ls="lsd"
+  alias ll="ls -ltahAF --group-dirs=first"
+  alias lld="ls -ltahA -d */"
   if ! cmd_exists tree; then
     alias tree='lsd --tree --depth=2 --long --group-dirs=first'
   fi
+else
+  alias ll="ls -ltahAF --group-directories-first --color=auto"
+  alias lld="ls -ltahA -d --color=auto */"
 fi
 
 if cmd_exists just; then
@@ -46,12 +49,14 @@ fi
 
 # Alias For bat
 # Link: https://github.com/sharkdp/bat
+# NOTE: ${commands[...]} is zsh's command hash table: no subshell/fork, and it
+# keeps pointing to the real binary even if `cat` is already aliased (e.g. `src`)
 if cmd_exists batcat; then
-  alias rcat="$(which cat)"
-  alias cat="$(which batcat)"
+  alias rcat="${commands[cat]}"
+  alias cat="${commands[batcat]}"
 elif cmd_exists bat; then
-  alias rcat="$(which cat)"
-  alias cat="$(which bat)"
+  alias rcat="${commands[cat]}"
+  alias cat="${commands[bat]}"
 fi
 
 # Alias for lazygit
