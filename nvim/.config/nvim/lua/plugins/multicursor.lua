@@ -1,6 +1,6 @@
 return {
   "jake-stewart/multicursor.nvim",
-  lazy = false,
+  -- NOTE: lazy-loaded on first `require("multicursor-nvim")` (see the keymaps in mappings.lua)
   branch = "1.0",
   config = function()
     local mc = require "multicursor-nvim"

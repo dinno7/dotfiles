@@ -22,7 +22,7 @@ autocmd("BufReadPost", {
 autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
   callback = function()
-    vim.highlight.on_yank { higroup = "HLOnYank", timeout = 250 }
+    (vim.hl or vim.highlight).on_yank { higroup = "HLOnYank", timeout = 250 }
   end,
 })
 
@@ -30,7 +30,8 @@ autocmd("TextYankPost", {
 autocmd("BufDelete", {
   callback = function()
     local bufs = vim.t.bufs
-    if #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "" then
+    -- `vim.t.bufs` is maintained by NvChad's tabufline and can be nil (e.g. before it is set up)
+    if bufs and #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == "" then
       vim.cmd "Nvdash"
     end
   end,

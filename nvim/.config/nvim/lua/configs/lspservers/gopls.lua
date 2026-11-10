@@ -1,4 +1,3 @@
-local util = require "lspconfig/util"
 local options = {
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },

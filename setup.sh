@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+# INFO: Always work from the repo root, no matter where the script is run from
+cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+
 NC='\033[0m'
 BLUE='\033[0;34m'
 YELLOW='\e[33m'
@@ -29,23 +32,12 @@ function cmd_exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
-get_input() {
-  local prompt="$1"
-  local variable_name="$2"
-  local input_value
-
-  read -p "$prompt " input_value
-  eval "$variable_name='$input_value'"
-}
-
 get_bool() {
   local prompt="$1"
-  get_input "${prompt}[y/n] " ans
-  ans="$(echo "$ans" | tr '[:upper:]' '[:lower:]')"
-  if [ "$ans" == "y" ]; then
-    return 0
-  fi
-  return 1
+  local ans
+  read -r -p "${prompt}[y/n] " ans
+  ans="${ans,,}"
+  [ "$ans" == "y" ]
 }
 
 ensure_stow_installed() {
@@ -94,8 +86,9 @@ stow_all() {
     echo "---"
     echo_info_bold "Stowing not command modules"
     NOT_TOOL_MODULES="$(get_all_modules './_')"
+    # shellcheck disable=SC2086 # intentional word splitting: one arg per module
     stow --target="$HOME" --dir="./_" $NOT_TOOL_MODULES
-    echo_info "$(echo $NOT_TOOL_MODULES | tr ' ' ', ') stowed successfully"
+    echo_info "${NOT_TOOL_MODULES// /, } stowed successfully"
   fi
 }
 
@@ -105,7 +98,7 @@ unstow_all() {
   for module in $CMD_MODULES; do
     if cmd_exists "$module"; then
       stow --target="$HOME" -D "$module"
-      echo_success "$module stowed successfully"
+      echo_success "$module unstowed successfully"
     else
       echo_warn "$module is not installed - [ignored]"
     fi
@@ -113,39 +106,45 @@ unstow_all() {
 
   if [ -d '_' ]; then
     echo "---"
-    echo_info_bold "Stowing not command modules"
+    echo_info_bold "Unstowing not command modules"
     NOT_TOOL_MODULES="$(get_all_modules './_')"
+    # shellcheck disable=SC2086 # intentional word splitting: one arg per module
     stow --target="$HOME" --dir="./_" -D $NOT_TOOL_MODULES
-    echo_info "$(echo $NOT_TOOL_MODULES | tr ' ' ', ') stowed successfully"
+    echo_info "${NOT_TOOL_MODULES// /, } unstowed successfully"
   fi
 }
 
 install_yay() {
   local clone_path="/tmp/yay"
+  rm -rf "$clone_path"
   git clone https://aur.archlinux.org/yay.git "$clone_path"
-  cd "$clone_path"
-  makepkg -si && yay -Y --gendb && yay -Syu --devel && yay -Y --devel --save
-  cd -
+  (
+    cd "$clone_path"
+    makepkg -si && yay -Y --gendb && yay -Syu --devel && yay -Y --devel --save
+  )
 }
 
 pkgs=("openssh" "pipewire" "wireplumber" "pipewire-audio" "pipewire-pulse" "pipewire-alsa" "pipewire-jack" "pavucontrol" "alacritty" "zsh" "git" "base" "base-devel" "wget" "curl" "tmux" "neovim" "ncdu" "man-db" "man-pages" "less" "vim" "stow" "rsync" "reflector" "starship" "vlc" "vlc-plugins-all" "zoxide" "lazygit" "bat" "btop" "docker" "docker-compose" "docker-buildx" "yazi" "lsd" "ripgrep" "fd" "fzf" "unzip" "unrar" "tree" "tree-sitter-cli" "dnsutils" "netcat" "just" "xclip" "xh" "uv" "obsidian" "jq" "git-delta" "fnm" "fastfetch" "ark" "7zip" "google-chrome" "noto-fonts" "noto-fonts-cjk" "noto-fonts-emoji" "ttf-jetbrains-mono-nerd" "lazydocker" "lazyssh-bin" "lazysql-bin" "throne-bin" "telegram-desktop-bin" "opencode" "localsend-bin" "git-open" "bruno-bin" "visual-studio-code-bin")
-hyprlandPkgs=("hyprland" "noctalia" "socat" "xdg-desktop-portal-hyprland" "hyprpolkitagent" "ly" "mako" "qt5-wayland" "qt6-wayland" "playerctl" "brightnessctl" "nwg-look" "gnome-themes-extra" "qt6ct" "bibata-cursor-theme" "hypridle")
+hyprlandPkgs=("wl-clipboard" "cliphist" "grim" "slurp" "hyprshutdown" "hyprland" "noctalia" "socat" "xdg-desktop-portal-hyprland" "hyprpolkitagent" "ly" "mako" "qt5-wayland" "qt6-wayland" "playerctl" "brightnessctl" "nwg-look" "gnome-themes-extra" "qt6ct" "bibata-cursor-theme" "hypridle")
 install_dependencies() {
   if get_bool "Do you want update mirrors?"; then
-    echo_info "Getting last 10 mirrors..."
+    echo_info "Getting the 20 fastest mirrors..."
     sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
     sudo reflector --fastest 20 --download-timeout 1 --thread 10 --save /etc/pacman.d/mirrorlist
   fi
 
-  sudo pacman -Syyy --noconfirm
+  sudo pacman -Syy --noconfirm
 
   if ! cmd_exists yay; then
     echo_info "Installing yay..."
     install_yay
     echo_info "yay installed"
   fi
-  yayInstallCmd="yay -S --needed --noconfirm ${pkgs[*]}"
-  eval "$yayInstallCmd"
+  yay -S --needed --noconfirm "${pkgs[@]}"
+
+  if get_bool "Do you want to install the Hyprland packages?"; then
+    yay -S --needed --noconfirm "${hyprlandPkgs[@]}"
+  fi
   fc-cache -fv
 
   # TODO:
