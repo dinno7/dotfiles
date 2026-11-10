@@ -1,6 +1,10 @@
 local plg = {
   "olexsmir/gopher.nvim",
   ft = "go",
+  -- Install gopher's Go tool dependencies (gomodifytags, gotests, impl, iferr) on install/update
+  build = function()
+    vim.cmd.GoInstallDeps()
+  end,
   -- @type gopher.Config
   opts = {
     -- log level, you might consider using DEBUG or TRACE for debugging the plugin
@@ -58,14 +62,5 @@ local plg = {
   },
 }
 
--- (optional) update the plugin's dependencies on updates
-vim.api.nvim_create_autocmd("PackChanged", {
-  pattern = "*",
-  callback = function(ev)
-    if ev.data.spec.name == "gopher.nvim" and vim.tbl_contains({ "install", "update" }, ev.data.kind) then
-      vim.cmd.GoInstallDeps()
-    end
-  end,
-})
-
+-- NOTE: the old `PackChanged` autocmd only fires for `vim.pack`, not lazy.nvim, so it was replaced by `build` above.
 return plg

@@ -75,7 +75,9 @@ map("n", "<leader>Q", function()
 end, { desc = "Close all other buffers" })
 
 nomap("n", "<leader>x")
-map("n", "<leader>q", require("nvchad.tabufline").close_buffer, { desc = "Close buffer" })
+map("n", "<leader>q", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Close buffer" })
 
 -- NOTE: Reselect the text that has just been pasted
 map("n", "<leader>V", "`[V`]", { desc = "Reselect the text that has just been pasted" })
@@ -207,8 +209,12 @@ end, { desc = "Previous todo comment" })
 map("n", "<leader>tt", ":TodoTelescope keywords=TODO,FIX,FIXME,BUG,FIXIT,ISSUE<CR>", { desc = "[L]ist of todos" })
 
 -- NOTE: UFO(pkg) folding:
-map("n", "zR", require("ufo").openAllFolds, { desc = "UFO Open all folds" })
-map("n", "zM", require("ufo").closeAllFolds, { desc = "UFO Close all folds" })
+map("n", "zR", function()
+  require("ufo").openAllFolds()
+end, { desc = "UFO Open all folds" })
+map("n", "zM", function()
+  require("ufo").closeAllFolds()
+end, { desc = "UFO Close all folds" })
 map("n", "zk", function()
   require("ufo").peekFoldedLinesUnderCursor()
 end, { desc = "UFO Show fold preview" })
@@ -273,7 +279,15 @@ map("n", "<leader>K", function()
 end, { desc = "Show errors if exist, else show fold preview, else Show documentation for what is under cursor" })
 
 -- NOTE: Gitsigns
-local gitsigns = require "gitsigns"
+-- Lazy proxy: `gitsigns.<fn>` resolves to a wrapper that requires the plugin on first use,
+-- so this file does not force-load gitsigns at startup.
+local gitsigns = setmetatable({}, {
+  __index = function(_, name)
+    return function(...)
+      return require("gitsigns")[name](...)
+    end
+  end,
+})
 
 -- Navigation
 map("n", "]g", function()
@@ -302,9 +316,6 @@ map("v", "<leader>gp", function()
   gitsigns.preview_hunk { vim.fn.line ".", vim.fn.line "v" }
 end, { desc = "[P]review Hunk" })
 map("n", "<leader>gi", gitsigns.preview_hunk_inline, { desc = "[P]review Hunk Inline" })
-map("n", "<leader>gi", function()
-  gitsigns.preview_hunk_inline { vim.fn.line ".", vim.fn.line "v" }
-end, { desc = "[P]review Hunk Inline" })
 
 map("n", "<leader>gb", function()
   gitsigns.blame_line { full = true }
@@ -312,8 +323,8 @@ end, {
   desc = "[B]lame line",
 })
 
-map("n", "[[", "bp")
-map("n", "]]", "bn")
+map("n", "[[", "<cmd>bprevious<CR>", { desc = "Go to previous buffer" })
+map("n", "]]", "<cmd>bnext<CR>", { desc = "Go to next buffer" })
 
 map("n", "<leader>gd", gitsigns.diffthis, {
   desc = "[D]iff this",
@@ -335,7 +346,14 @@ map("n", "<leader>gw", gitsigns.toggle_word_diff, { desc = "[T]oggle word diff" 
 map({ "o", "x", "n" }, "gv", gitsigns.select_hunk, { desc = "[S]elect Hunk" })
 
 -- NOTE:  Multicursor
-local mc = require "multicursor-nvim"
+-- Lazy proxy: requires multicursor-nvim on first use instead of at startup
+local mc = setmetatable({}, {
+  __index = function(_, name)
+    return function(...)
+      return require("multicursor-nvim")[name](...)
+    end
+  end,
+})
 map({ "n", "x" }, "<A-C-k>", function()
   mc.lineAddCursor(-1)
 end)
@@ -372,10 +390,9 @@ map("n", "<c-leftrelease>", mc.handleMouseRelease)
 map({ "n", "x" }, "<c-q>", mc.toggleCursor)
 
 -- NOTE: Luasnip
-local ls = require "luasnip"
 map({ "i", "s" }, "<Tab>", function()
-  ls.jump(1)
+  require("luasnip").jump(1)
 end, { silent = true })
 map({ "i", "s" }, "<S-Tab>", function()
-  ls.jump(-1)
+  require("luasnip").jump(-1)
 end, { silent = true })

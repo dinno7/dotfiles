@@ -5,6 +5,7 @@ local options = {
     "go",
     "rust",
     "txt",
+    "text", -- the real filetype name of plain text files ("txt" is kept for backwards compat)
     "sql",
     "python",
     "javascript",
