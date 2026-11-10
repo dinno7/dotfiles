@@ -20,18 +20,22 @@ This repository contains a script to manage your dotfiles using symbolic links. 
 - **Neovim**: My favorite text editor, install from [here](https://github.com/neovim/neovim)
 - **ZSH**: you should set bash to zsh
 - **Oh-My-Zsh**: install the [OMZ](https://ohmyz.sh/#install) and below 3-party plugins
+  - [fzf-tab](https://github.com/Aloxaf/fzf-tab)
+  - [zsh-vi-mode](https://github.com/jeffreytse/zsh-vi-mode)
   - [you-should-use](https://github.com/MichaelAquilina/zsh-you-should-use)
   - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
-  - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+  - [fast-syntax-highlighting](https://github.com/zdharma-continuum/fast-syntax-highlighting)
+
+  (all of them are installed/updated by the `omz_plugin_sync` function, see the Installation section)
 - **Tmux**: Install from [tmux](https://github.com/tmux/tmux)
-- **TPM**: For apply the tmux configutation and theme correctly, you should install [TPM](https://github.com/tmux-plugins/tpm) and then run `<C-I>` to install tmux packages, Please note that you should install tpm in `~/dotfiles/tmux/plugins/tpm`
+- **TPM**: For apply the tmux configutation and theme correctly, you should install [TPM](https://github.com/tmux-plugins/tpm) and then run `<C-I>` to install tmux packages, Please note that you should install tpm in `~/.config/tmux/plugins/tpm`
 - **wl-clipboard(wayland) or xclip(xorg)**: for copy & paste support in terminal
 - **Git Delta**: install [delta](https://github.com/dandavison/delta) to see better diff in `git diff` and `lazygit`
 
 ##### Please refer to the original document for using [TPM](https://github.com/tmux-plugins/tpm), but the installation is done with the command below in the latest update of this repository.
 
 ```bash
-  git clone https://github.com/tmux-plugins/tpm ~/dotfiles/.config/tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 ```
 
 ### Optional
