@@ -8,9 +8,9 @@ return {
     --   require("neocodeium").clear()
     -- end)
 
-    -- conf.completion = vim.tbl_deep_extend("force", conf.completion, {
-    --   autocomplete = false,
-    -- })
+    conf.completion = vim.tbl_deep_extend("force", conf.completion, {
+      autocomplete = { cmp.TriggerEvent.TextChanged },
+    })
 
     conf.mapping = vim.tbl_deep_extend("force", conf.mapping, {
       ["<C-j>"] = cmp.mapping(function(fallback)
