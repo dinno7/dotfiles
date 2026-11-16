@@ -7,7 +7,7 @@ return {
     neocodeium.setup {
       -- If `false`, then would not start windsurf server (disabled state)
       -- You can manually enable it at runtime with `:NeoCodeium enable`
-      enabled = false,
+      enabled = true,
       -- Path to a custom windsurf server binary (you can download one from:
       -- https://github.com/Exafunction/codeium/releases)
       bin = nil,

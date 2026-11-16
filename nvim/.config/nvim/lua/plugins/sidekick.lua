@@ -78,7 +78,7 @@ return {
     {
       "<leader>ai",
       function()
-        require("sidekick.cli").toggle { name = "cursor" }
+        require("sidekick.cli").toggle { name = "codex" }
       end,
       desc = "Sidekick Toggle CLI",
     },
