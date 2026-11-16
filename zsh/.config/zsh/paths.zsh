@@ -16,7 +16,7 @@ pathappend "$CARGO_HOME/bin"
 pathappend "/usr/local/go/bin" "$GOPATH/bin"
 
 # INFO: pnpm
-pathappend "$PNPM_HOME"
+pathappend "$PNPM_HOME" "$PNPM_HOME/bin"
 
 # INFO: System/User(pkg manager) installed bin
 pathappend "$HOME/bin" "$XDG_BIN_HOME"
