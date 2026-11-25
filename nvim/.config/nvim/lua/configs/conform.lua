@@ -12,7 +12,7 @@ local options = {
     yaml = { "prettierd" },
     markdown = { "prettierd" },
     graphql = { "prettierd" },
-    rust = { "rustfmt", lsp_format = "fallback" },
+    rust = { "rustfmt" },
     lua = { "stylua" },
     sh = { "shfmt" },
     zsh = { "shfmt" },
@@ -39,9 +39,12 @@ local options = {
     pg_format = {
       args = { "--function-case", "2" },
     },
+    rustfmt = {
+      args = { "--edition", "2024" },
+    },
   },
   format_after_save = {
-    lsp_format = "fallback",
+    -- lsp_format = "fallback",
     timeout_ms = 500,
   },
 }
