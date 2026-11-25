@@ -186,6 +186,30 @@ incognito() {
   echo "[incognito] Returned to normal shell."
 }
 
+if cmd_exists argon2; then
+  argon2_hash() {
+    local password="${1:?Please define password in first arg}"
+    local salt="${2:-$(openssl rand -base64 16)}"
+    echo -n "$password" | argon2 "$salt" -e
+  }
+
+  argon2_cmp() {
+    local password="${1:?Please define password in first arg}"
+    local hashed="${2:?Please define hashed value in second arg}"
+
+    local salt
+    salt=$(echo -n "$hashed" | cut -d',' -f3 | cut -d'$' -f2 | base64 -d)
+    local tmp_hashed
+    tmp_hashed=$(argon2_hash "$password" "$salt")
+
+    if [[ "$tmp_hashed" == "$hashed" ]]; then
+      echo "Ok"
+    else
+      echo "Failed"
+    fi
+  }
+fi
+
 termproxy() {
   _set_term_proxy() {
     export all_proxy="http://$1:$2"
